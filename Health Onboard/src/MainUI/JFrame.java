@@ -38,7 +38,7 @@ public class JFrame extends javax.swing.JFrame {
         MainPanel.setBackground(new java.awt.Color(255, 255, 102));
         MainPanel.setLayout(new java.awt.CardLayout());
 
-        LoginPage.setBackground(new java.awt.Color(255, 51, 0));
+        LoginPage.setBackground(new java.awt.Color(204, 204, 255));
 
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
