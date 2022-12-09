@@ -20,7 +20,6 @@ public class SQLConnect {
         
      public static Connection Connect(){
 
-    
 	
     try {
             Class.forName("com.mysql.jdbc.Driver");
