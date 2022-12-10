@@ -29,7 +29,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         MainPanel = new javax.swing.JPanel();
-        HospitalDashboard = new javax.swing.JPanel();
         LoginPage = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -44,26 +43,13 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
+        HospitalDashboard = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         MainPanel.setBackground(new java.awt.Color(255, 255, 102));
         MainPanel.setLayout(new java.awt.CardLayout());
-
-        HospitalDashboard.setBackground(new java.awt.Color(51, 204, 0));
-
-        javax.swing.GroupLayout HospitalDashboardLayout = new javax.swing.GroupLayout(HospitalDashboard);
-        HospitalDashboard.setLayout(HospitalDashboardLayout);
-        HospitalDashboardLayout.setHorizontalGroup(
-            HospitalDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 875, Short.MAX_VALUE)
-        );
-        HospitalDashboardLayout.setVerticalGroup(
-            HospitalDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 570, Short.MAX_VALUE)
-        );
-
-        MainPanel.add(HospitalDashboard, "card3");
 
         LoginPage.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -202,6 +188,29 @@ public class MainJFrame extends javax.swing.JFrame {
 
         MainPanel.add(LoginPage, "card2");
 
+        HospitalDashboard.setBackground(new java.awt.Color(255, 204, 204));
+
+        jLabel11.setText("jLabel11");
+
+        javax.swing.GroupLayout HospitalDashboardLayout = new javax.swing.GroupLayout(HospitalDashboard);
+        HospitalDashboard.setLayout(HospitalDashboardLayout);
+        HospitalDashboardLayout.setHorizontalGroup(
+            HospitalDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HospitalDashboardLayout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(jLabel11)
+                .addContainerGap(436, Short.MAX_VALUE))
+        );
+        HospitalDashboardLayout.setVerticalGroup(
+            HospitalDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HospitalDashboardLayout.createSequentialGroup()
+                .addGap(265, 265, 265)
+                .addComponent(jLabel11)
+                .addContainerGap(288, Short.MAX_VALUE))
+        );
+
+        MainPanel.add(HospitalDashboard, "card3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,6 +243,9 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -273,6 +285,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel MainPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
