@@ -4,6 +4,8 @@
  */
 package UserInterface.BloodBank;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +19,9 @@ public class BloodBankLoginPage extends javax.swing.JFrame {
      */
     public BloodBankLoginPage() {
         initComponents();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds (0,0,screenSize.width,screenSize.height);
+        setVisible(true);
     }
 
     /**
