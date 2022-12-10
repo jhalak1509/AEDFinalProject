@@ -50,16 +50,22 @@ public class PatientSignUp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lblPatientName.setFont(new java.awt.Font("Adelle Sans Devanagari", 0, 14)); // NOI18N
         lblPatientName.setText("Patient Name");
 
+        lblPatientAge.setFont(new java.awt.Font("Adelle Sans Devanagari", 0, 14)); // NOI18N
         lblPatientAge.setText("Patient Age");
 
+        lblPatientGender.setFont(new java.awt.Font("Adelle Sans Devanagari", 0, 14)); // NOI18N
         lblPatientGender.setText("Patient Gender");
 
+        lblBloodGroup.setFont(new java.awt.Font("Adelle Sans Devanagari", 0, 14)); // NOI18N
         lblBloodGroup.setText("Blood Group");
 
+        lblPassword.setFont(new java.awt.Font("Adelle Sans Devanagari", 0, 14)); // NOI18N
         lblPassword.setText("Password");
 
+        lblConfirmPassword.setFont(new java.awt.Font("Adelle Sans Devanagari", 0, 14)); // NOI18N
         lblConfirmPassword.setText("Confirm Password");
 
         txtPatientAge.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +85,7 @@ public class PatientSignUp extends javax.swing.JFrame {
             }
         });
 
+        lblPatientEmail.setFont(new java.awt.Font("Adelle Sans Devanagari", 0, 14)); // NOI18N
         lblPatientEmail.setText("Patient Email");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,12 +116,12 @@ public class PatientSignUp extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(350, 350, 350)
                         .addComponent(btnRegister)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPatientName)
                     .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,13 +175,14 @@ public class PatientSignUp extends javax.swing.JFrame {
         
             try {
                 Connection con=SQLConnect.Connect();
-                PreparedStatement st=con.prepareStatement("Insert into Patient(PatientName,PatientAge,PatientGender,BloodGroup,PatientEmail) Values('"+patientName+"','"+patientAge+"','"+patientGender+"','"+bloodGroup+"','"+patientEmail+"')");
-                PreparedStatement st1=con.prepareStatement("Insert into LoginCredentials(UserName,Password,UserType) Values('"+patientName+"','"+password+"','Patient')");
+                PreparedStatement st=con.prepareStatement("Insert into LoginCredentials(UserName,Password,UserType) Values('"+patientName+"','"+password+"','Patient')");
+                PreparedStatement st1=con.prepareStatement("Insert into Patient(PatientName,PatientAge,PatientGender,BloodGroup,PatientEmail,UserId) Values('"+patientName+"','"+patientAge+"','"+patientGender+"','"+bloodGroup+"','"+patientEmail+"',(Select UserId from LoginCredentials where UserName = '"+patientName+"'and Password = '"+password+"'))");
+                //PreparedStatement st2=con.prepareStatement("Update Patient set UserId = (Select UserId from LoginCredentials where UserName = '"+patientName+"'and Password = '"+password+"' )");
 
-                //st.setString(1, str_user);
-                //st.setString(2, str_pswrd);
                 st.executeUpdate();
                 st1.executeUpdate();
+               // st2.executeUpdate();
+                
                 JOptionPane.showMessageDialog(this,"Your account is successfully created");
                 this.setVisible(false);
                 new HospitalLoginPage().setVisible(true);

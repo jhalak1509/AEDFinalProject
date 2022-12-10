@@ -21,6 +21,9 @@ public class HospitalLoginPage extends javax.swing.JFrame {
     /**
      * Creates new form HospitalLoginPage
      */
+    
+    public static int UserId;
+    
     public HospitalLoginPage() {
         initComponents();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -49,6 +52,7 @@ public class HospitalLoginPage extends javax.swing.JFrame {
         btnRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(340, 130));
 
         lblUserName.setFont(new java.awt.Font("Adelle Sans Devanagari", 1, 14)); // NOI18N
         lblUserName.setText("User Name");
@@ -171,7 +175,7 @@ public class HospitalLoginPage extends javax.swing.JFrame {
                 //st.setString(2, str_pswrd);
                 ResultSet rs=st.executeQuery();
                 if(rs.next()) {
-                   //int id=rs.getString("id");
+                    UserId=Integer.parseInt(rs.getString("UserId"));
                     JOptionPane.showMessageDialog(null,"Successfully logged in");
                     if(userType.equals("Patient")){
                         PatientDashboard pd = new PatientDashboard();
