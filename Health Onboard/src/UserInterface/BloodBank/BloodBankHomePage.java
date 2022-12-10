@@ -95,6 +95,11 @@ public class BloodBankHomePage extends javax.swing.JFrame {
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/BloodBank/Location.png"))); // NOI18N
         jMenuItem4.setText("Location");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
         jMenu2.add(jSeparator3);
 
@@ -170,6 +175,10 @@ public class BloodBankHomePage extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         new AllDonorDetails().setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+     new SearchBloodDonorLocation().setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
