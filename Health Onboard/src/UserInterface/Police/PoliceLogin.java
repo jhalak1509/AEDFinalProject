@@ -140,10 +140,10 @@ public class PoliceLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MainPanel.removeAll();
+        /*MainPanel.removeAll();
         MainPanel.add(HospitalDashboard);
         MainPanel.repaint();
-        MainPanel.revalidate();
+        MainPanel.revalidate();*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
