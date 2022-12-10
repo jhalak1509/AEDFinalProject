@@ -8,12 +8,12 @@ package UserInterface.Hospital;
  *
  * @author jhalaksurve
  */
-public class HospitalMainFrame extends javax.swing.JFrame {
+public class AmbulanceAdminDashboard extends javax.swing.JFrame {
 
     /**
-     * Creates new form HospitalMainFrame
+     * Creates new form AmbulanceAdminDashboard
      */
-    public HospitalMainFrame() {
+    public AmbulanceAdminDashboard() {
         initComponents();
     }
 
@@ -59,20 +59,20 @@ public class HospitalMainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HospitalMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AmbulanceAdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HospitalMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AmbulanceAdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HospitalMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AmbulanceAdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HospitalMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AmbulanceAdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HospitalMainFrame().setVisible(true);
+                new AmbulanceAdminDashboard().setVisible(true);
             }
         });
     }
