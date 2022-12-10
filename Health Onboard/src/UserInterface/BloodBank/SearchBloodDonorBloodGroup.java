@@ -6,6 +6,9 @@ package UserInterface.BloodBank;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import java.sql.*;
+import SQLConnection.SQLConnect;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -57,6 +60,11 @@ public class SearchBloodDonorBloodGroup extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 77, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 76, 210, -1));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 117, 881, 10));
 
@@ -113,6 +121,19 @@ public class SearchBloodDonorBloodGroup extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(null, e); 
        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        String bloodGroup=jTextField1.getText();
+      try{
+          Connection con = SQLConnect.Connect();
+          Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+          ResultSet rs = st.executeQuery("select * from donor where bloodGroup like '%"+bloodGroup+"%'");
+          jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
+          jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+      }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e); 
+      }
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
