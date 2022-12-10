@@ -20,10 +20,9 @@ public class SQLConnect {
         
      public static Connection Connect(){
 
-    
 	
     try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/HealthOnboard", "root", "root");
         } catch (ClassNotFoundException | SQLException exception) {
             return null;

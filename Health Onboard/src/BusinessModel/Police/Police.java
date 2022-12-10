@@ -4,6 +4,7 @@
  */
 package BusinessModel.Police;
 
+
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -114,6 +115,7 @@ public class Police {
     public void setPolicePassword(String policePassword) {
         this.policePassword = policePassword;
     }
+
 
 
 
