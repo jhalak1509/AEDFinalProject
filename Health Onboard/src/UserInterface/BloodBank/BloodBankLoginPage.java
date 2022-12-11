@@ -4,8 +4,18 @@
  */
 package UserInterface.BloodBank;
 
+import SQLConnection.SQLConnect;
+import UserInterface.Hospital.AmbulanceAdminDashboard;
+import UserInterface.Hospital.DoctorDashboard;
+import static UserInterface.Hospital.HospitalLoginPage.UserId;
+import UserInterface.Hospital.HospitalSystemAdminDashboard;
+import UserInterface.Hospital.PatientDashboard;
+import UserInterface.Hospital.PharmacyAdminDashboard;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,7 +47,7 @@ public class BloodBankLoginPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
-        password = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -60,13 +70,13 @@ public class BloodBankLoginPage extends javax.swing.JFrame {
         username.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 250, -1));
 
-        password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        password.addActionListener(new java.awt.event.ActionListener() {
+        txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
+                txtPasswordActionPerformed(evt);
             }
         });
-        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, 250, -1));
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, 250, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/BloodBank/login.png"))); // NOI18N
@@ -104,18 +114,34 @@ public class BloodBankLoginPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if(username.getText().equals("bbms") &&(password.getText().equals("admin")))
-       {
-           setVisible(false);
-           new BloodBankHomePage().setVisible(true);
-       }
-       else
-           JOptionPane.showMessageDialog(null,"Incorrect Username or Password");
+       String userName = username.getText();
+       String password = txtPassword.getText();
+         try {
+                Connection con=SQLConnect.Connect();
+                PreparedStatement st=con.prepareStatement("Select UserName, Password from donor where UserName = '"+userName+"' and Password='"+password+"'");
+                ResultSet rs=st.executeQuery();
+                if(rs.next()) {
+                    JOptionPane.showMessageDialog(null,"Successfully logged in");
+                    if(userName.equals("bbms")&&(password.equals("admin"))){
+                        setVisible(false);
+                        new BloodBankHomePage().setVisible(true);
+                    }else{
+                        BloodDonate bd = new BloodDonate();
+                    bd.setVisible(true);
+                    this.setVisible(false);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null,"Incorrect details");
+                }
+            }
+            catch(Exception ex){
+                JOptionPane.showMessageDialog(null,ex);
+            } 
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -176,7 +202,7 @@ public class BloodBankLoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
