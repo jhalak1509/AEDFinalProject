@@ -7,7 +7,7 @@ package businessFramework;
 //import BusinessModel.Patient.PatientDirectory;
 //import BusinessModel.Pharmacy.Pharmacy;
 //import BusinessModel.PoliceDepartment.PoliceDepartment;
-import BusinessModel.Roles.Roles;
+import businessFramework.roles.Roles;
 //import BusinessModel.Roles.Administrator;
 import java.util.ArrayList;
 import java.util.Properties;

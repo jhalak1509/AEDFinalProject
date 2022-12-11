@@ -4,7 +4,7 @@
  */
 package UserInterface.BloodBank;
 
-import SQLConnection.SQLConnect;
+import businessFramework.commonFunctions.SQLConnect;
 import UserInterface.Hospital.AmbulanceAdminDashboard;
 import UserInterface.Hospital.DoctorDashboard;
 import static UserInterface.Hospital.HospitalLoginPage.UserId;

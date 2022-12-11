@@ -4,7 +4,7 @@
  */
 package UserInterface.Hospital;
 
-import SQLConnection.SQLConnect;
+import businessFramework.commonFunctions.SQLConnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

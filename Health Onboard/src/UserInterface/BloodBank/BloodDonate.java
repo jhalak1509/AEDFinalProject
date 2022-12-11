@@ -4,7 +4,7 @@
  */
 package UserInterface.BloodBank;
 
-import SQLConnection.SQLConnect;
+import businessFramework.commonFunctions.SQLConnect;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;

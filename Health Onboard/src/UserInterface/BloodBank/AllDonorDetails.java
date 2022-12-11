@@ -5,12 +5,12 @@
 package UserInterface.BloodBank;
 
 import java.sql.*;
-import SQLConnection.SQLConnect;
+import businessFramework.commonFunctions.SQLConnect;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
-import BusinessModel.BloodBank.Donor;
-import BusinessModel.BloodBank.DonorDirectory;
+import businessFramework.DB4OUtil.Donor;
+import businessFramework.DB4OUtil.DonorDirectory;
 
 /**
  *

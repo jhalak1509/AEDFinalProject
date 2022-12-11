@@ -4,8 +4,8 @@
  */
 package UserInterface.Hospital;
 
-import BusinessModel.Hospital.Doctor;
-import SQLConnection.SQLConnect;
+import businessFramework.network.Doctor;
+import businessFramework.commonFunctions.SQLConnect;
 //import static UserInterface.Hospital.HospitalLoginPage.UserId;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

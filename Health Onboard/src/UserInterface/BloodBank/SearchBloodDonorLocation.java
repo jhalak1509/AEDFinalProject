@@ -7,7 +7,7 @@ package UserInterface.BloodBank;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import java.sql.*;
-import SQLConnection.SQLConnect;
+import businessFramework.commonFunctions.SQLConnect;
 import net.proteanit.sql.DbUtils;
 
 /**

@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UserInterface.BloodBank;
-import BusinessModel.BloodBank.DonorDirectory;
-import SQLConnection.SQLConnect;
+import businessFramework.DB4OUtil.DonorDirectory;
+import businessFramework.commonFunctions.SQLConnect;
 import java.sql.*;
 import javax.swing.JOptionPane;
 /**

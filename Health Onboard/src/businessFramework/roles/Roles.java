@@ -1,7 +1,7 @@
 
-package BusinessModel.Roles;
+package businessFramework.roles;
 import businessFramework.Environment;
-import businessFramework.userAccount.User;
+import BusinessModel.UserAccount.User;
 import javax.swing.JPanel;
 /**
  *

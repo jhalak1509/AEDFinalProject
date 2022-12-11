@@ -4,8 +4,8 @@
  */
 package businessFramework;
 import businessFramework.enterprises.EmployeeDirectory;
-import BusinessModel.Roles.Roles;
-import businessFramework.userAccount.UserDirectory;
+import businessFramework.roles.Roles;
+import BusinessModel.UserAccount.UserDirectory;
 import java.util.ArrayList;
 
 
