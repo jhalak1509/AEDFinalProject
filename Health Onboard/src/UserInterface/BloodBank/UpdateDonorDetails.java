@@ -4,6 +4,8 @@
  */
 package UserInterface.BloodBank;
 
+import BusinessModel.BloodBank.Donor;
+import BusinessModel.BloodBank.DonorDirectory;
 import java.sql.*;
 import SQLConnection.SQLConnect;
 import javax.swing.JOptionPane;
@@ -14,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class UpdateDonorDetails extends javax.swing.JFrame {
 
+    DonorDirectory dd = new DonorDirectory();
     /**
      * Creates new form UpdateDonorDetails
      */
@@ -227,7 +230,23 @@ public class UpdateDonorDetails extends javax.swing.JFrame {
         String city = jTextField10.getText();
         String address = jTextArea1.getText();
         
-        try{
+        Donor donor = new Donor();
+        
+        donor.setName(name);
+        donor.setFatherName(fatherName);
+        donor.setMotherName(motherName);
+        donor.setDOB(DOB);
+        donor.setMobileNo(mobileNo);
+        donor.setGender(gender);
+        donor.setEmail(email);
+        donor.setBloodGroup(bloodGroup);
+        donor.setCity(city);
+        donor.setAddress(address);
+        
+        dd.updateDonor(donor);
+        JOptionPane.showMessageDialog(this, "Updated Donor Info.");
+        
+        /*try{
             Connection con = SQLConnect.Connect();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             st.executeUpdate("update donor set name='"+name+"',fatherName='"+fatherName+"',motherName='"+motherName+"',DOB='"+DOB+"',mobileNo='"+mobileNo+"',gender='"+gender+"',email='"+email+"',bloodGroup='"+bloodGroup+"',city='"+city+"',address='"+address+"' where donorId='"+donorId+"'");
@@ -236,7 +255,7 @@ public class UpdateDonorDetails extends javax.swing.JFrame {
             new UpdateDonorDetails().setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Connection error");
-        }
+        }*/
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
