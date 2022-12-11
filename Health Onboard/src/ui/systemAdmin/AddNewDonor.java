@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui.systemAdmin;
-import businessFramework.DB4OUtil.DonorDirectory;
+import businessFramework.DB4OUtil.DB4OUtil;
 import businessFramework.commonFunctions.SQLConnect;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class AddNewDonor extends javax.swing.JFrame {
     
-    DonorDirectory dd = new DonorDirectory();
+    DB4OUtil dd = new DB4OUtil();
 
     /**
      * Creates new form AddNewDonar

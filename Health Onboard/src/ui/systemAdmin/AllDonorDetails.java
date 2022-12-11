@@ -10,14 +10,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
 import businessFramework.DB4OUtil.Donor;
-import businessFramework.DB4OUtil.DonorDirectory;
+import businessFramework.DB4OUtil.DB4OUtil;
 
 /**
  *
  * @author patil
  */
 public class AllDonorDetails extends javax.swing.JFrame {
- DonorDirectory dd = new DonorDirectory();
+ DB4OUtil dd = new DB4OUtil();
     /**
      * Creates new form AllDonorDetails
      */

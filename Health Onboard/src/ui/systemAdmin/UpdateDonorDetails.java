@@ -5,7 +5,7 @@
 package ui.systemAdmin;
 
 import businessFramework.DB4OUtil.Donor;
-import businessFramework.DB4OUtil.DonorDirectory;
+import businessFramework.DB4OUtil.DB4OUtil;
 import java.sql.*;
 import businessFramework.commonFunctions.SQLConnect;
 import javax.swing.JOptionPane;
@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class UpdateDonorDetails extends javax.swing.JFrame {
 
-    DonorDirectory dd = new DonorDirectory();
+    DB4OUtil dd = new DB4OUtil();
     /**
      * Creates new form UpdateDonorDetails
      */
