@@ -29,7 +29,7 @@ public class EnterprisesDirectory {
        enterprisesList.add(enterprises);     
       }
       else if (type == Enterprises.EnterprisesType.Ministry){
-            enterprises = new MinistryEnterprise(name);
+            enterprises = new MinistryEnterprises(name);
             enterprisesList.add(enterprises);
         }
        else if (type == Enterprises.EnterprisesType.Charity){
