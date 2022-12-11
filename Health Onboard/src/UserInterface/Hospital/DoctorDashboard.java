@@ -26,21 +26,76 @@ public class DoctorDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menuBar = new javax.swing.JMenuBar();
+        mnAppointments = new javax.swing.JMenu();
+        itemViewAppointments = new javax.swing.JMenuItem();
+        mnDiagnosis = new javax.swing.JMenu();
+        itemAddEncounter = new javax.swing.JMenuItem();
+        itemViewEncounterHistory = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        mnAppointments.setText("Appointments");
+
+        itemViewAppointments.setText("View Appointments");
+        itemViewAppointments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemViewAppointmentsActionPerformed(evt);
+            }
+        });
+        mnAppointments.add(itemViewAppointments);
+
+        menuBar.add(mnAppointments);
+
+        mnDiagnosis.setText("Diagnosis");
+
+        itemAddEncounter.setText("Add Encounter");
+        itemAddEncounter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAddEncounterActionPerformed(evt);
+            }
+        });
+        mnDiagnosis.add(itemAddEncounter);
+
+        itemViewEncounterHistory.setText("View Encounter History");
+        itemViewEncounterHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemViewEncounterHistoryActionPerformed(evt);
+            }
+        });
+        mnDiagnosis.add(itemViewEncounterHistory);
+
+        menuBar.add(mnDiagnosis);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 836, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 533, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itemViewAppointmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemViewAppointmentsActionPerformed
+        // TODO add your handling code here:
+        ViewAppointments va = new ViewAppointments();
+        va.setVisible(true);
+    }//GEN-LAST:event_itemViewAppointmentsActionPerformed
+
+    private void itemAddEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAddEncounterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemAddEncounterActionPerformed
+
+    private void itemViewEncounterHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemViewEncounterHistoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemViewEncounterHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +133,11 @@ public class DoctorDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem itemAddEncounter;
+    private javax.swing.JMenuItem itemViewAppointments;
+    private javax.swing.JMenuItem itemViewEncounterHistory;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu mnAppointments;
+    private javax.swing.JMenu mnDiagnosis;
     // End of variables declaration//GEN-END:variables
 }
