@@ -4,7 +4,7 @@ package UserInterface;
 import businessFramework.Environment;
 //import BusinessModel.Patient.PatientBills;
 //import BusinessModel.Patient.Patient;
-import BusinessModel.UserAccount.User;
+import businessFramework.userAccount.User;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import java.util.Date;

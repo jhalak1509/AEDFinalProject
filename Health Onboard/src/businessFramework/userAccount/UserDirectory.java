@@ -1,4 +1,4 @@
-package BusinessModel.UserAccount;
+package businessFramework.userAccount;
 
 import businessFramework.enterprises.Employee;
 import java.util.ArrayList;
