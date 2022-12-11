@@ -5,7 +5,7 @@
 package businessFramework.network;
 
 //import BusinessModel.BloodBank.Donor;
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -20,7 +20,7 @@ public class PatientDirectory {
     
     public void updatepatient(Patient patient){
     
-        Connection con=SQLConnect.Connect();
+        Connection con=Sponsorship.Connect();
         try{
         
             PreparedStatement st=con.prepareStatement("Update Patient set PatientName = ?, PatientAge = ?, PatientGender = ?, BloodGroup = ?, PatientEmail = ? where patientId='"+patient.getPatientId()+"'");

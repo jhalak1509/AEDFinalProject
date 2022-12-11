@@ -5,7 +5,7 @@
 package ui.systemAdmin;
 
 import java.sql.*;
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
@@ -103,7 +103,7 @@ public class AllDonorDetails extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         try{
-           Connection con = SQLConnect.Connect();
+           Connection con = Sponsorship.Connect();
            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
            ResultSet rs = st.executeQuery("select * from donor");
            jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);

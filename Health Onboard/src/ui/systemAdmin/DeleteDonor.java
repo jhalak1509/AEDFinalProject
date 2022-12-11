@@ -7,7 +7,7 @@ package ui.systemAdmin;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import java.sql.*;
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -199,7 +199,7 @@ public class DeleteDonor extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String donorId = jTextField1.getText();
         try {
-            Connection con = SQLConnect.Connect();
+            Connection con = Sponsorship.Connect();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = st.executeQuery("select * from donor where donorId='" +donorId+ "'");
             if (rs.next()) {
@@ -235,7 +235,7 @@ public class DeleteDonor extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String donorId = jTextField1.getText();
         try {
-            Connection con = SQLConnect.Connect();
+            Connection con = Sponsorship.Connect();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             st.executeUpdate("delete from donor where donorId ='" + donorId + "'");
             JOptionPane.showMessageDialog(null, "Successfully Deleted");

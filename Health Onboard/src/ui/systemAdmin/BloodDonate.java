@@ -4,7 +4,7 @@
  */
 package ui.systemAdmin;
 
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -78,7 +78,7 @@ public class BloodDonate extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        String donorId = jTextField1.getText();
 //        try {
-//            Connection con = SQLConnect.Connect();
+//            Connection con = Sponsorship.Connect();
 //            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 //            ResultSet rs = st.executeQuery("select * from donor where donorId='" + donorId + "'");
 //            if (rs.next()) {

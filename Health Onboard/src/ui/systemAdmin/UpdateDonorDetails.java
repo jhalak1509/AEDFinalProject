@@ -7,7 +7,7 @@ package ui.systemAdmin;
 import businessFramework.DB4OUtil.Donor;
 import businessFramework.DB4OUtil.DB4OUtil;
 import java.sql.*;
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import javax.swing.JOptionPane;
 
 /**
@@ -246,7 +246,7 @@ public class UpdateDonorDetails extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Updated Donor Info.");
         
         /*try{
-            Connection con = SQLConnect.Connect();
+            Connection con = Sponsorship.Connect();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             st.executeUpdate("update donor set name='"+name+"',fatherName='"+fatherName+"',motherName='"+motherName+"',DOB='"+DOB+"',mobileNo='"+mobileNo+"',gender='"+gender+"',email='"+email+"',bloodGroup='"+bloodGroup+"',city='"+city+"',address='"+address+"' where donorId='"+donorId+"'");
             JOptionPane.showMessageDialog(null, "Succesfully Updated");
@@ -269,7 +269,7 @@ public class UpdateDonorDetails extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String donorId = jTextField1.getText();
         try {
-            Connection con = SQLConnect.Connect();
+            Connection con = Sponsorship.Connect();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = st.executeQuery("select * from donor where donorId='" + donorId + "'");
             if (rs.next()) {

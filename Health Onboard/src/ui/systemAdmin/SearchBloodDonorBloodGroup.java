@@ -7,7 +7,7 @@ package ui.systemAdmin;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import java.sql.*;
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -125,7 +125,7 @@ public class SearchBloodDonorBloodGroup extends javax.swing.JFrame {
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         String bloodGroup=jTextField1.getText();
       try{
-          Connection con = SQLConnect.Connect();
+          Connection con = Sponsorship.Connect();
           Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
           ResultSet rs = st.executeQuery("select * from donor where bloodGroup like '%"+bloodGroup+"%'");
           jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);

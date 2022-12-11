@@ -4,7 +4,7 @@
  */
 package ui.systemAdmin;
 
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import ui.administratorRole.AmbulanceAdminDashboard;
 import ui.administratorRole.DoctorDashboard;
 import static ui.administratorRole.HospitalLoginPage.UserId;
@@ -122,7 +122,7 @@ public class BloodBankLoginPage extends javax.swing.JFrame {
        String userName = username.getText();
        String password = txtPassword.getText();
          try {
-                Connection con=SQLConnect.Connect();
+                Connection con=Sponsorship.Connect();
                 PreparedStatement st=con.prepareStatement("Select UserName, Password from donor where UserName = '"+userName+"' and Password='"+password+"'");
                 ResultSet rs=st.executeQuery();
                 if(rs.next()) {

@@ -4,7 +4,7 @@
  */
 package ui.systemAdmin;
 import businessFramework.DB4OUtil.DB4OUtil;
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import java.sql.*;
 import javax.swing.JOptionPane;
 /**
@@ -216,7 +216,7 @@ public class AddNewDonor extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         try{
-            Connection con=SQLConnect.Connect();
+            Connection con=Sponsorship.Connect();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             
             ResultSet rs = st.executeQuery("select max(donorId) from donor");
@@ -274,7 +274,7 @@ public class AddNewDonor extends javax.swing.JFrame {
         new AddNewDonor().setVisible(true);
             
         /*try{
-            Connection con=SQLConnect.Connect();
+            Connection con=Sponsorship.Connect();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             st.executeUpdate("insert into donor values('"+donorId+"','"+name+"','"+fatherName+"','"+motherName+"','"+DOB+"','"+mobileNo+"','"+gender+"','"+email+"','"+bloodGroup+"','"+city+"','"+address+"')");
             JOptionPane.showMessageDialog(null, "Successfully Updated");

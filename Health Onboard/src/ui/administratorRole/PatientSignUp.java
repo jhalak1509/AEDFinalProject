@@ -4,7 +4,7 @@
  */
 package ui.administratorRole;
 
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -174,7 +174,7 @@ public class PatientSignUp extends javax.swing.JFrame {
         if(password.equals(confirmPassword)){
         
             try {
-                Connection con=SQLConnect.Connect();
+                Connection con=Sponsorship.Connect();
                 PreparedStatement st=con.prepareStatement("Insert into LoginCredentials(UserName,Password,UserType) Values('"+patientName+"','"+password+"','Patient')");
                 PreparedStatement st1=con.prepareStatement("Insert into Patient(PatientName,PatientAge,PatientGender,BloodGroup,PatientEmail,UserId) Values('"+patientName+"','"+patientAge+"','"+patientGender+"','"+bloodGroup+"','"+patientEmail+"',(Select UserId from LoginCredentials where UserName = '"+patientName+"'and Password = '"+password+"'))");
                 //PreparedStatement st2=con.prepareStatement("Update Patient set UserId = (Select UserId from LoginCredentials where UserName = '"+patientName+"'and Password = '"+password+"' )");

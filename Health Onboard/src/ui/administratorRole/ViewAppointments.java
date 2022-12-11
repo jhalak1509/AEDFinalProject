@@ -4,7 +4,7 @@
  */
 package ui.administratorRole;
 
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +31,7 @@ public class ViewAppointments extends javax.swing.JFrame {
         
         //String sql = "Select d.DoctorName, d.DoctorSpecialization, h.HospitalName, h.HospitalCity from Doctor d inner join Hospital h on d.HospitalId = h.HospitalId where d.UserId = '"+HospitalLoginPage.UserId+"'";
         try{
-            Connection con=SQLConnect.Connect();
+            Connection con=Sponsorship.Connect();
             PreparedStatement st=con.prepareStatement("Select p.PatientName, p.PatientAge, p.PatientGender, a.ReasonForVisit, a.Date, a.Time from Patient p inner join Appointment a on p.PatientId = a.PatientId where a.DoctorId = (Select DoctorId from Doctor where UserId = '"+HospitalLoginPage.UserId+"')");
             ResultSet rs = st.executeQuery();
             tblAppointment.setModel(DbUtils.resultSetToTableModel(rs));

@@ -4,7 +4,7 @@
  */
 package ui.systemAdmin;
 
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import java.sql.*;
 import javax.swing.JOptionPane;
 /**
@@ -399,7 +399,7 @@ public class RegisterDonor extends javax.swing.JFrame {
         String password = jTextField9.getText();
 
         try{
-            Connection con=SQLConnect.Connect();
+            Connection con=Sponsorship.Connect();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             st.executeUpdate("insert into donor values('"+donorId+"','"+name+"','"+fatherName+"','"+motherName+"','"+DOB+"','"+mobileNo+"','"+gender+"','"+email+"','"+bloodGroup+"','"+city+"','"+address+"','"+username+"','"+password+"')");
             JOptionPane.showMessageDialog(null, "Successfully Updated");
@@ -429,7 +429,7 @@ public class RegisterDonor extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
        try{
-            Connection con=SQLConnect.Connect();
+            Connection con=Sponsorship.Connect();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             
             ResultSet rs = st.executeQuery("select max(donorId) from donor");

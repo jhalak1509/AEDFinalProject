@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 
 /**
  *
@@ -168,7 +168,7 @@ public class HospitalLoginPage extends javax.swing.JFrame {
         String userType = cbUserType.getSelectedItem().toString();
        
         try {
-                Connection con=SQLConnect.Connect();
+                Connection con=Sponsorship.Connect();
                 PreparedStatement st=con.prepareStatement("Select UserId, UserName, Password, UserType from LoginCredentials where UserName = '"+userName+"' and Password='"+password+"' and UserType = '"+userType+"'");
                 
                 //st.setString(1, str_user);

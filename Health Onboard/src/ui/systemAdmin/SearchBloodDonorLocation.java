@@ -7,7 +7,7 @@ package ui.systemAdmin;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import java.sql.*;
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -126,7 +126,7 @@ public class SearchBloodDonorLocation extends javax.swing.JFrame {
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
       String location=jTextField1.getText();
       try{
-          Connection con = SQLConnect.Connect();
+          Connection con = Sponsorship.Connect();
           Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
           ResultSet rs = st.executeQuery("select * from donor where city like '%"+location+"&' or address like '%"+location+"%'");
           jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);

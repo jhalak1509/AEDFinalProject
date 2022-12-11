@@ -4,7 +4,7 @@
  */
 package ui.administratorRole;
 
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -222,7 +222,7 @@ public class PatientDashboard extends javax.swing.JFrame {
     public void patientDetails(){
     
         try {
-        Connection con=SQLConnect.Connect();
+        Connection con=Sponsorship.Connect();
         PreparedStatement st=con.prepareStatement("Select PatientName, PatientGender, PatientAge, BloodGroup, PatientEmail from Patient where UserId = '"+HospitalLoginPage.UserId+"'");
         ResultSet rs=st.executeQuery();
         

@@ -5,7 +5,7 @@
 package ui.administratorRole;
 
 import businessFramework.network.Doctor;
-import businessFramework.commonFunctions.SQLConnect;
+import businessFramework.commonFunctions.Sponsorship;
 //import static UserInterface.Hospital.HospitalLoginPage.UserId;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -293,7 +293,7 @@ public class BookAppointment extends javax.swing.JPanel {
         String date = txtDate.getText();
         String time = txtTime.getText();
         try{
-        Connection con=SQLConnect.Connect();
+        Connection con=Sponsorship.Connect();
         PreparedStatement st = con.prepareStatement("Select DoctorId from Doctor where DoctorName = '"+doctorName+"'");
         ResultSet rs=st.executeQuery();
         System.out.print(HospitalLoginPage.UserId);
@@ -326,7 +326,7 @@ public class BookAppointment extends javax.swing.JPanel {
         else{
             if(isValidDate(date)){
                 if(isTimeValid(time)){
-                    Connection con=SQLConnect.Connect();
+                    Connection con=Sponsorship.Connect();
                     PreparedStatement st=con.prepareStatement("Insert into Patient(PatientName,PatientAge,PatientGender,BloodGroup,PatientEmail) Values('"+patientName+"','"+patientAge+"','"+patientGender+"','"+bloodGroup+"','"+patientEmail+"')");
                 
                     JOptionPane.showMessageDialog(this,"New Appointment added");
@@ -349,7 +349,7 @@ public class BookAppointment extends javax.swing.JPanel {
         
         String sql = "Select d.DoctorName, d.DoctorSpecialization, h.HospitalName, h.HospitalCity from Doctor d inner join Hospital h on d.HospitalId = h.HospitalId";
         try{
-            Connection con=SQLConnect.Connect();
+            Connection con=Sponsorship.Connect();
             PreparedStatement st=con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             tblDoctorsNearby.setModel(DbUtils.resultSetToTableModel(rs));
