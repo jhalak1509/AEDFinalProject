@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UserInterface.BloodBank;
+import BusinessModel.BloodBank.DonorDirectory;
 import SQLConnection.SQLConnect;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -11,6 +12,8 @@ import javax.swing.JOptionPane;
  * @author patil
  */
 public class AddNewDonor extends javax.swing.JFrame {
+    
+    DonorDirectory dd = new DonorDirectory();
 
     /**
      * Creates new form AddNewDonar
@@ -266,7 +269,12 @@ public class AddNewDonor extends javax.swing.JFrame {
         String city = jTextField6.getText();
         String address = jTextArea1.getText();
         
-        try{
+        dd.addDonor(donorId,name, fatherName, motherName, DOB, mobileNo, gender, email, bloodGroup, city, address);
+        JOptionPane.showMessageDialog(null, "Successfully Updated");
+        setVisible(false);
+        new AddNewDonor().setVisible(true);
+            
+        /*try{
             Connection con=SQLConnect.Connect();
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             st.executeUpdate("insert into donor values('"+donorId+"','"+name+"','"+fatherName+"','"+motherName+"','"+DOB+"','"+mobileNo+"','"+gender+"','"+email+"','"+bloodGroup+"','"+city+"','"+address+"')");
@@ -275,7 +283,7 @@ public class AddNewDonor extends javax.swing.JFrame {
             new AddNewDonor().setVisible(true);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
