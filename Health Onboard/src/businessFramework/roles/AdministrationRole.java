@@ -14,7 +14,7 @@ import ui.administratorRole.AdministartorWorkArea;
  *
  * @author jhalaksurve
  */
-public class AdministrationRole {
+public class AdministratorRole extends Roles{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, User user, 

@@ -9,21 +9,22 @@ import businessFramework.enterprises.Enterprises;
 import businessFramework.organizations.Organizations;
 import businessFramework.userAccount.User;
 import javax.swing.JPanel;
-import ui.doctor.DoctorWorkArea;
+import ui.cases.CaseWorkArea;
+
 /**
  *
  * @author jhalaksurve
  */
-public class DoctorRole extends Roles{
+public class CaseRole extends Roles{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, User user, 
             Organizations organization, Enterprises enterprise, Environment business) {
-        return new DoctorWorkArea(userProcessContainer, user);
+        return new CaseWorkArea(userProcessContainer, enterprise, user, business);
     }
     @Override
     public String toString() {
         return getClass().getSimpleName();
-    } 
+    }
     
 }
