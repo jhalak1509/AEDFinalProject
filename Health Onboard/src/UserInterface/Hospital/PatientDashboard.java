@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
  * @author jhalaksurve
  */
 public class PatientDashboard extends javax.swing.JFrame {
+    
+    HospitalLoginPage hlp = new HospitalLoginPage();
 
     /**
      * Creates new form PatientDashboard
