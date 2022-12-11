@@ -4,7 +4,7 @@
  */
 package BusinessModel.Hospital;
 
-import BusinessModel.BloodBank.Donor;
+//import BusinessModel.BloodBank.Donor;
 import SQLConnection.SQLConnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 public class PatientDirectory {
     
     Patient patient = new Patient();
+    
     public void updatepatient(Patient patient){
     
         Connection con=SQLConnect.Connect();

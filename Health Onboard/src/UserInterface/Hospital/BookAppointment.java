@@ -6,7 +6,7 @@ package UserInterface.Hospital;
 
 import BusinessModel.Hospital.Doctor;
 import SQLConnection.SQLConnect;
-import static UserInterface.Hospital.HospitalLoginPage.UserId;
+//import static UserInterface.Hospital.HospitalLoginPage.UserId;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.regex.Matcher;
@@ -23,6 +23,8 @@ import net.proteanit.sql.DbUtils;
  * @author jhalaksurve
  */
 public class BookAppointment extends javax.swing.JPanel {
+    
+    HospitalLoginPage hlp = new HospitalLoginPage();
 
     /**
      * Creates new form BookAppointment

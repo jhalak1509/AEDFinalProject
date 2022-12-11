@@ -175,7 +175,7 @@ public class HospitalLoginPage extends javax.swing.JFrame {
                 //st.setString(2, str_pswrd);
                 ResultSet rs=st.executeQuery();
                 if(rs.next()) {
-                    UserId=Integer.parseInt(rs.getString("UserId"));
+                    UserId=rs.getInt("UserId");
                     JOptionPane.showMessageDialog(null,"Successfully logged in");
                     if(userType.equals("Patient")){
                         PatientDashboard pd = new PatientDashboard();
