@@ -90,7 +90,6 @@ public class BloodBankHomePage extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\patil\\OneDrive\\Documents\\AED\\Final Project\\files\\BBMS ICON\\search user.png")); // NOI18N
         jMenu2.setText("Search Blood Donar");
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/BloodBank/Location.png"))); // NOI18N
@@ -104,7 +103,6 @@ public class BloodBankHomePage extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon("C:\\Users\\patil\\OneDrive\\Documents\\AED\\Final Project\\files\\BBMS ICON\\delete donor.png")); // NOI18N
         jMenu3.setText("Delete Donar");
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/BloodBank/delete.png"))); // NOI18N

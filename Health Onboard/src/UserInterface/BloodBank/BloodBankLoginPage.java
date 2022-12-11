@@ -54,6 +54,11 @@ public class BloodBankLoginPage extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, -1, -1));
 
         username.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
         getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 250, -1));
 
         password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -113,6 +118,10 @@ public class BloodBankLoginPage extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
 
     /**
      * @param args the command line arguments

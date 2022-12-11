@@ -8,6 +8,7 @@ import java.sql.*;
 import SQLConnection.SQLConnect;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 /**
  *
@@ -167,4 +168,14 @@ public class AllDonorDetails extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private static class DbUtils {
+
+        private static TableModel resultSetToTableModel(ResultSet rs) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public DbUtils() {
+        }
+    }
 }
