@@ -15,6 +15,7 @@ public class Patient {
     int patientAge;
     char patientGender;
     String patientBloodGroup;
+    String patientEmail;
 
     public int getPatientId() {
         return patientId;
@@ -54,6 +55,14 @@ public class Patient {
 
     public void setPatientBloodGroup(String patientBloodGroup) {
         this.patientBloodGroup = patientBloodGroup;
+    }
+
+    public String getPatientEmail() {
+        return patientEmail;
+    }
+
+    public void setPatientEmail(String patientEmail) {
+        this.patientEmail = patientEmail;
     }
     
     
