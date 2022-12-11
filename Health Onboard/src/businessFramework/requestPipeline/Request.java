@@ -4,10 +4,18 @@
  */
 package businessFramework.requestPipeline;
 
+import java.util.Date;
+
 /**
  *
  * @author jhalaksurve
  */
-public class Request {
+public abstract class Request {
     
+    private String message;
+    private User senderName;
+    private User receiverName;
+    private String status;
+    private Date requestDate;
+    private Date resolveDate;
 }
