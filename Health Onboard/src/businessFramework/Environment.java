@@ -1,11 +1,10 @@
 package businessFramework;
-import businessFramework.commonFunctions.NeedHelp;
+import businessFramework.commonFunctions.Help;
 import businessFramework.network.Network;
-import businessFramework.organization.Organization;
+import businessFramework.organizations.Organizations;
 import businessFramework.roles.Roles;
 import businessFramework.roles.SysAdminRole;
 import java.util.ArrayList;
-
 
 /**
  *
@@ -15,7 +14,7 @@ public class Environment extends Organizations {
     
  private ArrayList<Network> networkList;
    private static Environment environment;
-   private ArrayList<NeedHelp> helpList;
+   private ArrayList<Help> helpList;
     
    public Environment()
    {
@@ -65,19 +64,19 @@ public class Environment extends Organizations {
         return rolesList;
     }
    
-    public NeedHelp addNeedHelp()
+    public Help addHelp()
     {
-        NeedHelp needHelp = new NeedHelp();
-        helpList.add(needHelp);
-        return needHelp;
+        Help help = new Help();
+        helpList.add(help);
+        return help;
     }
     
-    public void deleteHelp(NeedHelp needHelp)
+    public void deleteHelp(Help help)
     {
-        helpList.remove(needHelp);
+        helpList.remove(help);
     }
 
-    public ArrayList<NeedHelp> getHelpList() {
+    public ArrayList<Help> getHelpList() {
         return helpList;
     }
 }
