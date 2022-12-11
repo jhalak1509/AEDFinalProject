@@ -4,6 +4,8 @@
  */
 package UserInterface.Police;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author vinaykumargudooru
@@ -26,21 +28,118 @@ public class PoliceAdminDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mHome = new javax.swing.JMenu();
+        mtProfile = new javax.swing.JMenuItem();
+        mtAddUser = new javax.swing.JMenuItem();
+        mHospital = new javax.swing.JMenu();
+        mtAdmissions = new javax.swing.JMenuItem();
+        mExit = new javax.swing.JMenu();
+        mtLogout = new javax.swing.JMenuItem();
+        mtExitApp = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        mHome.setText("Home");
+
+        mtProfile.setText("Profile");
+        mtProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mtProfileActionPerformed(evt);
+            }
+        });
+        mHome.add(mtProfile);
+
+        mtAddUser.setText("Add New User");
+        mtAddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mtAddUserActionPerformed(evt);
+            }
+        });
+        mHome.add(mtAddUser);
+
+        jMenuBar1.add(mHome);
+
+        mHospital.setText("Hospital");
+
+        mtAdmissions.setText("Admissions");
+        mtAdmissions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mtAdmissionsActionPerformed(evt);
+            }
+        });
+        mHospital.add(mtAdmissions);
+
+        jMenuBar1.add(mHospital);
+
+        mExit.setText("Exit");
+
+        mtLogout.setText("Logout");
+        mtLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mtLogoutActionPerformed(evt);
+            }
+        });
+        mExit.add(mtLogout);
+
+        mtExitApp.setText("Exit Application");
+        mtExitApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mtExitAppActionPerformed(evt);
+            }
+        });
+        mExit.add(mtExitApp);
+
+        jMenuBar1.add(mExit);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 883, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mtProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mtProfileActionPerformed
+        // TODO add your handling code here:
+        new PoliceProfile().setVisible(true);
+
+    }//GEN-LAST:event_mtProfileActionPerformed
+
+    private void mtAdmissionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mtAdmissionsActionPerformed
+        // TODO add your handling code here:
+        new PoliceHospitalAdmissions().setVisible(true);
+    }//GEN-LAST:event_mtAdmissionsActionPerformed
+
+    private void mtLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mtLogoutActionPerformed
+        // TODO add your handling code here:
+        int logoutAction = JOptionPane.showConfirmDialog(null,"Do you want to logout","Select",JOptionPane.YES_NO_OPTION);
+        if(logoutAction==0){
+            setVisible(false);
+            new PoliceLoginPage().setVisible(true);
+        }
+    }//GEN-LAST:event_mtLogoutActionPerformed
+
+    private void mtExitAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mtExitAppActionPerformed
+        // TODO add your handling code here:
+        int exitAction = JOptionPane.showConfirmDialog(null,"Do you want to close application","Select",JOptionPane.YES_NO_OPTION);
+        if(exitAction==0){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_mtExitAppActionPerformed
+
+    private void mtAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mtAddUserActionPerformed
+        // TODO add your handling code here:
+        new PoliceAdminAddUser().setVisible(true);
+    }//GEN-LAST:event_mtAddUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +177,14 @@ public class PoliceAdminDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu mExit;
+    private javax.swing.JMenu mHome;
+    private javax.swing.JMenu mHospital;
+    private javax.swing.JMenuItem mtAddUser;
+    private javax.swing.JMenuItem mtAdmissions;
+    private javax.swing.JMenuItem mtExitApp;
+    private javax.swing.JMenuItem mtLogout;
+    private javax.swing.JMenuItem mtProfile;
     // End of variables declaration//GEN-END:variables
 }

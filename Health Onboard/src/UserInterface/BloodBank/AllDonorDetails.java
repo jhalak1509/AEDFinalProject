@@ -9,7 +9,6 @@ import SQLConnection.SQLConnect;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
-import net.proteanit.sql.DbUtils;
 /**
  *
  * @author patil

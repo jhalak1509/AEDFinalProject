@@ -44,15 +44,8 @@ public class PoliceHospitalAdmissions extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        mHome = new javax.swing.JMenu();
-        mtProfile = new javax.swing.JMenuItem();
-        mHospital = new javax.swing.JMenu();
-        mtAdmissions = new javax.swing.JMenuItem();
-        mExit = new javax.swing.JMenu();
-        mtLogout = new javax.swing.JMenuItem();
-        mtExitApp = new javax.swing.JMenuItem();
+        btnAcknowledge = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(340, 130));
@@ -90,53 +83,14 @@ public class PoliceHospitalAdmissions extends javax.swing.JFrame {
 
         jLabel7.setText("Notes:");
 
-        jButton1.setText("jButton1");
+        btnAcknowledge.setText("Acknowledge");
 
-        mHome.setText("Home");
-
-        mtProfile.setText("Profile");
-        mtProfile.addActionListener(new java.awt.event.ActionListener() {
+        btnClose.setText("Close");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mtProfileActionPerformed(evt);
+                btnCloseActionPerformed(evt);
             }
         });
-        mHome.add(mtProfile);
-
-        jMenuBar1.add(mHome);
-
-        mHospital.setText("Hospital");
-
-        mtAdmissions.setText("Admissions");
-        mtAdmissions.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mtAdmissionsActionPerformed(evt);
-            }
-        });
-        mHospital.add(mtAdmissions);
-
-        jMenuBar1.add(mHospital);
-
-        mExit.setText("Exit");
-
-        mtLogout.setText("Logout");
-        mtLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mtLogoutActionPerformed(evt);
-            }
-        });
-        mExit.add(mtLogout);
-
-        mtExitApp.setText("Exit Application");
-        mtExitApp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mtExitAppActionPerformed(evt);
-            }
-        });
-        mExit.add(mtExitApp);
-
-        jMenuBar1.add(mExit);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,8 +136,10 @@ public class PoliceHospitalAdmissions extends javax.swing.JFrame {
                                     .addComponent(jTextField6)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(401, 401, 401)
-                        .addComponent(jButton1)))
+                        .addGap(295, 295, 295)
+                        .addComponent(btnAcknowledge)
+                        .addGap(67, 67, 67)
+                        .addComponent(btnClose)))
                 .addGap(117, 117, 117))
         );
         layout.setVerticalGroup(
@@ -216,45 +172,24 @@ public class PoliceHospitalAdmissions extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jButton1)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAcknowledge)
+                    .addComponent(btnClose))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mtProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mtProfileActionPerformed
-        // TODO add your handling code here:
-        new PoliceProfile().setVisible(true);
-
-    }//GEN-LAST:event_mtProfileActionPerformed
-
-    private void mtAdmissionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mtAdmissionsActionPerformed
-        // TODO add your handling code here:
-        new PoliceHospitalAdmissions().setVisible(true);
-    }//GEN-LAST:event_mtAdmissionsActionPerformed
-
-    private void mtLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mtLogoutActionPerformed
-        // TODO add your handling code here:
-        int logoutAction = JOptionPane.showConfirmDialog(null,"Do you want to logout","Select",JOptionPane.YES_NO_OPTION);
-        if(logoutAction==0){
-            setVisible(false);
-            new PoliceLoginPage().setVisible(true);
-        }
-    }//GEN-LAST:event_mtLogoutActionPerformed
-
-    private void mtExitAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mtExitAppActionPerformed
-        // TODO add your handling code here:
-        int exitAction = JOptionPane.showConfirmDialog(null,"Do you want to close application","Select",JOptionPane.YES_NO_OPTION);
-        if(exitAction==0){
-            System.exit(0);
-        }
-    }//GEN-LAST:event_mtExitAppActionPerformed
-
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,7 +227,8 @@ public class PoliceHospitalAdmissions extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAcknowledge;
+    private javax.swing.JButton btnClose;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -300,7 +236,6 @@ public class PoliceHospitalAdmissions extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -310,12 +245,5 @@ public class PoliceHospitalAdmissions extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JMenu mExit;
-    private javax.swing.JMenu mHome;
-    private javax.swing.JMenu mHospital;
-    private javax.swing.JMenuItem mtAdmissions;
-    private javax.swing.JMenuItem mtExitApp;
-    private javax.swing.JMenuItem mtLogout;
-    private javax.swing.JMenuItem mtProfile;
     // End of variables declaration//GEN-END:variables
 }

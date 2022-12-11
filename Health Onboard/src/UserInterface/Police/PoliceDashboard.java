@@ -28,7 +28,7 @@ public class PoliceDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         mHome = new javax.swing.JMenu();
         mtProfile = new javax.swing.JMenuItem();
@@ -38,10 +38,10 @@ public class PoliceDashboard extends javax.swing.JFrame {
         mtLogout = new javax.swing.JMenuItem();
         mtExitApp = new javax.swing.JMenuItem();
 
+        jMenuItem1.setText("jMenuItem1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(340, 130));
-
-        jLabel1.setText("jLabel1");
 
         mHome.setText("Home");
 
@@ -93,11 +93,11 @@ public class PoliceDashboard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
+            .addGap(0, 885, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+            .addGap(0, 636, Short.MAX_VALUE)
         );
 
         pack();
@@ -168,8 +168,8 @@ public class PoliceDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu mExit;
     private javax.swing.JMenu mHome;
     private javax.swing.JMenu mHospital;

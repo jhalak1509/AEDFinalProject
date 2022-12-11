@@ -73,7 +73,7 @@ public class PoliceLoginPage extends javax.swing.JFrame {
         getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, -1, -1));
 
         jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 500));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 640));
 
         jLabel5.setText("User Type:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, -1, -1));
@@ -145,7 +145,7 @@ public class PoliceLoginPage extends javax.swing.JFrame {
                 if(rs.next()) {
                    //int id=rs.getString("id");
                     JOptionPane.showMessageDialog(null,"Successfully logged in");
-                    if(userType.equals(":Police Admin")){
+                    if(userType.equals("Police Admin")){
                         PoliceAdminDashboard ad = new PoliceAdminDashboard();
                         ad.setVisible(true);
                     }
@@ -153,11 +153,11 @@ public class PoliceLoginPage extends javax.swing.JFrame {
                         PoliceDashboard ad = new PoliceDashboard();
                         ad.setVisible(true);
                     //new Page(int_id);
-                    this.setVisible(false);
-                    }else{
+                    
+                    }this.setVisible(false);
+                }else{
                         JOptionPane.showMessageDialog(null,"Incorrect details");
                     }
-                }
             }
             
         catch(Exception ex){
