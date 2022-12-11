@@ -33,7 +33,7 @@ public abstract class Enterprises extends Organizations{
     
     public enum EnterprisesType{
         
-       School("School"),
+       University("University"),
        HealthOnboard("HealthOnboard"),
        Charity("Charity"),
        Ministry("Ministry"),

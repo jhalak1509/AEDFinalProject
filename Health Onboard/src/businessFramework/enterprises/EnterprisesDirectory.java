@@ -25,7 +25,7 @@ public class EnterprisesDirectory {
       Enterprises enterprises = null;
       if(type ==Enterprises.EnterprisesType.HealthOnboard)
       {
-       enterprises = new HealthOnboardEnterprise(name);
+       enterprises = new HealthOnboardEnterprises(name);
        enterprisesList.add(enterprises);     
       }
       else if (type == Enterprises.EnterprisesType.Ministry){
@@ -33,17 +33,17 @@ public class EnterprisesDirectory {
             enterprisesList.add(enterprises);
         }
        else if (type == Enterprises.EnterprisesType.Charity){
-            enterprises = new CharityEnterprise(name);
+            enterprises = new CharityEnterprises(name);
             enterprisesList.add(enterprises);
         }
-        else  if(type ==Enterprises.EnterprisesType.School)
+        else  if(type ==Enterprises.EnterprisesType.University)
         {
-         enterprises = new SchoolEnterprise(name);
+         enterprises = new UniversityEnterprises(name);
          enterprisesList.add(enterprises);     
         }
       else  if(type ==Enterprises.EnterprisesType.Hospital)
         {
-         enterprises = new HospitalEnterprise(name);
+         enterprises = new HospitalEnterprises(name);
          enterprisesList.add(enterprises);     
         }
 
