@@ -232,6 +232,7 @@ public class UpdateDonorDetails extends javax.swing.JFrame {
         
         Donor donor = new Donor();
         
+        donor.setDonorId(donorId);
         donor.setName(name);
         donor.setFatherName(fatherName);
         donor.setMotherName(motherName);
