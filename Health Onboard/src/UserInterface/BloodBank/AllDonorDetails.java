@@ -9,12 +9,15 @@ import SQLConnection.SQLConnect;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
+import BusinessModel.BloodBank.Donor;
+import BusinessModel.BloodBank.DonorDirectory;
+
 /**
  *
  * @author patil
  */
 public class AllDonorDetails extends javax.swing.JFrame {
-
+ DonorDirectory dd = new DonorDirectory();
     /**
      * Creates new form AllDonorDetails
      */
