@@ -41,4 +41,30 @@ public class DonorDirectory {
         } 
     
     }
+    
+    public void addDonor(String donorId, String name, String fatherName, String motherName, String DOB, String mobileNo, String gender, String email, String bloodGroup, String city, String address){
+    
+        Connection con=SQLConnect.Connect();
+        try{
+        
+            PreparedStatement st=con.prepareStatement("Insert into donor(donorId, name, fatherName, motherName, DOB, mobileNo, gender, email, bloodGroup, city, address) values(?,?,?,?,?,?,?,?,?,?)");
+            
+            st.setString(1, donorId);
+            st.setString(2, name);
+            st.setString(3,fatherName);
+            st.setString(4,motherName);
+            st.setString(5,DOB);
+            st.setString(6,mobileNo);
+            st.setString(7, gender);
+            st.setString(8, email);
+            st.setString(9, bloodGroup);
+            st.setString(10, city);
+            st.setString(11, address);
+            st.executeUpdate();
+
+        }catch(Exception ex){
+                JOptionPane.showMessageDialog(null,ex.toString(),"Error",JOptionPane.ERROR_MESSAGE);
+        } 
+    
+    }
 }
