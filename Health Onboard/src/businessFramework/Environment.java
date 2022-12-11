@@ -1,4 +1,4 @@
-package BusinessModel;
+package businessFramework;
 //import BusinessModel.Ambulance.AmbulanceDirectory;
 //import BusinessModel.BloodBank.BloodBank;
 //import BusinessModel.Doctor.DoctorDirectory;

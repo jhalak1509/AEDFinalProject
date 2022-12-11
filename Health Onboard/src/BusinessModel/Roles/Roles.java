@@ -1,6 +1,6 @@
 
 package BusinessModel.Roles;
-import BusinessModel.Environment;
+import businessFramework.Environment;
 import BusinessModel.UserAccount.User;
 import javax.swing.JPanel;
 /**

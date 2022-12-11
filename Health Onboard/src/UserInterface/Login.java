@@ -1,7 +1,7 @@
 package UserInterface;
 
 //import MainUserInterface.Police.PersonInfo;
-import BusinessModel.Environment;
+import businessFramework.Environment;
 //import BusinessModel.Patient.PatientBills;
 //import BusinessModel.Patient.Patient;
 import BusinessModel.UserAccount.User;
