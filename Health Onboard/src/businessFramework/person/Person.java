@@ -21,7 +21,7 @@ public class Person {
     private String address1;
     private String phoneNumber;
     private String personId;
-    private boolean Volunteer;
+    private boolean Helper;
     private boolean Case;
     private String emailId;
     private String occupation;
@@ -99,20 +99,20 @@ public class Person {
     }
 
    
-    public boolean isVolunteer() {
-        return Volunteer;
+    public boolean isHelper() {
+        return Helper;
     }
 
-    public void setVolunteer(boolean Volunteer) {
-        this.Volunteer = Volunteer;
+    public void setHelper(boolean Helper) {
+        this.Helper = Helper;
     }
 
-    public boolean isHelpSeeker() {
+    public boolean isCase() {
         return Case;
     }
 
-    public void setHelpSeeker(boolean HelpSeeker) {
-        this.Case = HelpSeeker;
+    public void setCase(boolean Case) {
+        this.Case = Case;
     }
 
    
