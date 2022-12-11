@@ -4,10 +4,24 @@
  */
 package businessFramework.requestPipeline;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author patil
  */
 public class RequestPipeline {
     
+    
+    
+    private ArrayList<Request> requestList;
+
+    public RequestPipeline() {
+        requestList = new ArrayList<>();
+    }
+
+    public ArrayList<Request> getRequestList() {
+        return requestList;
+    }
+
 }
