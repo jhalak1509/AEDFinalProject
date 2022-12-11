@@ -71,7 +71,7 @@ public abstract class Organizations {
         return name;
     }
     
-     public abstract ArrayList<Roles> getSupportedRoles();
+     public abstract ArrayList<Roles> getSupportedRole();
 
     public int getOrgId() {
         return orgId;

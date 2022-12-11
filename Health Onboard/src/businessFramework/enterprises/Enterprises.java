@@ -4,8 +4,8 @@
  */
 package businessFramework.enterprises;
 
-import businessFramework.organization.Organizations;
-import businessFramework.organization.OrganizationsDirectory;
+import businessFramework.organizations.Organizations;
+import businessFramework.organizations.OrganizationsDirectory;
 
 /**
  *

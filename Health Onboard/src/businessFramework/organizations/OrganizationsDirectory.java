@@ -58,9 +58,9 @@ public class OrganizationsDirectory {
         return organizationsList;
     }
     
-    public void deleteOrganization(Organization organization)
+    public void deleteOrganizations(Organizations organizations)
     {
-      organizationList.remove(organization);
+      organizationsList.remove(organizations);
     }
     
 }
