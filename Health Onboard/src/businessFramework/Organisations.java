@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package businessFramework;
-import BusinessModel.Employee.EmployeeDirectory;
+import businessFramework.enterprises.EmployeeDirectory;
 import BusinessModel.Roles.Roles;
 import BusinessModel.UserAccount.UserDirectory;
 import java.util.ArrayList;

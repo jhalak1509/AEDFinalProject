@@ -4,7 +4,7 @@
  */
 package BusinessModel.UserAccount;
 
-import BusinessModel.Employee.Employee;
+import businessFramework.enterprises.Employee;
 import BusinessModel.Roles.Roles;
 
 /**

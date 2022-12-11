@@ -1,6 +1,6 @@
 package BusinessModel.UserAccount;
 
-import BusinessModel.Employee.Employee;
+import businessFramework.enterprises.Employee;
 import java.util.ArrayList;
 import BusinessModel.Roles.Roles;
 
