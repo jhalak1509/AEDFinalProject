@@ -22,7 +22,7 @@ public class DonorDirectory {
         Connection con=SQLConnect.Connect();
         try{
         
-            PreparedStatement st=con.prepareStatement("Update Donor set name = ?, fatherName = ?, motherName = ?, DOB = ?, mobileNo = ?, gender = ?, email = ?, bloodGroup = ?, city = ?, address = ?");
+            PreparedStatement st=con.prepareStatement("Update Donor set name = ?, fatherName = ?, motherName = ?, DOB = ?, mobileNo = ?, gender = ?, email = ?, bloodGroup = ?, city = ?, address = ? where donorId='"+donor.getDonorId()+"'");
             
             st.setString(1, donor.getName());
             st.setString(2,donor.getFatherName());
