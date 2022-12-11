@@ -6,67 +6,80 @@ package businessFramework.network;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import businessFramework.enterprises.EnterprisesDirectory;
+import java.util.ArrayList;
 //import java.util.Date;
 
 /**
  *
- * @author jhalaksurve
+ * @author vinaykumargudooru
  */
-public class Appointment {
+public class Network {
     
-    int appointmentId;
-    int doctorId;
-    int patientId;
-    char reasonForVisit;
-    LocalDate dateOfVisit;
-    LocalTime timeOfVisit;
+    private String country;
 
-    public int getAppointmentId() {
-        return appointmentId;
+    private String state;
+
+    private String city;
+    
+    private String name;
+
+    private EnterprisesDirectory enterprisesDirectory;
+    
+
+    public Network() {
+        enterprisesDirectory = new EnterprisesDirectory();
     }
 
-    public void setAppointmentId(int appointmentId) {
-        this.appointmentId = appointmentId;
+    public EnterprisesDirectory getEnterprisesDirectory() {
+        return enterprisesDirectory;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public String getCountry() {
+        return country;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public String getState() {
+        return state;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public char getReasonForVisit() {
-        return reasonForVisit;
+    public String getCity() {
+        return city;
     }
 
-    public void setReasonForVisit(char reasonForVisit) {
-        this.reasonForVisit = reasonForVisit;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public LocalDate getDateOfVisit() {
-        return dateOfVisit;
+    @Override
+    public String toString() {
+        return this.city;
     }
 
-    public void setDateOfVisit(LocalDate dateOfVisit) {
-        this.dateOfVisit = dateOfVisit;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public LocalTime getTimeOfVisit() {
-        return timeOfVisit;
+    public String getName() {
+        return name;
     }
 
-    public void setTimeOfVisit(LocalTime timeOfVisit) {
-        this.timeOfVisit = timeOfVisit;
+    
+    public ArrayList<Integer> getZipCodesInRange(String city)
+    {
+        ArrayList<Integer> zipCodeList = new ArrayList<>();
+        zipCodeList.add(01245);
+        zipCodeList.add(02135);
+        
+        return zipCodeList;
     }
     
     
