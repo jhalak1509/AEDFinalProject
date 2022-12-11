@@ -1,6 +1,6 @@
 package businessFramework;
 
-import businessFramework.commonFunctions.NeedHelp;
+import businessFramework.commonFunctions.Help;
 import businessFramework.enterprises.Enterprises;
 import businessFramework.network.Network;
 import businessFramework.organization.Organizations;
@@ -32,11 +32,11 @@ public class ConfigSys
         UserAccount ua = system.getUserAccountDirectory().addUserAccount("sysadmin", "sysadmin", person, new SysAdminRole());
         ua.setEnabled(true);
         
-        NeedHelp needHelp = system.addNeedHelp();
-        needHelp.setHelp("Snow Shovel");
-        needHelp.setHelp("Grass Cutting");
-        needHelp.setHelp("Gardening");
-        needHelp.setHelp("Grocery Shopping");
+        Help help = system.addHelp();
+        help.setHelp("Snow Shovel");
+        help.setHelp("Grass Cutting");
+        help.setHelp("Gardening");
+        help.setHelp("Grocery Shopping");
        
         
         Network network = system.addNetwork();
@@ -50,18 +50,18 @@ public class ConfigSys
         person = enterprises.getPersonDirectory().addPerson();
         person.setLName("Univeristy Admin");
         person.setName();
-        UserAccount account = enterprises.getUserAccountDirectory().addUserAccount("bsc", "bsc", person, new AdministrationRoles());
+        UserAccount account = enterprises.getUserAccountDirectory().addUserAccount("bsc", "bsc", person, new AdministrationRole());
         account.setEnabled(true);
         account.setNetwork(network);
-        enterprises.getOrganizationDirectory().addOrganization(Organization.Type.Volunteer);
-        Organization organization = enterprises.getOrganizationDirectory().addOrganization(Organization.Type.Transportation);
+        enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Volunteer);
+        Organizations organization = enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Transportation);
         person = organization.getPersonDirectory().addPerson();    
           
         person.setFName("Driver");
         person.setLName("Transpport");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("dr1", "dr1", person, new DriverRoles());
+        account = organization.getUserAccountDirectory().addUserAccount("dr1", "dr1", person, new DriverRole());
         account.setNetwork(network);
         account.setEnabled(true);
         
@@ -70,18 +70,18 @@ public class ConfigSys
          person = enterprises.getPersonDirectory().addPerson();
         person.setLName("Heart Help Admin");
         person.setName();
-         account = enterprises.getUserAccountDirectory().addUserAccount("bhh", "bhh", person, new AdministrationRoles());
+         account = enterprises.getUserAccountDirectory().addUserAccount("bhh", "bhh", person, new AdministrationRole());
         account.setEnabled(true);
         account.setNetwork(network);
-        enterprises.getOrganizationDirectory().addOrganization(Organization.Type.Case);
-        organization = enterprises.getOrganizationDirectory().addOrganization(Organization.Type.Manager);
+        enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Case);
+        organization = enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Manager);
         person = organization.getPersonDirectory().addPerson();    
           
         person.setFName("Supervisor");
         person.setLName("Boston");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("bsup", "bsup", person, new ManagerRoles());
+        account = organization.getUserAccountDirectory().addUserAccount("bsup", "bsup", person, new ManagerRole());
         account.setNetwork(network);
         account.setEnabled(true);
         
@@ -93,7 +93,7 @@ public class ConfigSys
         person.setLName("Boston");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("bman", "bman", person, new HealthOnboardControllerRoles());
+        account = organization.getUserAccountDirectory().addUserAccount("bman", "bman", person, new HealthOnboardControllerRole());
         account.setNetwork(network);
         account.setEnabled(true);
         
@@ -103,17 +103,17 @@ public class ConfigSys
          person = enterprises.getPersonDirectory().addPerson();
         person.setLName("charity Admin");
         person.setName();
-         account = enterprises.getUserAccountDirectory().addUserAccount("bno", "bno", person, new AdministrationRoles());
+         account = enterprises.getUserAccountDirectory().addUserAccount("bno", "bno", person, new AdministrationRole());
         account.setEnabled(true);
         account.setNetwork(network);
-        organization = enterprises.getOrganizationDirectory().addOrganization(Organization.Type.Sponsor);
+        organization = enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Sponsor);
         person = organization.getPersonDirectory().addPerson();    
           
         person.setFName("Donor");
         person.setLName("Boston");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("bdon", "bdon", person, new SponsorRoles());
+        account = organization.getUserAccountDirectory().addUserAccount("bdon", "bdon", person, new SponsorRole());
         account.setNetwork(network);
         account.setEnabled(true);
         
@@ -123,10 +123,10 @@ public class ConfigSys
          person = enterprises.getPersonDirectory().addPerson();
         person.setLName("hospital Admin");
         person.setName();
-         account = enterprises.getUserAccountDirectory().addUserAccount("bho", "bho", person, new AdministrationRoles());
+         account = enterprises.getUserAccountDirectory().addUserAccount("bho", "bho", person, new AdministrationRole());
         account.setEnabled(true);
         account.setNetwork(network);
-        organization = enterprises.getOrganizationDirectory().addOrganization(Organization.Type.Doctor);
+        organization = enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Doctor);
         person = organization.getPersonDirectory().addPerson();    
           
         person.setFName("Doctor");
@@ -142,17 +142,17 @@ public class ConfigSys
          person = enterprises.getPersonDirectory().addPerson();
         person.setLName("Ministry Admin Admin");
         person.setName();
-         account = enterprises.getUserAccountDirectory().addUserAccount("bgt", "bgt", person, new AdministrationRoles());
+         account = enterprises.getUserAccountDirectory().addUserAccount("bgt", "bgt", person, new AdministrationRole());
         account.setEnabled(true);
         account.setNetwork(network);
-        organization = enterprises.getOrganizationDirectory().addOrganization(Organization.Type.Chief);
+        organization = enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Chief);
         person = organization.getPersonDirectory().addPerson();    
           
         person.setFName("mayor");
         person.setLName("Boston");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("bmay", "bmay", person, new ChiefRoles());
+        account = organization.getUserAccountDirectory().addUserAccount("bmay", "bmay", person, new ChiefRole());
         account.setNetwork(network);
         account.setEnabled(true);
       
