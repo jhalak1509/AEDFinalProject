@@ -2,18 +2,19 @@ package businessFramework;
 
 import businessFramework.commonFunctions.Help;
 import businessFramework.enterprises.Enterprises;
+import businessFramework.enterprises.UniversityEnterprises;
 import businessFramework.network.Network;
-import businessFramework.organization.Organizations;
+import businessFramework.organizations.Organizations;
 import businessFramework.person.Person;
-import businessFramework.roles.AdministrationRole;
+import businessFramework.roles.AdministratorRole;
 import businessFramework.roles.DoctorRole;
 import businessFramework.roles.SponsorRole;
 import businessFramework.roles.DriverRole;
 import businessFramework.roles.HealthOnboardControllerRole;
 import businessFramework.roles.ChiefRole;
 import businessFramework.roles.ManagerRole;
-import businessFramework.roles.SysAdminRole;
-import businessFramework.userAccount.UserAccount;
+import businessFramework.roles.SysAdmin;
+import businessFramework.userAccount.User;
 
 /**
  *
@@ -25,11 +26,11 @@ public class ConfigSys
     {
         Environment system = Environment.getInstance();
         Person person = system.getPersonDirectory().addPerson();
-        person.setFName("Sys");
-        person.setLName("Admin");
+        person.setFirstName("Sys");
+        person.setLastName("Admin");
         person.setName();
         
-        UserAccount ua = system.getUserAccountDirectory().addUserAccount("sysadmin", "sysadmin", person, new SysAdminRole());
+        User ua = system.getUserDirectory().addUser("sysadmin", "sysadmin", person, new SysAdmin());
         ua.setEnabled(true);
         
         Help help = system.addHelp();
@@ -46,42 +47,42 @@ public class ConfigSys
         network.setCity("Boston");
         
     // University    
-        Enterprises enterprises = network.getEnterprisesDirectory().addEnterprises("BostonUniversity", Enterprises.EnterprisesType.Univeristy);
+        Enterprises enterprises = network.getEnterprisesDirectory().addEnterprises("BostonUniversity", Enterprises.EnterprisesType.University);
         person = enterprises.getPersonDirectory().addPerson();
-        person.setLName("Univeristy Admin");
+        person.setLastName("Univeristy Admin");
         person.setName();
-        UserAccount account = enterprises.getUserAccountDirectory().addUserAccount("bsc", "bsc", person, new AdministrationRole());
+        User account = enterprises.getUserDirectory().addUser("bsc", "bsc", person, new AdministratorRole());
         account.setEnabled(true);
         account.setNetwork(network);
-        enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Volunteer);
+        enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Helper);
         Organizations organization = enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Transportation);
         person = organization.getPersonDirectory().addPerson();    
           
-        person.setFName("Driver");
-        person.setLName("Transpport");
+        person.setFirstName("Driver");
+        person.setLastName("Transpport");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("dr1", "dr1", person, new DriverRole());
+        account = organization.getUserDirectory().addUser("dr1", "dr1", person, new DriverRole());
         account.setNetwork(network);
         account.setEnabled(true);
         
       // Heart Help
          enterprises = network.getEnterprisesDirectory().addEnterprises("BostonHeartHelp", Enterprises.EnterprisesType.HealthOnboard);
          person = enterprises.getPersonDirectory().addPerson();
-        person.setLName("Heart Help Admin");
+        person.setLastName("Heart Help Admin");
         person.setName();
-         account = enterprises.getUserAccountDirectory().addUserAccount("bhh", "bhh", person, new AdministrationRole());
+         account = enterprises.getUserDirectory().addUser("bhh", "bhh", person, new AdministratorRole());
         account.setEnabled(true);
         account.setNetwork(network);
         enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Case);
         organization = enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Manager);
         person = organization.getPersonDirectory().addPerson();    
           
-        person.setFName("Supervisor");
-        person.setLName("Boston");
+        person.setFirstName("Supervisor");
+        person.setLastName("Boston");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("bsup", "bsup", person, new ManagerRole());
+        account = organization.getUserDirectory().addUser("bsup", "bsup", person, new ManagerRole());
         account.setNetwork(network);
         account.setEnabled(true);
         
@@ -89,11 +90,11 @@ public class ConfigSys
         
         person = organization.getPersonDirectory().addPerson();    
           
-        person.setFName("Manager");
-        person.setLName("Boston");
+        person.setFirstName("Manager");
+        person.setLastName("Boston");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("bman", "bman", person, new HealthOnboardControllerRole());
+        account = organization.getUserDirectory().addUser("bman", "bman", person, new HealthOnboardControllerRole());
         account.setNetwork(network);
         account.setEnabled(true);
         
@@ -101,19 +102,19 @@ public class ConfigSys
               // Charity
          enterprises = network.getEnterprisesDirectory().addEnterprises("NonProfit", Enterprises.EnterprisesType.Charity);
          person = enterprises.getPersonDirectory().addPerson();
-        person.setLName("charity Admin");
+        person.setLastName("charity Admin");
         person.setName();
-         account = enterprises.getUserAccountDirectory().addUserAccount("bno", "bno", person, new AdministrationRole());
+         account = enterprises.getUserDirectory().addUser("bno", "bno", person, new AdministratorRole());
         account.setEnabled(true);
         account.setNetwork(network);
         organization = enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Sponsor);
         person = organization.getPersonDirectory().addPerson();    
           
-        person.setFName("Donor");
-        person.setLName("Boston");
+        person.setFirstName("Donor");
+        person.setLastName("Boston");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("bdon", "bdon", person, new SponsorRole());
+        account = organization.getUserDirectory().addUser("bdon", "bdon", person, new SponsorRole());
         account.setNetwork(network);
         account.setEnabled(true);
         
@@ -121,38 +122,38 @@ public class ConfigSys
                   // Hospital
          enterprises = network.getEnterprisesDirectory().addEnterprises("Hospital", Enterprises.EnterprisesType.Hospital);
          person = enterprises.getPersonDirectory().addPerson();
-        person.setLName("hospital Admin");
+        person.setLastName("hospital Admin");
         person.setName();
-         account = enterprises.getUserAccountDirectory().addUserAccount("bho", "bho", person, new AdministrationRole());
+         account = enterprises.getUserDirectory().addUser("bho", "bho", person, new AdministratorRole());
         account.setEnabled(true);
         account.setNetwork(network);
         organization = enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Doctor);
         person = organization.getPersonDirectory().addPerson();    
           
-        person.setFName("Doctor");
-        person.setLName("Boston");
+        person.setFirstName("Doctor");
+        person.setLastName("Boston");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("bdoc", "bdoc", person, new DoctorRole());
+        account = organization.getUserDirectory().addUser("bdoc", "bdoc", person, new DoctorRole());
         account.setNetwork(network);
         account.setEnabled(true);
         
                 // Govt
          enterprises = network.getEnterprisesDirectory().addEnterprises("Govt", Enterprises.EnterprisesType.Ministry);
          person = enterprises.getPersonDirectory().addPerson();
-        person.setLName("Ministry Admin Admin");
+        person.setLastName("Ministry Admin Admin");
         person.setName();
-         account = enterprises.getUserAccountDirectory().addUserAccount("bgt", "bgt", person, new AdministrationRole());
+         account = enterprises.getUserDirectory().addUser("bgt", "bgt", person, new AdministratorRole());
         account.setEnabled(true);
         account.setNetwork(network);
         organization = enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Chief);
         person = organization.getPersonDirectory().addPerson();    
           
-        person.setFName("mayor");
-        person.setLName("Boston");
+        person.setFirstName("mayor");
+        person.setLastName("Boston");
         person.setName();
         
-        account = organization.getUserAccountDirectory().addUserAccount("bmay", "bmay", person, new ChiefRole());
+        account = organization.getUserDirectory().addUser("bmay", "bmay", person, new ChiefRole());
         account.setNetwork(network);
         account.setEnabled(true);
       
