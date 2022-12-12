@@ -12,9 +12,9 @@ import java.util.ArrayList;
  *
  * @author vinaykumargudooru
  */
-public class HelperOragnizations extends Organizations {
+public class HelperOrganizations extends Organizations {
     
-    public HelperOragnizations()
+    public HelperOrganizations()
     {
         super(Organizations.Type.Helper.getValue());
     }
