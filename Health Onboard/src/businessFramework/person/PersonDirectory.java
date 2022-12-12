@@ -53,7 +53,7 @@ public class PersonDirectory {
     }
 
     public ArrayList<Helper> getHelperList() {
-        return HelperList;
+        return helperList;
     }
 
 

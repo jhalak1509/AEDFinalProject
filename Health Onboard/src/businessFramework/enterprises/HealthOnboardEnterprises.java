@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class HealthOnboardEnterprises extends Enterprises {
     
     @Override
-    public ArrayList<Roles> getSupportedRoles() {
+    public ArrayList<Roles> getSupportedRole() {
     return null;
     }
     

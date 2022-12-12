@@ -20,8 +20,10 @@ public class CharityEnterprises extends Enterprises {
         super(name, EnterprisesType.Charity);
     }
 
+    
+
     @Override
-    public ArrayList<Roles> getSupportedRoles() {
+    public ArrayList<Roles> getSupportedRole() {
         return null;
     }
     

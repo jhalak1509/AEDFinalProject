@@ -24,7 +24,7 @@ public class OrganizationsDirectory {
     {
        Organizations organizations = null;
         if (type.getValue().equals(Type.Helper.getValue())){
-            organizations = new HelperOrganizations();
+            organizations = new HelperOragnizations();
             organizationsList.add(organizations);
         }
         else if (type.getValue().equals(Type.Case.getValue())){
@@ -48,7 +48,7 @@ public class OrganizationsDirectory {
             organizationsList.add(organizations);
         }
            else if (type.getValue().equals(Type.Doctor.getValue())){
-            organizations = new DoctorOrganizations();
+            organizations = new DoctorOrgranizations();
             organizationsList.add(organizations);
         }
         return organizations;

@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package businessFramework.person;
 
 import businessFramework.sensors.HRSensorMeasurements;
@@ -16,7 +17,7 @@ import java.util.TimerTask;
  *
  * @author vinaykumargudooru
  */
-public class Case {
+public class Case extends Person {
     
     private String caseId;
     private static int count = 001;
@@ -30,7 +31,7 @@ public class Case {
     private SensorDevice sensorDevice;
     
     
-    public HelpSeeker()
+    public Case()
     {
         StringBuffer sb = new StringBuffer();
         sb.append("CUST");

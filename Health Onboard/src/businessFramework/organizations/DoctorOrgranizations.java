@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author vinaykumargudooru
  */
-public class DoctorOrgranizations {
+public class DoctorOrgranizations extends Organizations {
     
     public DoctorOrgranizations()
     {
@@ -21,7 +21,7 @@ public class DoctorOrgranizations {
     }
     
       @Override
-    public ArrayList<Roles> getSupportedRole() {
+        public ArrayList<Roles> getSupportedRole() {
         ArrayList<Roles> roles = new ArrayList<>();
         roles.add(new DoctorRole());
         return roles;
