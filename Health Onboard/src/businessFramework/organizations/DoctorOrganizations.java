@@ -13,9 +13,10 @@ import java.util.ArrayList;
  *
  * @author vinaykumargudooru
  */
-public class DoctorOrgranizations extends Organizations {
+
+public class DoctorOrganizations extends Organizations {
     
-    public DoctorOrgranizations()
+    public DoctorOrganizations()
     {
         super(Organizations.Type.Doctor.getValue());
     }
