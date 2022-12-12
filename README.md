@@ -13,3 +13,7 @@
 <p>Health Onboard Controller Role: The responsibility of the manager is to enforce the system is working by and identifying the need by analyzing the data through Business Intelligence technique. Help Requesters (Cases), Helper or a Doctor sign up the application via registration page.</p>
 <p>When a helper sign up the application an email is sent to the registered email address with the user name and password.</p>
 <p>An email is sent to Helper, Help Requester(Case), Doctor when the account is enable or approved by the manager.</p>
+
+Use Case Diagram:
+
+![UseCaseDiagram drawio](https://user-images.githubusercontent.com/114832299/206962811-c035065a-41d4-42e3-aa43-1f3af57044da.png)
