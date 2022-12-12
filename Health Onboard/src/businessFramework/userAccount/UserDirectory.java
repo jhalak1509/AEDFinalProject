@@ -1,74 +1,68 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package businessFramework.userAccount;
 
-import businessFramework.enterprises.Employee;
+import businessFramework.person.Person;
+import businessFramework.roles.Roles;
 import java.util.ArrayList;
-import BusinessModel.Roles.Roles;
+
 
 /**
  *
- * @author patil
+ * @author jhalaksurve
  */
 public class UserDirectory {
-  private final ArrayList<User> userList;
-
-    public UserDirectory() {
-        userList = new ArrayList();
+    
+    private ArrayList<User> userList;
+    
+    public UserDirectory()
+    {
+      userList = new ArrayList<>();
     }
 
-    public ArrayList<User> getUserAccountList() {
+    public ArrayList<User> getUserList() {
         return userList;
     }
-
-    public User authenticateUser(String username, String password) {
-        System.out.println("username ---"+ username);
-          System.out.println("password ---"+password);
-        for (User ua : userList) {
-            System.out.println("username ---"+ ua.getUsername());
-          System.out.println("password ---"+ua.getPassword());
-            if (ua.getUsername().equals(username) && ua.getPassword().equals(password)) {
-                return ua;
+    
+    public User validateUser(String name, String pwd){
+        for (User u : userList)
+            if (u.getName().equals(name) && u.getPwd().equals(pwd)){
+                return u;
             }
-        }
         return null;
     }
-
-    public User createUser(String username, String password, Employee employee, Roles role) {
-        System.out.println("----user details----");
-        System.out.println("----user name----"+username);
-        System.out.println("----user password----"+password);
-        System.out.println("----user role----"+role);
+    
+    public User addUser(String name, String pwd, Person person, Roles role){
         User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setEmployee(employee);
+        user.setName(name);
+        user.setPwd(pwd);
+        user.setPerson(person);
         user.setRole(role);
         userList.add(user);
         return user;
     }
-    public void deleteUser(String username){
-       
-    for (User ua : userList) {
-            if (ua.getUsername().equals(username)) {
-                userList.remove(ua);
-                break;
+    
+    public boolean checkUniqueName(String name){
+        boolean flag = true;
+        for (User u : userList){
+            if (u.getName().equals(name))
+            {
+              flag =  false;
+            }
+            else
+            {
+            flag =  true;
             }
         }
-        
+        return flag;
     }
-    public boolean findIfUsernameIsUnique(String username) {
-        for (User ua : userList) {
-            if (ua.getUsername().equals(username)) {
-                return false;
-            }
-        }
-        return true;
+    
+    public void deleteUser(User user)
+    {
+        userList.remove(user);
     }
-        public boolean checkIfUsernameIsUnique(String username) {
-        for (User ua : userList) {
-            if (ua.getUsername().equals(username)) {
-                return false;
-            }
-        }
-        return true;
-    }   
+    
+    
 }
