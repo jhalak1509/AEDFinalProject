@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userInterface.transport;
+package ui.transportation;
 
-import business.organizationpkg.Organization;
-import business.organizationpkg.OrganizationDirectory;
-import business.organizationpkg.TransportOrganization;
-import business.userAccountpkg.UserAccount;
-import business.workQueuepkg.NeedTransportWorkRequest;
-import business.workQueuepkg.WorkRequest;
+import businessFramework.organizations.Organizations;
+import businessFramework.organizations.OrganizationsDirectory;
+import businessFramework.organizations.TransportationOrganizations;
+import businessFramework.userAccount.User;
+import businessFramework.requestPipeline.TransportationRequest;
+import businessFramework.requestPipeline.Request;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -30,19 +30,19 @@ import userInterface.volunteer.ViewVolunteerProfile;
  */
 public class DriverWorkAreaJPanel extends javax.swing.JPanel {
    private JPanel userProcessContainer;
-   private UserAccount userAccount;  
-    private OrganizationDirectory od;
-    private TransportOrganization to;
+   private User userAccount;  
+    private OrganizationsDirectory od;
+    private TransportationOrganizations to;
     
     /**
      * Creates new form DriverWorkAreaJPanel
      */
-    public DriverWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, OrganizationDirectory od) {
+    public DriverWorkAreaJPanel(JPanel userProcessContainer, User userAccount, Organizations organizations, OrganizationsDirectory od) {
         initComponents();
          this.userProcessContainer = userProcessContainer;
          this.userAccount = userAccount;
          this.od = od;
-         this.to = (TransportOrganization)organization;
+         this.to = (TransportationOrganizations)organizations;
          
          populatetransportRequestTable();
     }
@@ -72,10 +72,10 @@ public class DriverWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         if(!to.getWorkQueue().getWorkRequestList().isEmpty())
         {
-        for(WorkRequest request : to.getWorkQueue().getWorkRequestList()){
+        for(Request request : to.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[4];
             row[0] = request;
-            row[1] = request.getSender().getPerson().getName();
+            row[1] = request.getSenderDetails().getPerson().getName();
             row[2] = dateFormat.format(request.getRequestDate());
             row[3] = request.getStatus();
            

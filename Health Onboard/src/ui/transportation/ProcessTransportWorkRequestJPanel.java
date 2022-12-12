@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userInterface.transport;
+package ui.transportation;
 
-import business.userAccountpkg.UserAccount;
-import business.workQueuepkg.NeedTransportWorkRequest;
-import business.workQueuepkg.SupervisorWorkRequest;
+import businessFramework.userAccount.User;
+import businessFramework.requestPipeline.TransportationRequest;
+import businessFramework.requestPipeline.SupervisorRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -25,12 +25,12 @@ import javax.swing.JPanel;
  */
 public class ProcessTransportWorkRequestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    private NeedTransportWorkRequest request;
-    private UserAccount userAccount;
+    private TransportationRequest request;
+    private User userAccount;
     /**
      * Creates new form ProcessTransportWorkRequestJPanel
      */
-    public ProcessTransportWorkRequestJPanel(JPanel userProcessContainer, NeedTransportWorkRequest request, UserAccount userAccount) {
+    public ProcessTransportWorkRequestJPanel(JPanel userProcessContainer, TransportationRequest request, User userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
@@ -60,8 +60,8 @@ public class ProcessTransportWorkRequestJPanel extends javax.swing.JPanel {
     public void populateResultComboBox()
     {
         resultComboBox.removeAllItems();
-        resultComboBox.addItem(SupervisorWorkRequest.REQUEST_ACCEPT);
-        resultComboBox.addItem(SupervisorWorkRequest.REQUEST_REJECT);
+        resultComboBox.addItem(SupervisorRequest.REQUEST_ACCEPT);
+        resultComboBox.addItem(SupervisorRequest.REQUEST_REJECT);
     }
     /**
      * This method is called from within the constructor to initialize the form.
