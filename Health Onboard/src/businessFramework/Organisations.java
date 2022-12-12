@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package businessFramework;
-import businessFramework.enterprises.EmployeeDirectory;
+import businessFramework.enterprises.EnterprisesDirectory;
 import businessFramework.roles.Roles;
 import BusinessModel.UserAccount.UserDirectory;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public abstract class Organisations {
     private String OrganisationName;
-    private EmployeeDirectory empDirectory;
+    private EnterprisesDirectory empDirectory;
     private UserDirectory userDirectory;
     private int organisationID;
     private static int counter = 0;
@@ -43,7 +43,7 @@ public abstract class Organisations {
     public Organisations(String name) {
         
         this.OrganisationName = name;
-        this.empDirectory = new EmployeeDirectory();
+        this.empDirectory = new EnterprisesDirectory();
         this.userDirectory = new UserDirectory();
         this.organisationID = counter;
         ++counter;
@@ -63,7 +63,7 @@ public abstract class Organisations {
         return this.organisationID;
     }
 
-    public EmployeeDirectory getEmployeeDirectory() {
+    public EnterprisesDirectory getEmployeeDirectory() {
         return this.empDirectory;
     }
 
