@@ -4,56 +4,88 @@
  */
 package businessFramework.userAccount;
 
-import businessFramework.enterprises.Employee;
-import BusinessModel.Roles.Roles;
+import businessFramework.network.Network;
+import businessFramework.person.Person;
+import businessFramework.roles.Roles;
+import businessFramework.requestPipeline.RequestPipeline;
 
 /**
  *
- * @author patil
+ * @author jhalaksurve
  */
 public class User {
- private String username;
-    private String password;
-    private Employee employee;
+    
+    private String name;
+    private String pwd;
+    private Person person; 
     private Roles role;
-
+    private RequestPipeline requestPipeline;
+    private boolean enabled = true;
+    private Network network;
+   
     public User() {
+        requestPipeline = new RequestPipeline();
+    }
+  
+    public String getName() {
+        return name;
     }
 
-    public String getUsername() {
-        return username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getPwd() {
+        return pwd;
     }
 
-    public String getPassword() {
-        return password;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Roles getRole() {
         return role;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
     public void setRole(Roles role) {
         this.role = role;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public RequestPipeline getRequestPipeline() {
+        return requestPipeline;
+    }
+
+    public void setRequestPipeline(RequestPipeline requestPipeline) {
+        this.requestPipeline = requestPipeline;
     }
 
     @Override
     public String toString() {
-        return username;
-    }   
+        return name; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
+    }
+
+    public Network getNetwork() {
+        return network;
+    }
+
 }
