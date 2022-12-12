@@ -13,9 +13,9 @@ import java.util.ArrayList;
  *
  * @author vinaykumargudooru
  */
-public class DoctorOrgranizations {
+public class DoctorOrganizations {
     
-    public DoctorOrgranizations()
+    public DoctorOrganizations()
     {
         super(Organizations.Type.Doctor.getValue());
     }
