@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userInterface.mayor;
+package ui.chief;
 
 import business.EcoSystem;
 import business.enterprisepkg.Enterprise;
@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jhalaksurve
  */
-public class MayorWorkAreaJPanel extends javax.swing.JPanel {
+public class ChiefWorkArea extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem ecoSystem;
     private UserAccount userAccount;
@@ -39,7 +39,7 @@ public class MayorWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SupervisorWorkAreaJPanel
      */
-    public MayorWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, EcoSystem ecoSystem ) {
+    public ChiefWorkArea(JPanel userProcessContainer, UserAccount userAccount, Organization organization, EcoSystem ecoSystem ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecoSystem = ecoSystem;

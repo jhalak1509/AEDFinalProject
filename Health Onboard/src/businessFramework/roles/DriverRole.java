@@ -20,7 +20,7 @@ public class DriverRole extends Roles{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, User user, 
             Organizations organization, Enterprises enterprise, Environment business) {
-        return new DriverWorkArea(userProcessContainer, user, organization, enterprise.getOrganizationDirectory());
+        return new DriverWorkArea(userProcessContainer, user, organization, enterprise.getOrganizationsDirectory());
     }
     @Override
     public String toString() {

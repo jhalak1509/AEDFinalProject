@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userInterface.doctor;
+package ui.doctor;
 
 import business.common.Validation;
 import business.personpkg.HelpSeeker;
@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author patil
  */
-public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
+public class DoctorWorkArea extends javax.swing.JPanel {
     
         private JPanel userProcessContainer;
         private UserAccount userAccount;
@@ -34,7 +34,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount) {
+    public DoctorWorkArea(JPanel userProcessContainer, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
 
@@ -206,6 +206,23 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        sendMedicationsPanel.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(medications, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(medications1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(sendNewMedicationsBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(weightTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(weight, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(systollicBPTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(systollicBloodPressure, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(heartRateTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(heartRate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(respiratoryRateTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(respiratoryRate, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        sendMedicationsPanel.setLayer(viewDetailsJButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout sendMedicationsPanelLayout = new javax.swing.GroupLayout(sendMedicationsPanel);
         sendMedicationsPanel.setLayout(sendMedicationsPanelLayout);
         sendMedicationsPanelLayout.setHorizontalGroup(
@@ -287,22 +304,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(medications1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-        sendMedicationsPanel.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(medications, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(medications1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(sendNewMedicationsBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(weightTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(weight, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(systollicBPTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(systollicBloodPressure, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(heartRateTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(heartRate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(respiratoryRateTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(respiratoryRate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        sendMedicationsPanel.setLayer(viewDetailsJButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

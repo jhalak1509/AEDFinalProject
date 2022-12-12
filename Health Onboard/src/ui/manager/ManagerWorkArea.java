@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userInterface.supervisor;
+package ui.manager;
 
 import business.EcoSystem;
 import business.organizationpkg.Organization;
@@ -27,7 +27,7 @@ import userInterface.volunteer.ViewVolunteerProfile;
  *
  * @author vinaykumargudooru
  */
-public class SupervisorWorkAreaJPanel extends javax.swing.JPanel {
+public class ManagerWorkArea extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem ecoSystem;
     private UserAccount userAccount;
@@ -36,7 +36,7 @@ public class SupervisorWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SupervisorWorkAreaJPanel
      */
-    public SupervisorWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, EcoSystem ecoSystem ) {
+    public ManagerWorkArea(JPanel userProcessContainer, UserAccount userAccount, Organization organization, EcoSystem ecoSystem ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecoSystem = ecoSystem;

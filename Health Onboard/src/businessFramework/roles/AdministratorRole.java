@@ -9,7 +9,7 @@ import businessFramework.enterprises.Enterprises;
 import businessFramework.organizations.Organizations;
 import businessFramework.userAccount.User;
 import javax.swing.JPanel;
-import ui.administratorRole.AdministartorWorkArea;
+import ui.administratorRole.AdministratorWorkArea;
 /**
  *
  * @author jhalaksurve
@@ -19,7 +19,7 @@ public class AdministratorRole extends Roles{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, User user, 
             Organizations organization, Enterprises enterprise, Environment business) {
-        return new AdministartorWorkArea(userProcessContainer, enterprise, user);
+        return new AdministratorWorkArea(userProcessContainer, enterprise, user);
     }
     @Override
     public String toString() {

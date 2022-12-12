@@ -4,11 +4,14 @@
  */
 package businessFramework.requestPipeline;
 
+import static businessFramework.organizations.Organizations.Type.Helper;
+import businessFramework.person.Helper;
+
 /**
  *
  * @author jhalaksurve
  */
-public class TransportationRequest {
+public class TransportationRequest extends Request{
     
     private String transReqId;
     private static int count = 000;
@@ -35,9 +38,15 @@ public class TransportationRequest {
 
     @Override
     public String toString() {
-        Helper helper = (Helper)this.getSender().getPerson();
+        
+        Helper helper = (Helper)this.getSenderDetails().getPerson();
+        //Helper helper = (Helper) this.ge
         String address = helper.getAddress1().concat(helper.getAddress2().concat(helper.getTown()));
         return address;
+        
+//        Volunteer volunteer = (Volunteer)this.getSender().getPerson();
+//        String address = volunteer.getAddress1().concat(volunteer.getAddress2().concat(volunteer.getTown()));
+//        return address;
                 
     }
 

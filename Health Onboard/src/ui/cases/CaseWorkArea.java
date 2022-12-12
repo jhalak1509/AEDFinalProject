@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userInterface.helpSeeker;
+package ui.cases;
 
 import business.EcoSystem;
 import business.enterprisepkg.Enterprise;
@@ -29,9 +29,9 @@ import userInterface.sensorPckg.ManageHelpSeekerProfileJPanel;
 
 /**
  *
- * @author jhalaksurve
+ * @author tejageetla
  */
-public class HelpSeekerWorkAreaJPanel extends javax.swing.JPanel {
+public class CaseWorkArea extends javax.swing.JPanel {
 
      private JPanel userProcessContainer;
     private Enterprise enterprise;
@@ -43,7 +43,7 @@ public class HelpSeekerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HelpSeekerWorkAreaJPanel
      */
-    public HelpSeekerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise , UserAccount userAccount, EcoSystem ecoSystem) {
+    public CaseWorkArea(JPanel userProcessContainer, Enterprise enterprise , UserAccount userAccount, EcoSystem ecoSystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise; 

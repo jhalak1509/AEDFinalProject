@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userInterface.donorpkg;
+package ui.sponsors;
 
 
 import business.EcoSystem;
@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  *
  * @author jhalaksurve
  */
-public class DonorWorkAreaJPanel extends javax.swing.JPanel {
+public class SponsorWorkArea extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
     private EcoSystem ecoSystem;
@@ -33,7 +33,7 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DonorWorkAreaJPanel
      */
-    public DonorWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, Organization organization, EcoSystem ecoSystem) {
+    public SponsorWorkArea(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, Organization organization, EcoSystem ecoSystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecoSystem = ecoSystem;

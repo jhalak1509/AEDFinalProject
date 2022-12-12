@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userInterface.transport;
+package ui.transportation;
 
 import business.organizationpkg.Organization;
 import business.organizationpkg.OrganizationDirectory;
@@ -28,7 +28,7 @@ import userInterface.volunteer.ViewVolunteerProfile;
  *
  * @author vinaykumargudooru
  */
-public class DriverWorkAreaJPanel extends javax.swing.JPanel {
+public class DriverWorkArea extends javax.swing.JPanel {
    private JPanel userProcessContainer;
    private UserAccount userAccount;  
     private OrganizationDirectory od;
@@ -37,7 +37,7 @@ public class DriverWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DriverWorkAreaJPanel
      */
-    public DriverWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, OrganizationDirectory od) {
+    public DriverWorkArea(JPanel userProcessContainer, UserAccount userAccount, Organization organization, OrganizationDirectory od) {
         initComponents();
          this.userProcessContainer = userProcessContainer;
          this.userAccount = userAccount;

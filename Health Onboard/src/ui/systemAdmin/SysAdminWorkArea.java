@@ -3,7 +3,7 @@
  *
  * Created on October 10, 2008, 8:50 AM
  */
-package userInterface.SystemAdmin;
+package ui.systemAdmin;
 
 import business.EcoSystem;
 import business.enterprisepkg.Enterprise;
@@ -24,7 +24,7 @@ import javax.swing.tree.DefaultTreeModel;
  *
  * @author vinaykumargudooru
  */
-public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
+public class SysAdminWorkArea extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     EcoSystem system;
@@ -32,7 +32,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem system) {
+    public SysAdminWorkArea(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
