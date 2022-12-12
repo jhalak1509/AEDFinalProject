@@ -166,7 +166,7 @@ public class Validations {
        
      public static DoctorOrganizations getDoctorOrganizations(Environment environment, User user)
     {
-        DoctorOrganizations doctorOrganizations = null;
+       DoctorOrganizations doctorOrganizations = null;
         try
         {
         for(Network network : environment.getNetworkList())

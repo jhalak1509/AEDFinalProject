@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author vinaykumargudooru
  */
-public class ManagerOrganizations {
+public class ManagerOrganizations extends Organizations {
     
     public ManagerOrganizations()
     {

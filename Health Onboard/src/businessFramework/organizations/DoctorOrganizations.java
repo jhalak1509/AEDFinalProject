@@ -13,7 +13,11 @@ import java.util.ArrayList;
  *
  * @author vinaykumargudooru
  */
+<<<<<<< HEAD:Health Onboard/src/businessFramework/organizations/DoctorOrganizations.java
 public class DoctorOrganizations {
+=======
+public class DoctorOrgranizations extends Organizations {
+>>>>>>> db16654a7078c5b68de431dd68e0463ab2e55617:Health Onboard/src/businessFramework/organizations/DoctorOrgranizations.java
     
     public DoctorOrganizations()
     {
@@ -21,7 +25,7 @@ public class DoctorOrganizations {
     }
     
       @Override
-    public ArrayList<Roles> getSupportedRole() {
+        public ArrayList<Roles> getSupportedRole() {
         ArrayList<Roles> roles = new ArrayList<>();
         roles.add(new DoctorRole());
         return roles;
