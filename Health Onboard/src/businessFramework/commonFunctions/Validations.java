@@ -11,12 +11,12 @@ package businessFramework.commonFunctions;
 import businessFramework.Environment;
 import businessFramework.enterprises.Enterprises;
 import businessFramework.network.Network;
-import businessFramework.organizations.DoctorOrganization;
-import businessFramework.organizations.HelperOrganization;
+import businessFramework.organizations.DoctorOrgranizations;
+import businessFramework.organizations.HelperOragnizations;
 import businessFramework.organizations.Organizations;
-import businessFramework.organizations.ManagerOrganization;
-import businessFramework.organizations.TransportationOrganization;
-import businessFramework.userAccount.UserAccount;
+import businessFramework.organizations.ManagerOrganizations;
+import businessFramework.organizations.TransportationOrganizations;
+import businessFramework.userAccount.User;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -45,9 +45,9 @@ public class Validations {
     }
     
     
-    public static HelperOrganization getHelperOrganization(Environment environment, UserAccount userAccount)
+    public static HelperOragnizations getHelperOrganizations(Environment environment, User userAccount)
     {
-        HelperOrganization helperOrganization = null;
+        HelperOragnizations helperOrganizations = null;
         try
         {
         for(Network network : environment.getNetworkList())
@@ -58,11 +58,11 @@ public class Validations {
           {
             if(enterprise.getEnterprisesType().equals(Enterprises.EnterprisesType.University))
             {
-            for(Organizations organization : enterprise.getOrganizationsDirectory().getOrganizationsList())
+            for(Organizations organizations : enterprise.getOrganizationsDirectory().getOrganizationsList())
             {
-             if(organization instanceof HelperOrganization)
+             if(organizations instanceof HelperOragnizations)
              {
-              helperOrganization = (HelperOrganization)organization; 
+              helperOrganizations = (HelperOragnizations)organizations; 
              }
             }
             }
@@ -75,12 +75,12 @@ public class Validations {
           npe.printStackTrace();
          return null;
         }
-        return helperOrganization;
+        return helperOrganizations;
     }
     
-    public static HelperOrganization getHelperOrganizationInNw(Environment environment, Network nw)
+    public static HelperOragnizations getHelperOrganizationsInNw(Environment environment, Network nw)
     {
-        HelperOrganization helperOrganization = null;
+        HelperOragnizations helperOrganizations = null;
         try
         {
         for(Network network : environment.getNetworkList())
@@ -93,9 +93,9 @@ public class Validations {
             {
             for(Organizations organization : enterprise.getOrganizationsDirectory().getOrganizationsList())
             {
-             if(organization instanceof HelperOrganization)
+             if(organization instanceof HelperOragnizations)
              {
-              HelperOrganization = (HelperOrganization)organization; 
+              HelperOragnizations = (HelperOragnizations)organization; 
              }
             }
             }
@@ -108,12 +108,12 @@ public class Validations {
           npe.printStackTrace();
          return null;
         }
-        return helperOrganization;
+        return helperOrganizations;
     }
     
-      public static HelperOrganization getHelperOrganization(Environment environment, UserAccount userAccount)
+      public static HelperOragnizations getHelperOrganization(Environment environment, UserAccount userAccount)
     {
-        HelperOrganization helperOrganization = null;
+        HelperOragnizations helperOrganization = null;
         
         for(Network network : environment.getNetworkList())
         {
@@ -125,9 +125,9 @@ public class Validations {
             {
             for(Organizations organization : enterprise.getOrganizationsDirectory().getOrganizationsList())
             {
-             if(organization instanceof HelperOrganization)
+             if(organization instanceof HelperOragnizations)
              {
-              helperOrganization = (HelperOrganization)organization; 
+              helperOrganization = (HelperOragnizations)organization; 
              }
             }
             }
@@ -137,13 +137,13 @@ public class Validations {
         return helperOrganization;
     }
       
-       public static TransportationOrganizations getTransportationOrganizations(Environment environment, UserAccount userAccount)
+       public static TransportationOrganizations getTransportationOrganizations(Environment environment, User user)
     {
         TransportationOrganizations transportationOrganizations = null;
         
         for(Network network : environment.getNetworkList())
         {
-         if(network.equals(userAccount.getNetwork()))
+         if(network.equals(user.getNetwork()))
          {
           for(Enterprises enterprise : network.getEnterprisesDirectory().getEnterprisesList())
           {
@@ -163,14 +163,14 @@ public class Validations {
         return transportationOrganizations;
     } 
        
-     public static DoctorOrganization getDoctorOrganization(Environment environment, UserAccount userAccount)
+     public static DoctorOrgranizations getDoctorOrganization(Environment environment, User user)
     {
-        DoctorOrganization doctorOrganization = null;
+        DoctorOrgranizations doctorOrganization = null;
         try
         {
         for(Network network : environment.getNetworkList())
         {
-         if(network.equals(userAccount.getNetwork()))
+         if(network.equals(user.getNetwork()))
          {
           for(Enterprises enterprise : network.getEnterprisesDirectory().getEnterprisesList())
           {
@@ -178,9 +178,9 @@ public class Validations {
             {
             for(Organizations organization : enterprise.getOrganizationsDirectory().getOrganizationsList())
             {
-             if(organization instanceof DoctorOrganization)
+             if(organization instanceof DoctorOrgranizations)
              {
-              doctorOrganization = (DoctorOrganization)organization; 
+              doctorOrganization = (DoctorOrgranizations)organization; 
              }
             }
             }
