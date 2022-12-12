@@ -1,6 +1,3 @@
-# AEDFinalProject
-This project targets at solving the hospital management issues.
-
 <p>Problem Statement</p>
 <p>Recent cardiac arrest victims find it challenging to engage in physical activity. Most people find it challenging to complete physically demanding household chores. They are unable to afford to hire assistance for these daily duties due to the increased payments for medical bills and other expenses.</p>
 <br>
