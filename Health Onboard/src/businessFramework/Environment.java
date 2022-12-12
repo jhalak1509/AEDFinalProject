@@ -4,7 +4,7 @@ import businessFramework.commonFunctions.Help;
 import businessFramework.network.Network;
 import businessFramework.organizations.Organizations;
 import businessFramework.roles.Roles;
-import businessFramework.roles.SysAdminRole;
+import businessFramework.roles.SysAdmin;
 import java.util.ArrayList;
 
 /**
@@ -45,9 +45,9 @@ public class Environment extends Organizations {
         return network;
     }
     
-    public boolean checkIfUsernameIsUnique(String username)
+    public boolean checkUniqueName(String username)
     {
-      if (!getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+      if (!getUserDirectory().checkUniqueName(username)) {
         return false;
       }
       return true;
@@ -58,10 +58,10 @@ public class Environment extends Organizations {
         networkList.remove(network);
     }
    
-   @Override
+   
     public ArrayList<Roles> getSupportedRoles() {
         ArrayList<Roles> rolesList = new ArrayList<>();
-        rolesList.add(new SysAdminRole());
+        rolesList.add(new SysAdmin());
         return rolesList;
     }
    
@@ -79,5 +79,10 @@ public class Environment extends Organizations {
 
     public ArrayList<Help> getHelpList() {
         return helpList;
+    }
+
+    @Override
+    public ArrayList<Roles> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
