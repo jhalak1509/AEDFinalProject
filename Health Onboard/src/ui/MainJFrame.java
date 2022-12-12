@@ -10,14 +10,14 @@ import businessFramework.Environment;
 import businessFramework.enterprises.Enterprises;
 import businessFramework.network.Network;
 import businessFramework.organizations.Organizations;
-import businessFramework.userAccount.UserAccount;
+import businessFramework.userAccount.User;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import ui.common.RegistrationWorkAreaPanel;
+import ui.commonFunctions.RegistrationWorkAreaPanel;
 
 /**
  *
@@ -187,20 +187,20 @@ public class MainJFrame extends javax.swing.JFrame {
         String password = String.valueOf(passwordCharArray);
 
         //Step1: Check in the system user account directory if you have the user
-        UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+        User user = system.getUserDirectory().validateUser(userName, password);
         Enterprises inEnterprise = null;
         Organizations inOrganization = null;
-        if (userAccount == null) {
+        if (user == null) {
             //Step2: Go inside each network to check each enterprise
             for (Network network : system.getNetworkList()) {
                 //Step 2-a: Check against each enterprise
                 for (Enterprises enterprise : network.getEnterprisesDirectory().getEnterprisesList()) {
-                    userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
-                    if (userAccount == null ) {
+                    user = enterprise.getUserDirectory().validateUser(userName, password);
+                    if (user == null ) {
                         //Step3: Check against each organization inside that enterprise
                         for (Organizations organization : enterprise.getOrganizationsDirectory().getOrganizationsList()) {
-                            userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
-                            if (userAccount != null ) {
+                            user = organization.getUserDirectory().validateUser(userName, password);
+                            if (user != null ) {
                                 inEnterprise = enterprise;
                                 inOrganization = organization;
                                 break;
@@ -220,18 +220,18 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
        
-        if (userAccount == null) {
+        if (user == null) {
             JOptionPane.showMessageDialog(null, "Invalid Credentails!");
             return;
         } 
-         if(!userAccount.isEnabled())
+         if(!user.isEnabled())
         {
         JOptionPane.showMessageDialog(null, "Invalid Credentails!");
             return;    
         }
         else {
             CardLayout layout = (CardLayout) container.getLayout();
-            container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
+            container.add("workArea", user.getRole().createWorkArea(container, user, inOrganization, inEnterprise, system));
             layout.next(container);
         }
         loginJButton.setEnabled(false);

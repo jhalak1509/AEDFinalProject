@@ -46,14 +46,14 @@ public class Validations {
     }
     
     
-    public static HelperOrganizations getHelperOrganizations(Environment environment, User userAccount)
+    public static HelperOrganizations getHelperOrganizations(Environment environment, User user)
     {
         HelperOrganizations helperOrganizations = null;
         try
         {
         for(Network network : environment.getNetworkList())
         {
-         if(network.equals(userAccount.getNetwork()))
+         if(network.equals(user.getNetwork()))
          {
           for(Enterprises enterprises : network.getEnterprisesDirectory().getEnterprisesList())
           {
