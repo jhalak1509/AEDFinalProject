@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui.transportation;
 
 import businessFramework.userAccount.User;
 import businessFramework.requestPipeline.TransportationRequest;
-import businessFramework.requestPipeline.SupervisorRequest;
+import businessFramework.requestPipeline.ManagerRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -47,8 +42,8 @@ public class ProcessTransportWorkRequestJPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+         Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -60,8 +55,8 @@ public class ProcessTransportWorkRequestJPanel extends javax.swing.JPanel {
     public void populateResultComboBox()
     {
         resultComboBox.removeAllItems();
-        resultComboBox.addItem(SupervisorRequest.REQUEST_ACCEPT);
-        resultComboBox.addItem(SupervisorRequest.REQUEST_REJECT);
+        resultComboBox.addItem(ManagerRequest.REQUEST_ACCEPT);
+        resultComboBox.addItem(ManagerRequest.REQUEST_REJECT);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,21 +73,30 @@ public class ProcessTransportWorkRequestJPanel extends javax.swing.JPanel {
         resultComboBox = new javax.swing.JComboBox();
         backJButton = new javax.swing.JButton();
 
+        submitJButton.setBackground(new java.awt.Color(0, 153, 153));
+        submitJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        submitJButton.setForeground(new java.awt.Color(255, 255, 255));
         submitJButton.setText("Submit");
+        submitJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel1.setText("Request Result");
 
-        jLabel7.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
-        jLabel7.setText("Process Work Request:");
+        jLabel7.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        jLabel7.setText("Process Transportation Work Request");
 
         resultComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("Back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -106,33 +110,33 @@ public class ProcessTransportWorkRequestJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(120, 120, 120)
-                                .addComponent(resultComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(backJButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(266, 266, 266)
-                        .addComponent(submitJButton)))
-                .addContainerGap(374, Short.MAX_VALUE))
+                        .addComponent(submitJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabel1)
+                        .addGap(120, 120, 120)
+                        .addComponent(resultComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel7)
-                .addGap(44, 44, 44)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(resultComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(76, 76, 76)
                 .addComponent(submitJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(59, 59, 59))
         );
@@ -144,8 +148,8 @@ public class ProcessTransportWorkRequestJPanel extends javax.swing.JPanel {
          JOptionPane.showMessageDialog(null, "Please enter data in all fields", "warning", JOptionPane.WARNING_MESSAGE);
          return;
         }
-        request.setTransReqResult((String)resultComboBox.getSelectedItem());
-        request.setStatus(SupervisorWorkRequest.REQUEST_COMPLETED);
+        request.setTransReqOutcome((String)resultComboBox.getSelectedItem());
+        request.setStatus(ManagerRequest.REQUEST_COMPLETED);
         request.setResolveDate(new Date());
         JOptionPane.showMessageDialog(null, "Request has been processed successfully", "success", JOptionPane.PLAIN_MESSAGE);
 
@@ -156,7 +160,7 @@ public class ProcessTransportWorkRequestJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        DriverWorkAreaJPanel driverWorkAreaPanel = (DriverWorkAreaJPanel) component;
+        DriverWorkArea driverWorkAreaPanel = (DriverWorkArea) component;
         driverWorkAreaPanel.populatetransportRequestTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

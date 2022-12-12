@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.donorpkg;
+package ui.sponsors;
 
 
-import business.userAccountpkg.UserAccount;
-import business.workQueuepkg.WorkRequest;
+import businessFramework.userAccount.User;
+import businessFramework.requestPipeline.Request;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -25,12 +20,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewDonationHistory extends javax.swing.JPanel {
  private JPanel userProcessContainer;
-    private UserAccount userAccount;
+    private User userAccount;
     
     /**
      * Creates new form ViewDonationHistory
      */
-    public ViewDonationHistory(JPanel userProcessContainer, UserAccount account) {
+    public ViewDonationHistory(JPanel userProcessContainer, User account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
@@ -47,8 +42,8 @@ public class ViewDonationHistory extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+         Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -62,11 +57,11 @@ public class ViewDonationHistory extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)donorHistoryTable.getModel();
         model.setRowCount(0);
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-     for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList())
+     for(Request request : userAccount.getRequestPipeline().getRequestList())
      {
       Object[] rowData = new Object[4];
             rowData[0] = request;
-            rowData[1] = request.getSender().getPerson().getName(); 
+            rowData[1] = request.getSenderDetails().getPerson().getName(); 
             rowData[2] = dateFormat.format(request.getRequestDate()); 
             rowData[3] = request.getResolveDate() == null ? null : dateFormat.format(request.getResolveDate()); 
         
@@ -91,6 +86,7 @@ public class ViewDonationHistory extends javax.swing.JPanel {
 
         donorNameField.setEnabled(false);
 
+        donorName.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         donorName.setText("Full Name:");
 
         donorHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -111,10 +107,14 @@ public class ViewDonationHistory extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(donorHistoryTable);
 
-        viewDonHistry.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        viewDonHistry.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         viewDonHistry.setText("View Donation History:");
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<< back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -128,19 +128,20 @@ public class ViewDonationHistory extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(donorName, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(donorNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(170, 170, 170)
-                        .addComponent(viewDonHistry, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(viewDonHistry, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(backJButton)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(donorName, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(donorNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(415, Short.MAX_VALUE))
+                        .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +154,7 @@ public class ViewDonationHistory extends javax.swing.JPanel {
                     .addComponent(donorNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(53, 53, 53))
         );

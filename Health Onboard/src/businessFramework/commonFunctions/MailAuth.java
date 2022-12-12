@@ -8,8 +8,8 @@ package businessFramework.commonFunctions;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 public class MailAuth extends Authenticator{
-    public static final String SMTP_AUTH_USER = "heathonboard@gmail.com";                                 
-    public static final String SMTP_AUTH_PWD  = "heathonboard"; 
+    public static final String SMTP_AUTH_USER = "hospitalmanagement.aed@gmail.com";                                 
+    public static final String SMTP_AUTH_PWD  = "fvjzyugaljixuymi"; 
     
     @Override                                                                                                                   
     public PasswordAuthentication getPasswordAuthentication()                                             

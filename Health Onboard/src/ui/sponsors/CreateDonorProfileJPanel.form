@@ -16,30 +16,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-              <Component id="backJButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="38" pref="254" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="backJButton" min="-2" pref="80" max="-2" attributes="0"/>
+              <EmptySpace pref="246" max="32767" attributes="0"/>
               <Component id="createProfileButton" min="-2" pref="146" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="418" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="manageEnt" min="-2" pref="281" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="dateOfBirth" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                               <Component id="address" alignment="1" min="-2" pref="194" max="-2" attributes="0"/>
                               <Component id="town" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="occupation" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="emailID" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
                           <Component id="donorName" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                           <Component id="zipCode" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
                           <Component id="phoneNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="createYourProfile" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                          <Component id="dateOfBirth" min="-2" pref="239" max="-2" attributes="0"/>
+                          <Component id="emailID" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -59,7 +57,13 @@
                           <Component id="donorNameField" min="-2" pref="184" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="createYourProfile" min="-2" pref="260" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="manageEnt" min="-2" pref="414" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -67,7 +71,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="manageEnt" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="createYourProfile" min="-2" max="-2" attributes="0"/>
@@ -129,11 +133,17 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="dateOfBirth">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Date Of Birth (MM/DD/YYYY):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="address">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Address: "/>
       </Properties>
     </Component>
@@ -141,6 +151,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="town">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Town/City: "/>
       </Properties>
     </Component>
@@ -148,12 +161,29 @@
     </Component>
     <Component class="javax.swing.JLabel" name="zipCode">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Zip Code:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="backJButton">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&lt;&lt; back"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backJButtonActionPerformed"/>
@@ -162,13 +192,16 @@
     <Component class="javax.swing.JLabel" name="createYourProfile">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="18" style="1"/>
+          <Font name="Georgia" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Create Your Profile"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="donorName">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Full Name:"/>
       </Properties>
     </Component>
@@ -182,6 +215,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="occupation">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Occupation:"/>
       </Properties>
     </Component>
@@ -189,6 +225,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="emailID">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Email Address:"/>
       </Properties>
     </Component>
@@ -196,6 +235,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="phoneNumber">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Phone Number:"/>
       </Properties>
     </Component>
@@ -203,7 +245,21 @@
     </Component>
     <Component class="javax.swing.JButton" name="createProfileButton">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Georgia" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Create Profile "/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createProfileButtonActionPerformed"/>
@@ -214,9 +270,9 @@
     <Component class="javax.swing.JLabel" name="manageEnt">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Malayalam MN" size="24" style="3"/>
+          <Font name="Georgia" size="36" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Donor Work Area"/>
+        <Property name="text" type="java.lang.String" value="Sponsor Work Area"/>
       </Properties>
     </Component>
   </SubComponents>

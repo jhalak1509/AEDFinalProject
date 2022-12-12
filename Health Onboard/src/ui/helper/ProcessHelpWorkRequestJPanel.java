@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userInterface.volunteer;
+package ui.helper;
 
-import business.organizationpkg.Organization;
-import business.organizationpkg.OrganizationDirectory;
-import business.organizationpkg.TransportOrganization;
-import business.userAccountpkg.UserAccount;
-import business.workQueuepkg.NeedHelpWorkRequest;
-import business.workQueuepkg.NeedTransportWorkRequest;
-import business.workQueuepkg.SupervisorWorkRequest;
+import businessFramework.organizations.Organizations;
+import businessFramework.organizations.OrganizationsDirectory;
+import businessFramework.organizations.TransportationOrganizations;
+import businessFramework.userAccount.User;
+import businessFramework.requestPipeline.HelpRequest;
+import businessFramework.requestPipeline.TransportationRequest;
+import businessFramework.requestPipeline.ManagerRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -30,14 +30,14 @@ import javax.swing.JPanel;
 public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
-    private NeedHelpWorkRequest request;
-    private UserAccount userAccount;
-    private OrganizationDirectory od;
+    private HelpRequest request;
+    private User userAccount;
+    private OrganizationsDirectory od;
     
     /**
      * Creates new form ProcessHelpWorkRequestJPanel
      */
-    public ProcessHelpWorkRequestJPanel(JPanel userProcessContainer, NeedHelpWorkRequest request, UserAccount userAccount, OrganizationDirectory od) {
+    public ProcessHelpWorkRequestJPanel(JPanel userProcessContainer, HelpRequest request, User userAccount, OrganizationsDirectory od) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;
@@ -45,8 +45,8 @@ public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
         this.od = od;
         
         requestResultCombo.removeAllItems();
-        requestResultCombo.addItem(SupervisorWorkRequest.REQUEST_ACCEPT);
-        requestResultCombo.addItem(SupervisorWorkRequest.REQUEST_REJECT);
+        requestResultCombo.addItem(ManagerRequest.REQUEST_ACCEPT);
+        requestResultCombo.addItem(ManagerRequest.REQUEST_REJECT);
         
         needTransportCombo.removeAllItems();
         needTransportCombo.addItem("YES");
@@ -63,8 +63,8 @@ public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+        Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -93,16 +93,25 @@ public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
         needTransport = new javax.swing.JLabel();
         needTransportCombo = new javax.swing.JComboBox();
 
+        submitJButton.setBackground(new java.awt.Color(0, 153, 153));
+        submitJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        submitJButton.setForeground(new java.awt.Color(255, 255, 255));
         submitJButton.setText("Submit Result");
+        submitJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
             }
         });
 
+        requestStatus.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         requestStatus.setText("Help Request ");
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("Back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -111,15 +120,17 @@ public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
 
         requestResultCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        submitRequest.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        submitRequest.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         submitRequest.setText("Process Work Request :");
 
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel2.setText("Add comments: ");
 
         commentsTxtAreaField.setColumns(20);
         commentsTxtAreaField.setRows(5);
         jScrollPane1.setViewportView(commentsTxtAreaField);
 
+        needTransport.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         needTransport.setText("Need Transport:");
 
         needTransportCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -132,32 +143,24 @@ public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
                 .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(submitRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(backJButton)
-                                        .addGap(157, 157, 157))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(50, 50, 50)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(79, 79, 79)
-                                    .addComponent(requestStatus)
-                                    .addGap(66, 66, 66)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(requestResultCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(79, 79, 79)
-                            .addComponent(needTransport)
-                            .addGap(50, 50, 50)
-                            .addComponent(needTransportCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(303, 303, 303)
-                            .addComponent(submitJButton))))
-                .addContainerGap(401, Short.MAX_VALUE))
+                                    .addComponent(needTransport)
+                                    .addComponent(jLabel2)
+                                    .addComponent(requestStatus)))
+                            .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(requestResultCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(needTransportCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(303, 303, 303)
+                        .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,18 +173,18 @@ public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
                     .addComponent(requestResultCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel2)))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(needTransportCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(needTransport))
                 .addGap(39, 39, 39)
                 .addComponent(submitJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(53, 53, 53))
         );
@@ -199,9 +202,9 @@ public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Please enter few words()less than 100 char) in text area", "warning", JOptionPane.WARNING_MESSAGE);
         return;      
         }
-        request.setRequestResult((String)requestResultCombo.getSelectedItem());
+        request.setRequestOutcome((String)requestResultCombo.getSelectedItem());
         request.setComments(commentsTxtAreaField.getText());
-        request.setStatus(SupervisorWorkRequest.REQUEST_COMPLETED);
+        request.setStatus(ManagerRequest.REQUEST_COMPLETED);
         request.setResolveDate(new Date());
         String needTransport = (String)needTransportCombo.getSelectedItem();
        
@@ -209,16 +212,16 @@ public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
         
         if(needTransport.equals("YES"))
         {
-        NeedTransportWorkRequest needTransportWorkRequest = new NeedTransportWorkRequest();
-        needTransportWorkRequest.setMessage("Need Transport");
-        needTransportWorkRequest.setSender(userAccount);
+        TransportationRequest needTransportWorkRequest = new TransportationRequest();
+        needTransportWorkRequest.setReqMessage("Need Transport");
+        needTransportWorkRequest.setSenderDetails(userAccount);
         needTransportWorkRequest.setStatus("Sent");
         needTransportWorkRequest.setRequestDate(new Date());
-        needTransportWorkRequest.setNeedTransport((String)needTransportCombo.getSelectedItem()); 
-        Organization organization = null;
-        for(Organization org : od.getOrganizationList())
+        needTransportWorkRequest.setNeedTransportation((String)needTransportCombo.getSelectedItem()); 
+        Organizations organization = null;
+        for(Organizations org : od.getOrganizationsList())
         {
-         if(org instanceof TransportOrganization)
+         if(org instanceof TransportationOrganizations)
          {
              organization = org;
          }
@@ -228,8 +231,8 @@ public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
           JOptionPane.showMessageDialog(null, "Unable to create transport request! Please create transport organization !!", "warning", JOptionPane.WARNING_MESSAGE);
           return;     
           }
-            organization.getWorkQueue().getWorkRequestList().add(needTransportWorkRequest);
-            userAccount.getWorkQueue().getWorkRequestList().add(needTransportWorkRequest);
+            organization.getRequestPipeline().getRequestList().add(needTransportWorkRequest);
+            userAccount.getRequestPipeline().getRequestList().add(needTransportWorkRequest);
         
          JOptionPane.showMessageDialog(null, "Transport Request has been created successfully", "success", JOptionPane.PLAIN_MESSAGE);
         commentsTxtAreaField.setText("");
@@ -243,7 +246,7 @@ public class ProcessHelpWorkRequestJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        ViewPersonalHelpRequestsJPanel viewHelpRequestsJPanel = (ViewPersonalHelpRequestsJPanel) component;
+        ViewPersonalHelpRequests viewHelpRequestsJPanel = (ViewPersonalHelpRequests) component;
         viewHelpRequestsJPanel.populatehelpRequestTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

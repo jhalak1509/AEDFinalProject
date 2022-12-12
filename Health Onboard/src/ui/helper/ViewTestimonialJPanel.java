@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.volunteer;
+package ui.helper;
 
-import business.personpkg.Testimonial;
-import business.personpkg.Volunteer;
-import business.userAccountpkg.UserAccount;
+import businessFramework.person.Review;
+import businessFramework.person.Helper;
+import businessFramework.userAccount.User;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -28,11 +23,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewTestimonialJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    private UserAccount userAccount; 
+    private User userAccount; 
     /**
      * Creates new form ViewTestimonialJPanel
      */
-    public ViewTestimonialJPanel(JPanel userProcessContainer, UserAccount userAccount) {
+    public ViewTestimonialJPanel(JPanel userProcessContainer, User userAccount) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
@@ -52,8 +47,8 @@ public class ViewTestimonialJPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+        Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -66,22 +61,22 @@ public class ViewTestimonialJPanel extends javax.swing.JPanel {
     {
         testimonialJPanel.removeAll();
         testimonialJPanel.revalidate();
-       Volunteer volunteer = (Volunteer)userAccount.getPerson();
+       Helper helper = (Helper)userAccount.getPerson();
        JTextArea textArea;
        JTextField txtField;
        int count = 0;
        int pos = 0;
            
-        for(Testimonial testimonial : volunteer.getTestimonialList())
+        for(Review review : helper.getReviewList())
         {
             if(count<5)
             {
             
-            txtField = new JTextField(testimonial.getDate()+"Written By "+testimonial.getWriterName());
+            txtField = new JTextField(review.getDate()+"Written By "+review.getWriterName());
             txtField.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
             txtField.setEditable(false);
             txtField.setVisible(true);
-            textArea = new JTextArea(testimonial.getTestimonialTxt());
+            textArea = new JTextArea(review.getReviewTxt());
             textArea.setEditable(false);
             textArea.setVisible(true);
             count++;
@@ -103,12 +98,12 @@ public class ViewTestimonialJPanel extends javax.swing.JPanel {
      DefaultTableModel dtm = (DefaultTableModel)testimonialListJTable.getModel();
         dtm.setRowCount(0);
         
-        Volunteer volunteer = (Volunteer)userAccount.getPerson();
-        for(Testimonial testimonial : volunteer.getTestimonialList())
+        Helper helper = (Helper)userAccount.getPerson();
+        for(Review review : helper.getReviewList())
         {
          Object[] rowData = new Object[5];
-           rowData[0] = testimonial;
-           rowData[1] = testimonial.getWriterName();   
+           rowData[0] = review;
+           rowData[1] = review.getWriterName();   
            
            dtm.addRow(rowData);
         }   
@@ -152,11 +147,11 @@ public class ViewTestimonialJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(testimonialListJTable);
 
-        manageEnt.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
-        manageEnt.setText("View Testimonials");
+        manageEnt.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        manageEnt.setText("View Reviews");
 
-        manageEnt1.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
-        manageEnt1.setText("Heart Help ");
+        manageEnt1.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        manageEnt1.setText("Health Onboard");
 
         testimonialJPanel.setBackground(new java.awt.Color(153, 204, 0));
 
@@ -171,7 +166,11 @@ public class ViewTestimonialJPanel extends javax.swing.JPanel {
             .addGap(0, 404, Short.MAX_VALUE)
         );
 
+        viewTestiBtn.setBackground(new java.awt.Color(0, 153, 153));
+        viewTestiBtn.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        viewTestiBtn.setForeground(new java.awt.Color(255, 255, 255));
         viewTestiBtn.setText("View Testimonial");
+        viewTestiBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         viewTestiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewTestiBtnActionPerformed(evt);
@@ -185,7 +184,11 @@ public class ViewTestimonialJPanel extends javax.swing.JPanel {
         viewTestimonialField.setRows(5);
         jScrollPane1.setViewportView(viewTestimonialField);
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<< Back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -197,50 +200,44 @@ public class ViewTestimonialJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(manageEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(testimonialHeadingLabel)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(backJButton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(viewTestiBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(testimonialHeadingLabel)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewTestiBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(testimonialJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(458, 458, 458)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(manageEnt1)
-                .addContainerGap(389, Short.MAX_VALUE))
+                .addGap(304, 304, 304))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(manageEnt1)
-                        .addGap(18, 18, 18)
-                        .addComponent(manageEnt)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(viewTestiBtn)
-                        .addGap(28, 28, 28)
-                        .addComponent(testimonialHeadingLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(testimonialJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(manageEnt)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(viewTestiBtn)
+                .addGap(28, 28, 28)
+                .addComponent(testimonialHeadingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(14, 14, 14))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(manageEnt1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(testimonialJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,10 +249,10 @@ public class ViewTestimonialJPanel extends javax.swing.JPanel {
             return;
         }
         
-         Testimonial testimonial = (Testimonial)testimonialListJTable.getValueAt(selectedRow, 0);
+         Review review = (Review)testimonialListJTable.getValueAt(selectedRow, 0);
          
-         testimonialHeadingLabel.setText(testimonial.getDate() + " written by "+testimonial.getWriterName() );
-         viewTestimonialField.setText(testimonial.getTestimonialTxt());
+         testimonialHeadingLabel.setText(review.getDate() + " written by "+review.getWriterName() );
+         viewTestimonialField.setText(review.getReviewTxt());
          testimonialHeadingLabel.setVisible(true);
          viewTestimonialField.setVisible(true);
         

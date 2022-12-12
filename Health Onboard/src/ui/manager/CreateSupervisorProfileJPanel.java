@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.supervisor;
+package ui.manager;
 
-import business.common.ValidateDateOfBirth;
-import business.common.ValidateEmailTextField;
-import business.common.ValidateNumbers;
-import business.common.ValidatePhoneNumber;
-import business.common.ValidateStrings;
-import business.personpkg.Person;
-import business.userAccountpkg.UserAccount;
+import businessFramework.commonFunctions.DOBValidation;
+import businessFramework.commonFunctions.EmailFieldValidation;
+import businessFramework.commonFunctions.IntegerFieldValidation;
+import businessFramework.commonFunctions.MobileNoValidation;
+import businessFramework.commonFunctions.StringValidation;
+import businessFramework.person.Person;
+import businessFramework.userAccount.User;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -32,16 +27,16 @@ import javax.swing.JPanel;
  */
 public class CreateSupervisorProfileJPanel extends javax.swing.JPanel {
      private JPanel userProcessContainer;
-    private UserAccount userAccount;
+    private User user;
     /**
      * Creates new form CreateSupervisorProfileJPanel
      */
-    public CreateSupervisorProfileJPanel(JPanel userProcessContainer, UserAccount account) {
+    public CreateSupervisorProfileJPanel(JPanel userProcessContainer, User account) {
         initComponents();
           this.userProcessContainer = userProcessContainer;
-        this.userAccount = account;
+        this.user = account;
         addInputVerifiers();
-        supNameField.setText(userAccount.getPerson().getName());
+        supNameField.setText(user.getPerson().getName());
     }
     
     @Override
@@ -52,8 +47,8 @@ public class CreateSupervisorProfileJPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+        Color c1 = new Color(210,240,114);
+        Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -64,22 +59,22 @@ public class CreateSupervisorProfileJPanel extends javax.swing.JPanel {
     
       private void addInputVerifiers() {
           
-        InputVerifier stringValidation = new ValidateStrings();
+        InputVerifier stringValidation = new StringValidation();
         supNameField.setInputVerifier(stringValidation);
         supaddressField.setInputVerifier(stringValidation);
         townField.setInputVerifier(stringValidation);
         occupationField.setInputVerifier(stringValidation);
         
-        InputVerifier dobValidtion = new ValidateDateOfBirth();
+        InputVerifier dobValidtion = new DOBValidation();
         supDobField.setInputVerifier(dobValidtion);
         
-        InputVerifier numberValidation = new ValidateNumbers();
+        InputVerifier numberValidation = new IntegerFieldValidation();
         zipCodeField.setInputVerifier(numberValidation);
         
-        InputVerifier phnumberValidation = new ValidatePhoneNumber();
+        InputVerifier phnumberValidation = new MobileNoValidation();
         phoneNumberField.setInputVerifier(phnumberValidation);
         
-        InputVerifier emailValidtion = new ValidateEmailTextField();
+        InputVerifier emailValidtion = new EmailFieldValidation();
         emailIDField.setInputVerifier(emailValidtion);
      
     }
@@ -122,13 +117,19 @@ public class CreateSupervisorProfileJPanel extends javax.swing.JPanel {
         createYourProfile.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         createYourProfile.setText("Create Your Profile");
 
-        backJButton.setText("<< back");
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
+        backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
 
+        createProfileButton.setBackground(new java.awt.Color(0, 153, 153));
+        createProfileButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        createProfileButton.setForeground(new java.awt.Color(255, 255, 255));
         createProfileButton.setText("Create Profile ");
         createProfileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,8 +151,8 @@ public class CreateSupervisorProfileJPanel extends javax.swing.JPanel {
 
         occupation.setText("Occupation:");
 
-        manageEnt.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
-        manageEnt.setText("Supervisor Work Area");
+        manageEnt.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        manageEnt.setText("Manager Dashboard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -160,13 +161,9 @@ public class CreateSupervisorProfileJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(backJButton)
-                .addGap(38, 274, Short.MAX_VALUE)
+                .addGap(38, 259, Short.MAX_VALUE)
                 .addComponent(createProfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(418, 418, 418))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(manageEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(338, 338, 338))
             .addGroup(layout.createSequentialGroup()
                 .addGap(170, 170, 170)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,6 +190,10 @@ public class CreateSupervisorProfileJPanel extends javax.swing.JPanel {
                             .addComponent(supNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                             .addComponent(phoneNumberField))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(manageEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(225, 225, 225))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +202,7 @@ public class CreateSupervisorProfileJPanel extends javax.swing.JPanel {
                 .addComponent(manageEnt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(createYourProfile)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(donorName)
                     .addComponent(supNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -252,7 +253,7 @@ public class CreateSupervisorProfileJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void createProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProfileButtonActionPerformed
-        Person person = userAccount.getPerson();
+        Person person = user.getPerson();
         if( supaddressField.getText()==null || supaddressField.getText().trim().isEmpty() ||
             townField.getText()==null || townField.getText().trim().isEmpty() ||
             occupationField.getText()==null || occupationField.getText().trim().isEmpty() ||

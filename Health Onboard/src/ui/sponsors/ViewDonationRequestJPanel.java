@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.donorpkg;
+package ui.sponsors;
 
-import business.EcoSystem;
-import business.organizationpkg.DonorOrganization;
-import business.organizationpkg.Organization;
-import business.userAccountpkg.UserAccount;
-import business.workQueuepkg.NeedSensorDeviceWorkRequest;
-import business.workQueuepkg.WorkRequest;
+import businessFramework.Environment;
+import businessFramework.organizations.SponsorOrganizations;
+import businessFramework.organizations.Organizations;
+import businessFramework.userAccount.User;
+import businessFramework.requestPipeline.SensorRequest;
+import businessFramework.requestPipeline.Request;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -20,7 +15,7 @@ import java.awt.RenderingHints;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import userInterface.helpSeeker.ViewHelpSeekerProfile;
+import ui.cases.ViewHelpSeekerProfile;
 
 /**
  *
@@ -28,18 +23,18 @@ import userInterface.helpSeeker.ViewHelpSeekerProfile;
  */
 public class ViewDonationRequestJPanel extends javax.swing.JPanel {
      private JPanel userProcessContainer;
-    private EcoSystem ecoSystem;
-    private UserAccount userAccount;
-    private DonorOrganization donorOrganization;
+    private Environment ecoSystem;
+    private User userAccount;
+    private SponsorOrganizations sponsorOrganization;
     /**
      * Creates new form ViewDonationRequestJPanel
      */
-    public ViewDonationRequestJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, EcoSystem ecoSystem) {
+    public ViewDonationRequestJPanel(JPanel userProcessContainer, User userAccount, Organizations organization, Environment ecoSystem) {
         initComponents();
          this.userProcessContainer = userProcessContainer;
         this.ecoSystem = ecoSystem;
         this.userAccount = userAccount;
-        this.donorOrganization = (DonorOrganization)organization;
+        this.sponsorOrganization = (SponsorOrganizations)organization;
         
         populateDonationWorkRequestTable();
         
@@ -54,8 +49,8 @@ public class ViewDonationRequestJPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+         Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -69,14 +64,14 @@ public class ViewDonationRequestJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
         model.setRowCount(0);
         
-        for(WorkRequest request : donorOrganization.getWorkQueue().getWorkRequestList())
+        for(Request request : sponsorOrganization.getRequestPipeline().getRequestList())
         {
          
             Object[] row = new Object[4];
             row[0] = request;
-            row[1] = request.getSender().getPerson().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
-            row[3] = request.getStatus();
+            row[1] = request.getSenderDetails().getPerson().getName();
+            row[2] = request.getReceiverDetails() == null ? null : request.getReceiverDetails().getPerson().getName();
+            row[3] = request.getStatusOfRequest();
             
             model.addRow(row);
         }
@@ -100,24 +95,36 @@ public class ViewDonationRequestJPanel extends javax.swing.JPanel {
         viewAndUpdateProfileBtn = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
 
-        donationREq.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        donationREq.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         donationREq.setText("Process Donation Requests:");
 
+        assignJButton.setBackground(new java.awt.Color(0, 153, 153));
+        assignJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        assignJButton.setForeground(new java.awt.Color(255, 255, 255));
         assignJButton.setText("Assign to me");
+        assignJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignJButtonActionPerformed(evt);
             }
         });
 
+        processJButton.setBackground(new java.awt.Color(0, 153, 153));
+        processJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        processJButton.setForeground(new java.awt.Color(255, 255, 255));
         processJButton.setText("Process");
+        processJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 processJButtonActionPerformed(evt);
             }
         });
 
+        refreshJButton.setBackground(new java.awt.Color(0, 153, 153));
+        refreshJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        refreshJButton.setForeground(new java.awt.Color(255, 255, 255));
         refreshJButton.setText("Refresh");
+        refreshJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshJButtonActionPerformed(evt);
@@ -152,14 +159,22 @@ public class ViewDonationRequestJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        viewAndUpdateProfileBtn.setBackground(new java.awt.Color(0, 153, 153));
+        viewAndUpdateProfileBtn.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        viewAndUpdateProfileBtn.setForeground(new java.awt.Color(255, 255, 255));
         viewAndUpdateProfileBtn.setText("View Help Seeker Profile");
+        viewAndUpdateProfileBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         viewAndUpdateProfileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewAndUpdateProfileBtnActionPerformed(evt);
             }
         });
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<< back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -171,50 +186,44 @@ public class ViewDonationRequestJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(backJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addComponent(viewAndUpdateProfileBtn)
-                        .addGap(26, 26, 26)
-                        .addComponent(assignJButton)
-                        .addGap(33, 33, 33)
-                        .addComponent(processJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(donationREq, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(205, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(639, 639, 639)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(refreshJButton)
-                    .addContainerGap(217, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(68, 68, 68)
+                            .addComponent(backJButton))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(269, 269, 269)
+                            .addComponent(viewAndUpdateProfileBtn)
+                            .addGap(26, 26, 26)
+                            .addComponent(assignJButton)
+                            .addGap(33, 33, 33)
+                            .addComponent(processJButton))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(145, 145, 145)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(188, 188, 188)
+                            .addComponent(donationREq, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(25, 25, 25)
                 .addComponent(donationREq)
-                .addGap(60, 60, 60)
+                .addGap(27, 27, 27)
+                .addComponent(refreshJButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewAndUpdateProfileBtn)
                     .addComponent(assignJButton)
                     .addComponent(processJButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(41, 41, 41))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(66, 66, 66)
-                    .addComponent(refreshJButton)
-                    .addContainerGap(446, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -227,8 +236,8 @@ public class ViewDonationRequestJPanel extends javax.swing.JPanel {
           return;
         }
 
-        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        if(request.getReceiver()!=null)
+        Request request = (Request)workRequestJTable.getValueAt(selectedRow, 0);
+        if(request.getReceiverDetails()!=null)
         {
          JOptionPane.showMessageDialog(null, "Request has been processed earlier!", "warning", JOptionPane.WARNING_MESSAGE);
          return;     
@@ -248,20 +257,20 @@ public class ViewDonationRequestJPanel extends javax.swing.JPanel {
             return;
         }
 
-        NeedSensorDeviceWorkRequest request = (NeedSensorDeviceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        if(request.getReceiver() == null)
+        SensorRequest request = (SensorRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        if(request.getReceiverDetails() == null)
         {
             JOptionPane.showMessageDialog(null, "Please assign the request first", "warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        if(request.getStatus().equalsIgnoreCase("Completed"))
+        if(request.getStatusOfRequest().equalsIgnoreCase("Completed"))
         {
          JOptionPane.showMessageDialog(null, "Request has been processed earlier!", "warning", JOptionPane.WARNING_MESSAGE);
          return;     
         }
-        if(request.getStatus().equalsIgnoreCase("Processing") ||  request.getStatus().equalsIgnoreCase("Pending"))
+        if(request.getStatusOfRequest().equalsIgnoreCase("Processing") ||  request.getStatusOfRequest().equalsIgnoreCase("Pending"))
         {
-         if(request.getReceiver()!=userAccount)
+         if(request.getReceiverDetails()!=userAccount)
          {
          JOptionPane.showMessageDialog(null, "Request has been processed earlier!", "warning", JOptionPane.WARNING_MESSAGE);
          return;     
@@ -287,8 +296,8 @@ public class ViewDonationRequestJPanel extends javax.swing.JPanel {
             return;
         }
 
-        NeedSensorDeviceWorkRequest request = (NeedSensorDeviceWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        UserAccount ua = (UserAccount)request.getSender();
+        SensorRequest request = (SensorRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        User ua = (User)request.getSenderDetails();
         ViewHelpSeekerProfile viewHelpSeekerProfile = new ViewHelpSeekerProfile(userProcessContainer, ua);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("ViewHelpSeekerProfile", viewHelpSeekerProfile);

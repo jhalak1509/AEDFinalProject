@@ -63,7 +63,7 @@ public abstract class Organizations {
         return userDirectory;
     }
 
-    public RequestPipeline RequestPipeline() {
+    public RequestPipeline getRequestPipeline() {
         return requestPipeline;
     }
 

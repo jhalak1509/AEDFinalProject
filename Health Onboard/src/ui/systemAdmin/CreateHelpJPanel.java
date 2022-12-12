@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ui.systemAdmin;
 
-import businessFramework.EcoSystem;
+import businessFramework.Environment;
 import businessFramework.commonFunctions.Help;
 import businessFramework.commonFunctions.StringValidation;
 import java.awt.CardLayout;
@@ -25,13 +21,13 @@ import javax.swing.JPanel;
 public class CreateHelpJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
-    private EcoSystem system;
+    private Environment system;
 
 
     /**
      * Creates new form CreateHelpJPanel
      */
-    public CreateHelpJPanel(JPanel userProcessContainer, EcoSystem system) {
+    public CreateHelpJPanel(JPanel userProcessContainer, Environment system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
@@ -50,8 +46,9 @@ public class CreateHelpJPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+        Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
+         // Color c2 = color.white;
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -70,7 +67,7 @@ public class CreateHelpJPanel extends javax.swing.JPanel {
     }
     
      private void addInputVerifiers() {
-        InputVerifier stringValidation = new ValidateStrings();
+        InputVerifier stringValidation = new StringValidation();
         helpnameJTxtField.setInputVerifier(stringValidation);
        }
 
@@ -95,29 +92,35 @@ public class CreateHelpJPanel extends javax.swing.JPanel {
         backJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        manageEnt2.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
-        manageEnt2.setText("Heart Help");
+        manageEnt2.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        manageEnt2.setText("Health Onboard");
 
         jLayeredPane1.setBackground(new java.awt.Color(193, 250, 144));
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        helpName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        helpName.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         helpName.setText("Help Offered");
 
+        createHelpJButton.setBackground(new java.awt.Color(0, 153, 153));
+        createHelpJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         createHelpJButton.setText("Create Help");
+        createHelpJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createHelpJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createHelpJButtonActionPerformed(evt);
             }
         });
 
-        helpType.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        helpType.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         helpType.setText("Help Type");
 
-        manageEnt1.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        manageEnt1.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         manageEnt1.setText("Create Help Offerred");
 
+        cancelBtn.setBackground(new java.awt.Color(0, 153, 153));
+        cancelBtn.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         cancelBtn.setText("Cancel");
+        cancelBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
@@ -125,6 +128,19 @@ public class CreateHelpJPanel extends javax.swing.JPanel {
         });
 
         helpTypeComboBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        helpTypeComboBx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpTypeComboBxActionPerformed(evt);
+            }
+        });
+
+        jLayeredPane1.setLayer(helpnameJTxtField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(helpName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(createHelpJButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(helpType, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(manageEnt1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(cancelBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(helpTypeComboBx, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -146,9 +162,9 @@ public class CreateHelpJPanel extends javax.swing.JPanel {
                         .addComponent(manageEnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(createHelpJButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancelBtn)))
+                        .addComponent(createHelpJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
@@ -166,26 +182,22 @@ public class CreateHelpJPanel extends javax.swing.JPanel {
                     .addComponent(helpTypeComboBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createHelpJButton)
-                    .addComponent(cancelBtn))
+                    .addComponent(createHelpJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
-        jLayeredPane1.setLayer(helpnameJTxtField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(helpName, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(createHelpJButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(helpType, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(manageEnt1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(cancelBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(helpTypeComboBx, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         backJButton.setText("<< Back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Optimized-logo.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/healthcare.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -194,30 +206,32 @@ public class CreateHelpJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(323, 323, 323)
-                        .addComponent(manageEnt2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(manageEnt2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(backJButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(34, 34, 34))
+                        .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(manageEnt2)
-                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(backJButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -229,7 +243,7 @@ public class CreateHelpJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter data in all fields", "warning", JOptionPane.WARNING_MESSAGE);
             return;   
        }
-        NeedHelp needHelp = system.addNeedHelp();
+        Help needHelp = system.addHelp();
         needHelp.setHelp(helpnameJTxtField.getText());
         needHelp.setServiceType((String)helpTypeComboBx.getSelectedItem());
      
@@ -249,6 +263,10 @@ public class CreateHelpJPanel extends javax.swing.JPanel {
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
       resetFields();
     }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void helpTypeComboBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpTypeComboBxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpTypeComboBxActionPerformed
 
     public void resetFields()
     {

@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.donorpkg;
+package ui.sponsors;
 
-import business.common.ValidateDateOfBirth;
-import business.common.ValidateEmailTextField;
-import business.common.ValidateNumbers;
-import business.common.ValidatePhoneNumber;
-import business.common.ValidateStrings;
-import business.personpkg.Person;
-import business.userAccountpkg.UserAccount;
+import businessFramework.commonFunctions.DOBValidation;
+import businessFramework.commonFunctions.EmailFieldValidation;
+import businessFramework.commonFunctions.IntegerFieldValidation;
+import businessFramework.commonFunctions.MobileNoValidation;
+import businessFramework.commonFunctions.StringValidation;
+import businessFramework.person.Person;
+import businessFramework.userAccount.User;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -32,12 +27,12 @@ import javax.swing.JPanel;
  */
 public class CreateDonorProfileJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    private UserAccount userAccount;
+    private User userAccount;
     
     /**
      * Creates new form CreateDonorProfile
      */
-    public CreateDonorProfileJPanel(JPanel userProcessContainer, UserAccount account) {
+    public CreateDonorProfileJPanel(JPanel userProcessContainer, User account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
@@ -54,8 +49,8 @@ public class CreateDonorProfileJPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+         Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -66,22 +61,22 @@ public class CreateDonorProfileJPanel extends javax.swing.JPanel {
     
     private void addInputVerifiers() {
           
-        InputVerifier stringValidation = new ValidateStrings();
+        InputVerifier stringValidation = new StringValidation();
         donorNameField.setInputVerifier(stringValidation);
         addressField.setInputVerifier(stringValidation);
         townField.setInputVerifier(stringValidation);
         occupationField.setInputVerifier(stringValidation);
         
-        InputVerifier dobValidtion = new ValidateDateOfBirth();
+        InputVerifier dobValidtion = new DOBValidation();
         donorDobField.setInputVerifier(dobValidtion);
         
-        InputVerifier numberValidation = new ValidateNumbers();
+        InputVerifier numberValidation = new IntegerFieldValidation();
         zipCodeField.setInputVerifier(numberValidation);
         
-        InputVerifier phnumberValidation = new ValidatePhoneNumber();
+        InputVerifier phnumberValidation = new MobileNoValidation();
         phoneNumberField.setInputVerifier(phnumberValidation);
          
-            InputVerifier emailValidtion = new ValidateEmailTextField();
+            InputVerifier emailValidtion = new EmailFieldValidation();
             emailIDField.setInputVerifier(emailValidtion);
      
         
@@ -117,71 +112,85 @@ public class CreateDonorProfileJPanel extends javax.swing.JPanel {
         donorDobField = new javax.swing.JFormattedTextField();
         manageEnt = new javax.swing.JLabel();
 
+        dateOfBirth.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         dateOfBirth.setText("Date Of Birth (MM/DD/YYYY):");
 
+        address.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         address.setText("Address: ");
 
+        town.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         town.setText("Town/City: ");
 
+        zipCode.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         zipCode.setText("Zip Code:");
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<< back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
 
-        createYourProfile.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        createYourProfile.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         createYourProfile.setText("Create Your Profile");
 
+        donorName.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         donorName.setText("Full Name:");
 
         donorNameField.setEditable(false);
         donorNameField.setEnabled(false);
 
+        occupation.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         occupation.setText("Occupation:");
 
+        emailID.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         emailID.setText("Email Address:");
 
+        phoneNumber.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         phoneNumber.setText("Phone Number:");
 
+        createProfileButton.setBackground(new java.awt.Color(0, 153, 153));
+        createProfileButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        createProfileButton.setForeground(new java.awt.Color(255, 255, 255));
         createProfileButton.setText("Create Profile ");
+        createProfileButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createProfileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createProfileButtonActionPerformed(evt);
             }
         });
 
-        manageEnt.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
-        manageEnt.setText("Donor Work Area");
+        manageEnt.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        manageEnt.setText("Sponsor Work Area");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(backJButton)
-                .addGap(38, 254, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(createProfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(418, 418, 418))
             .addGroup(layout.createSequentialGroup()
                 .addGap(187, 187, 187)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(manageEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(address, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(town))
                             .addComponent(occupation)
-                            .addComponent(emailID, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(donorName, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(zipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(phoneNumber)
-                            .addComponent(createYourProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailID, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -194,13 +203,18 @@ public class CreateDonorProfileJPanel extends javax.swing.JPanel {
                                         .addComponent(occupationField, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(emailIDField, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(addressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(donorNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(donorNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(createYourProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(manageEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(manageEnt)
                 .addGap(18, 18, 18)
                 .addComponent(createYourProfile)

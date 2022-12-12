@@ -1,20 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.helpSeeker;
+package ui.cases;
 
-import business.EcoSystem;
-import business.common.NeedHelp;
-import business.common.ValidateStrings;
-import business.enterprisepkg.Enterprise;
-import business.networkpkg.Network;
-import business.organizationpkg.Organization;
-import business.organizationpkg.VolunteerOrganization;
-import business.userAccountpkg.UserAccount;
-import business.workQueuepkg.NeedHelpWorkRequest;
-import business.workQueuepkg.WorkRequest;
+import businessFramework.Environment;
+import businessFramework.commonFunctions.Help;
+import businessFramework.commonFunctions.StringValidation;
+import businessFramework.enterprises.Enterprises;
+import businessFramework.network.Network;
+import businessFramework.organizations.Organizations;
+import businessFramework.organizations.HelperOrganizations;
+import businessFramework.userAccount.User;
+import businessFramework.requestPipeline.HelpRequest;
+import businessFramework.requestPipeline.Request;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -37,17 +32,17 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
     
        
     private JPanel userProcessContainer;
-    private UserAccount userAccount; 
-    private EcoSystem ecoSystem;
+    private User user; 
+    private Environment ecoSystem;
  
     
     /**
      * Creates new form GetHelpFromVolunteerJPanel
      */
-    public GetHelpFromVolunteerJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecoSystem) {
+    public GetHelpFromVolunteerJPanel(JPanel userProcessContainer, User user, Environment ecoSystem) {
         initComponents();
          this.userProcessContainer = userProcessContainer;
-        this.userAccount = userAccount;
+        this.user = user;
         this.ecoSystem = ecoSystem;
       
         
@@ -65,8 +60,9 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+       Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
+//        Color c2 = Color.white;
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -77,7 +73,7 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
     
      private void addInputVerifiers() {
           
-        InputVerifier stringValidation = new ValidateStrings();
+        InputVerifier stringValidation = new StringValidation();
         helpDetailsTxtField.setInputVerifier(stringValidation);
         commentsJTextField.setInputVerifier(stringValidation);
      }
@@ -95,7 +91,7 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel)helpListJTable.getModel();
         dtm.setRowCount(0);
         
-        for(NeedHelp nh : ecoSystem.getHelpList() )
+        for(Help nh : ecoSystem.getHelpList() )
         {
            Object[] rowData = new Object[4];
            rowData[0] = nh;
@@ -112,17 +108,17 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel)workRequestJTable.getModel();
         dtm.setRowCount(0);
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); 
-        for(WorkRequest workRequest : userAccount.getWorkQueue().getWorkRequestList())
+        for(Request workRequest : user.getRequestPipeline().getRequestList())
         {
-          if(workRequest.getMessage().equalsIgnoreCase("Need Help"))  
+          if(workRequest.getReqMessage().equalsIgnoreCase("Need Help"))  
           { 
-           NeedHelpWorkRequest helpWorkRequest = (NeedHelpWorkRequest)workRequest; 
+           HelpRequest helpWorkRequest = (HelpRequest)workRequest; 
            Object[] rowData = new Object[5];
-           rowData[0] = helpWorkRequest.getRequestId();
-           rowData[1] = helpWorkRequest.getNeedHelp().getHelp();
+           rowData[0] = helpWorkRequest.getReqId();
+           rowData[1] = helpWorkRequest.getHelp().getHelp();
            rowData[2] = dateFormat.format(workRequest.getRequestDate());
-           rowData[3] = helpWorkRequest.getReceiver() == null ? null : helpWorkRequest.getReceiver().getPerson().getName();
-           rowData[4] = helpWorkRequest.getStatus();
+           rowData[3] = helpWorkRequest.getReceiverDetails() == null ? null : helpWorkRequest.getReceiverDetails().getPerson().getName();
+           rowData[4] = helpWorkRequest.getStatusOfRequest();
            
            dtm.addRow(rowData);
           }
@@ -177,21 +173,28 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(helpListJTable);
 
+        createRequestButton.setBackground(new java.awt.Color(0, 153, 153));
+        createRequestButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        createRequestButton.setForeground(new java.awt.Color(255, 255, 255));
         createRequestButton.setText("Create Request");
+        createRequestButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createRequestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createRequestButtonActionPerformed(evt);
             }
         });
 
-        helpDetails.setFont(new java.awt.Font("Malayalam MN", 3, 14)); // NOI18N
-        helpDetails.setText(" Enter details about the help needed.");
+        helpDetails.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        helpDetails.setText(" Enter details about the help needed");
 
-        serviceType.setText("Service Type");
+        serviceType.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        serviceType.setText("Service Type :");
 
+        serviceTypeCombo.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         serviceTypeCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please Select Amount", "5$", "10$", "15$", "20$" }));
 
-        jLabel1.setText("Enter details of help needed: ");
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel1.setText("Enter details of help needed :");
 
         javax.swing.GroupLayout otherHelpPanelFrameLayout = new javax.swing.GroupLayout(otherHelpPanelFrame);
         otherHelpPanelFrame.setLayout(otherHelpPanelFrameLayout);
@@ -231,16 +234,16 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
         manageEnt4.setFont(new java.awt.Font("Malayalam MN", 3, 14)); // NOI18N
         manageEnt4.setText("Select the radio button  ");
 
-        manageEnt1.setFont(new java.awt.Font("Malayalam MN", 3, 14)); // NOI18N
+        manageEnt1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         manageEnt1.setText("Required Help not in the Table:");
 
-        manageEnt5.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        manageEnt5.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         manageEnt5.setText("Request Help : Anonymous Volunteer");
 
-        manageEnt2.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
-        manageEnt2.setText("Heart Help");
+        manageEnt2.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        manageEnt2.setText("Health Onboard");
 
-        manageEnt3.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        manageEnt3.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         manageEnt3.setText("Help Requests History:");
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -261,9 +264,14 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(workRequestJTable);
 
-        gender1.setText("Comments:");
+        gender1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        gender1.setText("Comments :");
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<< Back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -312,7 +320,7 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(manageEnt5, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(manageEnt2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(manageEnt2)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -322,7 +330,7 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(manageEnt2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(manageEnt5)
@@ -355,7 +363,7 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createRequestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createRequestButtonActionPerformed
-       NeedHelp needHelp;
+       Help needHelp;
         
 
        if(newHelpRadioBtn.isSelected())
@@ -366,7 +374,7 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Please Enter data in all the fields ", "warning", JOptionPane.PLAIN_MESSAGE);
                 return;
             }
-            needHelp = ecoSystem.addNeedHelp();
+            needHelp = ecoSystem.addHelp();
             needHelp.setHelp("Others");
             needHelp.setNewHelp(helpDetailsTxtField.getText());
             needHelp.setServiceType((String)serviceTypeCombo.getSelectedItem());
@@ -380,7 +388,7 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
             return;
         }
         
-        needHelp = (NeedHelp)helpListJTable.getValueAt(selectedRow, 0);
+        needHelp = (Help)helpListJTable.getValueAt(selectedRow, 0);
        }
        
        try
@@ -395,26 +403,26 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
             
         String message = commentsJTextField.getText();
         
-        NeedHelpWorkRequest needHelpWorkRequest = new NeedHelpWorkRequest();
-        needHelpWorkRequest.setMessage("Need Help");
-        needHelpWorkRequest.setSender(userAccount);
+        HelpRequest needHelpWorkRequest = new HelpRequest();
+        needHelpWorkRequest.setReqMessage("Need Help");
+        needHelpWorkRequest.setSenderDetails(user);
         needHelpWorkRequest.setStatus("Sent");
         needHelpWorkRequest.setNeedHelp(needHelp);
         needHelpWorkRequest.setComments(message);
         needHelpWorkRequest.setRequestDate(new Date());
         
-       Organization org = null;
+       Organizations org = null;
         for(Network network : ecoSystem.getNetworkList())
         {
-         if(network.equals(userAccount.getNetwork()))
+         if(network.equals(user.getNetwork()))
          {
-         for(Enterprise e : network.getEnterpriseDirectory().getEnterpriseList())
+         for(Enterprises e : network.getEnterprisesDirectory().getEnterprisesList())
          {
-          if(e.getEnterpriseType().equals(Enterprise.EnterpriseType.School))
+          if(e.getEnterprisesType().equals(Enterprises.EnterprisesType.University))
           {
           
-        for (Organization organization : e.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof VolunteerOrganization){
+        for (Organizations organization : e.getOrganizationsDirectory().getOrganizationsList()){
+            if (organization instanceof HelperOrganizations){
                 org = organization;
                 break;
             }
@@ -424,8 +432,8 @@ public class GetHelpFromVolunteerJPanel extends javax.swing.JPanel {
         }
         }
         if (org!=null){
-            org.getWorkQueue().getWorkRequestList().add(needHelpWorkRequest);
-            userAccount.getWorkQueue().getWorkRequestList().add(needHelpWorkRequest);
+            org.getRequestPipeline().getRequestList().add(needHelpWorkRequest);
+            user.getRequestPipeline().getRequestList().add(needHelpWorkRequest);
         }
         
          JOptionPane.showMessageDialog(null, "Request has been created successfully", "success", JOptionPane.PLAIN_MESSAGE);

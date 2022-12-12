@@ -47,11 +47,11 @@ public class ConfigSys
         network.setCity("Boston");
         
     // University    
-        Enterprises enterprises = network.getEnterprisesDirectory().addEnterprises("BostonUniversity", Enterprises.EnterprisesType.University);
+        Enterprises enterprises = network.getEnterprisesDirectory().addEnterprises("NortheasternUniversity", Enterprises.EnterprisesType.University);
         person = enterprises.getPersonDirectory().addPerson();
         person.setLastName("Univeristy Admin");
         person.setName();
-        User account = enterprises.getUserDirectory().addUser("bsc", "bsc", person, new AdministratorRole());
+        User account = enterprises.getUserDirectory().addUser("uniAdmin", "uniAdmin", person, new AdministratorRole());
         account.setEnabled(true);
         account.setNetwork(network);
         enterprises.getOrganizationsDirectory().addOrganizations(Organizations.Type.Helper);
@@ -59,17 +59,17 @@ public class ConfigSys
         person = organizations.getPersonDirectory().addPerson();    
           
         person.setFirstName("Driver");
-        person.setLastName("Transpport");
+        person.setLastName("Transportation");
         person.setName();
         
-        account = organizations.getUserDirectory().addUser("dr1", "dr1", person, new DriverRole());
+        account = organizations.getUserDirectory().addUser("driver", "driver", person, new DriverRole());
         account.setNetwork(network);
         account.setEnabled(true);
         
-      // Heart Help
-         enterprises = network.getEnterprisesDirectory().addEnterprises("BostonHeartHelp", Enterprises.EnterprisesType.HealthOnboard);
+      // Health onboard
+         enterprises = network.getEnterprisesDirectory().addEnterprises("BostonHealthOnboard", Enterprises.EnterprisesType.HealthOnboard);
          person = enterprises.getPersonDirectory().addPerson();
-        person.setLastName("Heart Help Admin");
+        person.setLastName("Healthonboard Admin");
         person.setName();
          account = enterprises.getUserDirectory().addUser("bhh", "bhh", person, new AdministratorRole());
         account.setEnabled(true);
@@ -100,7 +100,7 @@ public class ConfigSys
         
         
               // Charity
-         enterprises = network.getEnterprisesDirectory().addEnterprises("NonProfit", Enterprises.EnterprisesType.Charity);
+         enterprises = network.getEnterprisesDirectory().addEnterprises("Charity", Enterprises.EnterprisesType.Charity);
          person = enterprises.getPersonDirectory().addPerson();
         person.setLastName("charity Admin");
         person.setName();
@@ -138,7 +138,7 @@ public class ConfigSys
         account.setNetwork(network);
         account.setEnabled(true);
         
-                // Govt
+                // Ministry
          enterprises = network.getEnterprisesDirectory().addEnterprises("Govt", Enterprises.EnterprisesType.Ministry);
          person = enterprises.getPersonDirectory().addPerson();
         person.setLastName("Ministry Admin Admin");

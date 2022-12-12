@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.helpSeeker;
+package ui.cases;
 
-import business.userAccountpkg.UserAccount;
-import business.workQueuepkg.NeedHelpWorkRequest;
-import business.workQueuepkg.NeedSensorDeviceWorkRequest;
-import business.workQueuepkg.SendDataToDoctorWorkRequest;
-import business.workQueuepkg.WorkRequest;
+import businessFramework.userAccount.User;
+import businessFramework.requestPipeline.HelpRequest;
+import businessFramework.requestPipeline.SensorRequest;
+import businessFramework.requestPipeline.SendDataToDoctorRequest;
+import businessFramework.requestPipeline.Request;
+import businessFramework.requestPipeline.RequestPipeline;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -27,15 +23,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewHelpRequestHistory extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    private UserAccount userAccount; 
+    private User user; 
     /**
      * Creates new form ViewHelpRequestHistory
      */
-    public ViewHelpRequestHistory(JPanel userProcessContainer, UserAccount userAccount) {
+    public ViewHelpRequestHistory(JPanel userProcessContainer, User user) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
-        this.userAccount = userAccount;
+        this.user = user;
         
        populateHelpSeekerRequestsHistoryTable();
     }
@@ -48,8 +44,8 @@ public class ViewHelpRequestHistory extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+        Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -63,27 +59,27 @@ public class ViewHelpRequestHistory extends javax.swing.JPanel {
      DefaultTableModel dtm = (DefaultTableModel)workRequestHistoryTable.getModel();
         dtm.setRowCount(0);
          DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); 
-     for(WorkRequest workRequest : userAccount.getWorkQueue().getWorkRequestList())
+     for(Request workRequest : user.getRequestPipeline().getRequestList())
         {
          
            Object[] rowData = new Object[5];
-           rowData[0] = workRequest.getMessage();
+           rowData[0] = workRequest.getReqMessage();
            rowData[1] = dateFormat.format(workRequest.getRequestDate());
-           rowData[2] = workRequest.getReceiver() == null ? null : workRequest.getReceiver().getUserName() ;
-           rowData[3] = workRequest.getStatus();
-           if(workRequest.getMessage().equalsIgnoreCase("Need Help"))
+           rowData[2] = workRequest.getReceiverDetails() == null ? null : workRequest.getReceiverDetails().getName() ;
+           rowData[3] = workRequest.getStatusOfRequest();
+           if(workRequest.getReqMessage().equalsIgnoreCase("Need Help"))
            {
-            NeedHelpWorkRequest nhwr = (NeedHelpWorkRequest)workRequest;
-            rowData[4] = nhwr.getRequestResult();   
+            HelpRequest nhwr = (HelpRequest)workRequest;
+            rowData[4] = nhwr.getRequestOutcome();   
            }
-           else if(workRequest.getMessage().equalsIgnoreCase("Need Sensor Device"))
+           else if(workRequest.getReqMessage().equalsIgnoreCase("Need Sensor Device"))
            {
-               NeedSensorDeviceWorkRequest nsdwr = (NeedSensorDeviceWorkRequest)workRequest ;
-                 rowData[4] = nsdwr.getdonationRequestResult();
+               SensorRequest nsdwr = (SensorRequest)workRequest ;
+                 rowData[4] = nsdwr.getSponsorshipRequestOutcome();
            }
-           else if(workRequest.getMessage().equalsIgnoreCase("Vital Sign Data"))
+           else if(workRequest.getReqMessage().equalsIgnoreCase("Vital Sign Data"))
            {
-                SendDataToDoctorWorkRequest sdtdwr = (SendDataToDoctorWorkRequest)workRequest ;
+                SendDataToDoctorRequest sdtdwr = (SendDataToDoctorRequest)workRequest ;
                  rowData[4] = sdtdwr.getReqResult();
            }
            else
@@ -109,8 +105,6 @@ public class ViewHelpRequestHistory extends javax.swing.JPanel {
         manageEnt = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(153, 204, 0));
-
         workRequestHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -129,10 +123,14 @@ public class ViewHelpRequestHistory extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(workRequestHistoryTable);
 
-        manageEnt.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        manageEnt.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         manageEnt.setText("View History of Help Requests");
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<< Back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -146,14 +144,14 @@ public class ViewHelpRequestHistory extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(236, 236, 236)
-                        .addComponent(manageEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(134, 134, 134)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
-                        .addComponent(backJButton)))
+                        .addComponent(backJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(manageEnt)))
                 .addContainerGap(154, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -163,7 +161,7 @@ public class ViewHelpRequestHistory extends javax.swing.JPanel {
                 .addComponent(manageEnt)
                 .addGap(67, 67, 67)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(55, 55, 55))
         );

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui.commonFunctions;
 
 import businessFramework.Environment;
@@ -19,11 +14,11 @@ import businessFramework.enterprises.HealthOnboardEnterprises;
 import businessFramework.enterprises.HospitalEnterprises;
 import businessFramework.enterprises.UniversityEnterprises;
 import businessFramework.network.Network;
-import businessFramework.organization.DoctorOrganizations;
-import businessFramework.organization.CaseOrganizations;
-import businessFramework.organization.Organizations;
-import businessFramework.organization.ManagerOrganizations;
-import businessFramework.organization.HelperOrganizations;
+import businessFramework.organizations.DoctorOrganizations;
+import businessFramework.organizations.CaseOrganizations;
+import businessFramework.organizations.Organizations;
+import businessFramework.organizations.ManagerOrganizations;
+import businessFramework.organizations.HelperOrganizations;
 import businessFramework.person.Case;
 import businessFramework.person.Person;
 import businessFramework.person.PersonDirectory;
@@ -32,7 +27,7 @@ import businessFramework.roles.DoctorRole;
 import businessFramework.roles.CaseRole;
 import businessFramework.roles.HelperRole;
 import businessFramework.userAccount.User;
-import businessFramework.requestPipeline.SupervisorRequest;
+import businessFramework.requestPipeline.ManagerRequest;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -55,8 +50,8 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private PersonDirectory personDirectory;
     private Environment ecoSystem; 
-    private Enterprises enterprise;
-    private Organizations organization;
+    private Enterprises enterprises;
+    private Organizations organizations;
     
     /**
      * Creates new form RegistrationWorkAreaPanel
@@ -74,8 +69,6 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         volNetworkCombo.setVisible(false);
         volNetwork.setVisible(false);
         
-   //     fillForm();
-        
     }
     
     @Override
@@ -86,8 +79,8 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+        Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -98,7 +91,7 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
     
       private void addInputVerifiers() {
           
-        InputVerifier stringValidation = new ValidateStrings();
+        InputVerifier stringValidation = new StringValidation();
         firstNameField.setInputVerifier(stringValidation);
         lastNameField.setInputVerifier(stringValidation);
         addressField1.setInputVerifier(stringValidation);
@@ -110,20 +103,20 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         userNameJTxtField.setInputVerifier(stringValidation);
         
         
-        InputVerifier passwordValidation = new ValidatePasswords();
+        InputVerifier passwordValidation = new PasswordValidation();
         passwordField.setInputVerifier(passwordValidation);
         confirmPasswordField.setInputVerifier(passwordValidation);
         
-        InputVerifier dobValidtion = new ValidateDateOfBirth();
+        InputVerifier dobValidtion = new DOBValidation();
         DobField.setInputVerifier(dobValidtion);
         
-        InputVerifier numberValidation = new ValidateNumbers();
+        InputVerifier numberValidation = new IntegerFieldValidation();
         zipCodeField.setInputVerifier(numberValidation);
         
-        InputVerifier emailValidtion = new ValidateEmailTextField();
+        InputVerifier emailValidtion = new EmailFieldValidation();
         emailIDField.setInputVerifier(emailValidtion);
      
-         InputVerifier phnumberValidation = new ValidatePhoneNumber();
+         InputVerifier phnumberValidation = new MobileNoValidation();
         phoneNumberField.setInputVerifier(phnumberValidation);
       
     }
@@ -132,7 +125,7 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         countryComboBox.removeAllItems();
          if(ecoSystem.getNetworkList().isEmpty())
         {
-        JOptionPane.showMessageDialog(null, "Networks does not exist! Please create networks.");  
+        JOptionPane.showMessageDialog(null, "Network does not exist! Please create new networks.");  
          return;        
         }
         countryComboBox.addItem("Please select a country");
@@ -157,10 +150,10 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         helpSeekerNetworkCombo.removeAllItems();
          if(ecoSystem.getNetworkList().isEmpty())
         {
-        JOptionPane.showMessageDialog(null, "Networks does not exist! Sorry for inconvenience.");  
+        JOptionPane.showMessageDialog(null, "Network does not exist! Sorry for inconvenience.");  
          return;        
         }
-        helpSeekerNetworkCombo.addItem("Please Choose a Network");
+        helpSeekerNetworkCombo.addItem("Please select a network");
            
         for(Network network : ecoSystem.getNetworkList()){
              helpSeekerNetworkCombo.addItem(network);
@@ -202,7 +195,7 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         dateOfBirth = new javax.swing.JLabel();
         address1 = new javax.swing.JLabel();
         isHelpSeeker = new javax.swing.JRadioButton();
-        isVolunteer = new javax.swing.JRadioButton();
+        isHelper = new javax.swing.JRadioButton();
         helpSeekerPane = new javax.swing.JLayeredPane();
         jLabel7 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
@@ -224,18 +217,25 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         volNetwork = new javax.swing.JLabel();
         volNetworkCombo = new javax.swing.JComboBox();
 
+        emailID1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         emailID1.setText("Confirm Email Address:");
 
+        town.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         town.setText("Town/City: ");
 
+        zipCode.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         zipCode.setText("Zip Code:");
 
+        occupation.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         occupation.setText("Occupation:");
 
+        emailID.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         emailID.setText("Email Address:");
 
+        firstName.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         firstName.setText("First Name:");
 
+        phoneNumber.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         phoneNumber.setText("Phone Number:");
 
         phoneNumberField.addActionListener(new java.awt.event.ActionListener() {
@@ -244,22 +244,31 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
             }
         });
 
+        createProfileButton.setBackground(new java.awt.Color(0, 153, 153));
+        createProfileButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        createProfileButton.setForeground(new java.awt.Color(255, 255, 255));
         createProfileButton.setText("Register");
+        createProfileButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         createProfileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createProfileButtonActionPerformed(evt);
             }
         });
 
+        LastName.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         LastName.setText("Last Name:");
 
+        address2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         address2.setText("Address Line2 : ");
 
+        dateOfBirth.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         dateOfBirth.setText("Date Of Birth (MM/DD/YYYY):");
 
+        address1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         address1.setText("Address Line1 : ");
 
         buttonGroup1.add(isHelpSeeker);
+        isHelpSeeker.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         isHelpSeeker.setText("I Need Help");
         isHelpSeeker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,17 +276,18 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(isVolunteer);
-        isVolunteer.setText("I am a Volunteer");
-        isVolunteer.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(isHelper);
+        isHelper.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        isHelper.setText("I am a Helper");
+        isHelper.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                isVolunteerActionPerformed(evt);
+                isHelperActionPerformed(evt);
             }
         });
 
         helpSeekerPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel7.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel7.setText("Create User Account:");
 
         passwordField.addActionListener(new java.awt.event.ActionListener() {
@@ -286,19 +296,34 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("Username");
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel2.setText("Username :");
 
-        jLabel4.setText("Password");
+        jLabel4.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel4.setText("Password :");
 
-        jLabel5.setText("Confirm Password");
+        jLabel5.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel5.setText("Confirm Password :");
 
-        helpSeekerNw.setText("Please Select the Closest City");
+        helpSeekerNw.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        helpSeekerNw.setText("Please Select the Closest City :");
 
+        helpSeekerNetworkCombo.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         helpSeekerNetworkCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 helpSeekerNetworkComboActionPerformed(evt);
             }
         });
+
+        helpSeekerPane.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        helpSeekerPane.setLayer(passwordField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        helpSeekerPane.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        helpSeekerPane.setLayer(userNameJTxtField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        helpSeekerPane.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        helpSeekerPane.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        helpSeekerPane.setLayer(confirmPasswordField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        helpSeekerPane.setLayer(helpSeekerNw, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        helpSeekerPane.setLayer(helpSeekerNetworkCombo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout helpSeekerPaneLayout = new javax.swing.GroupLayout(helpSeekerPane);
         helpSeekerPane.setLayout(helpSeekerPaneLayout);
@@ -347,21 +372,14 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                     .addComponent(helpSeekerNetworkCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
-        helpSeekerPane.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        helpSeekerPane.setLayer(passwordField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        helpSeekerPane.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        helpSeekerPane.setLayer(userNameJTxtField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        helpSeekerPane.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        helpSeekerPane.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        helpSeekerPane.setLayer(confirmPasswordField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        helpSeekerPane.setLayer(helpSeekerNw, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        helpSeekerPane.setLayer(helpSeekerNetworkCombo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        manageEnt.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
-        manageEnt.setText("Welcome to Heart Help");
+        manageEnt.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        manageEnt.setText("Welcome to Health Onboard ");
 
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel1.setText("Gender:");
 
+        genderComboBox.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         genderComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose gender", "Female", "Male", "Transgender", "Unknown" }));
         genderComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,16 +387,20 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel3.setText("Country:");
 
+        countryComboBox.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         countryComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 countryComboBoxActionPerformed(evt);
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel6.setText("State:");
 
+        stateComboBox.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         stateComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stateComboBoxActionPerformed(evt);
@@ -386,6 +408,7 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         });
 
         buttonGroup1.add(isDoctorRadioBtn);
+        isDoctorRadioBtn.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         isDoctorRadioBtn.setText("I am a Doctor");
         isDoctorRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -393,6 +416,7 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
             }
         });
 
+        volNetwork.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         volNetwork.setText("Please Select the Closest City");
 
         volNetworkCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -412,12 +436,12 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                             .addGap(145, 145, 145)
                             .addComponent(isHelpSeeker)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(isVolunteer)
+                            .addComponent(isHelper)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(isDoctorRadioBtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(0, 353, Short.MAX_VALUE)
+                            .addGap(0, 367, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(2, 2, 2)
@@ -456,12 +480,12 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(occupation)
-                                .addComponent(emailID, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(emailID1)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(volNetwork)
                                     .addGap(212, 212, 212))
-                                .addComponent(zipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(zipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(emailID, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -472,15 +496,19 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                                     .addGap(288, 288, 288))
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(dateOfBirth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(LastName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(firstName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(LastName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(firstName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(phoneNumber))
-                        .addGap(81, 81, 81)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(114, 114, 114))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(phoneNumber)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -489,13 +517,13 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                         .addComponent(helpSeekerPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(101, 101, 101))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(424, 424, 424)
-                .addComponent(createProfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(412, 412, 412)
+                .addComponent(createProfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(manageEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(431, 431, 431))
+                .addComponent(manageEnt)
+                .addGap(354, 354, 354))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,14 +533,14 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(isDoctorRadioBtn)
-                    .addComponent(isVolunteer)
+                    .addComponent(isHelper)
                     .addComponent(isHelpSeeker))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -576,8 +604,8 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(volNetworkCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(volNetwork))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(createProfileButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(createProfileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -599,7 +627,7 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
          
          Date dateOfBirthVal = new SimpleDateFormat("MM/dd/yyyy").parse(DobField.getText()) ;
             // Calculate age using dob
-            int age = Validation.calculateAge(dateOfBirthVal);
+            int age = Validations.ageCalculation(dateOfBirthVal);
             
             String phoneNumber = phoneNumberField.getText();
             String firstName =   firstNameField.getText();
@@ -631,13 +659,13 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
             {
                 if(buttonGroup1.getSelection()==null)
                 {
-             JOptionPane.showMessageDialog(null, "Please select radio button to know if you are volunteer or need help or a doctor ","warning", JOptionPane.WARNING_MESSAGE);
+             JOptionPane.showMessageDialog(null, "Please select radio button to know if you are a helper, a doctor or need help ","warning", JOptionPane.WARNING_MESSAGE);
               return;       
                 }
 
                 if(!(confirmEmail.equals(emailId)))
                 {
-                    JOptionPane.showMessageDialog(null, "Email Address does not match, Please Enter valid email Address","warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Email does not match. Please Enter valid email id","warning", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
           
@@ -667,49 +695,49 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                     String password = String.valueOf(passwordField.getPassword());
                     String confirmPassword =String.valueOf(confirmPasswordField.getPassword());
                
-                    Network helpSeekerNw = (Network)helpSeekerNetworkCombo.getSelectedItem();
+                    Network caseNw = (Network)helpSeekerNetworkCombo.getSelectedItem();
                       if(!(password.equals(confirmPassword)))
                     {
-                        JOptionPane.showMessageDialog(null, "Password does not match, Please Enter valid Password Address","warning", JOptionPane.WARNING_MESSAGE);
-                        organization.getPersonDirectory().getCustomerLsit().remove(person);
+                        JOptionPane.showMessageDialog(null, "Password does not match, Please Enter valid a Password","warning", JOptionPane.WARNING_MESSAGE);
+                        organizations.getPersonDirectory().getCustomerLsit().remove(person);
                         return;
                     }
                     
-                    getEnterprise(helpSeekerNw);
-                     if(enterprise == null)
+                    getEnterprise(caseNw);
+                     if(enterprises == null)
                     {
-                  JOptionPane.showMessageDialog(null, "Enterprise does not exist for the network! "+helpSeekerNw.getName(),"warning", JOptionPane.WARNING_MESSAGE);
+                  JOptionPane.showMessageDialog(null, "Enterprise does not exist for the network! "+caseNw.getName(),"warning", JOptionPane.WARNING_MESSAGE);
                    return;      
                     } 
-                    getOrganization("HelpSeeker",enterprise);
+                    getOrganization("Case",enterprises);
                     
-                    if(organization == null)
+                    if(organizations == null)
                     {
-                  JOptionPane.showMessageDialog(null, "HelpSeeker Organization does not exist for the enterprise! "+enterprise.getName(),"warning", JOptionPane.WARNING_MESSAGE);
+                  JOptionPane.showMessageDialog(null, "HelpSeeker Organization does not exist for the enterprise! "+enterprises.getName(),"warning", JOptionPane.WARNING_MESSAGE);
                    return;      
                     } 
                  
-                    person = organization.getPersonDirectory().addCustomer();
-                    person.setHelpSeeker(true);
+                    person = organizations.getPersonDirectory().addCustomer();
+                    person.setCase(true);
  
-                    for(Enterprise e : helpSeekerNw.getEnterpriseDirectory().getEnterpriseList())
+                    for(Enterprises e : caseNw.getEnterprisesDirectory().getEnterprisesList())
                     {
-                     for(UserAccount ua : e.getUserAccountDirectory().getUserAccountList())
+                     for(User ua : e.getUserDirectory().getUserList())
                     {
-                        if(ua.getUserName().equals(userName))
+                        if(ua.getName().equals(userName))
                         {
-                         JOptionPane.showMessageDialog(null, "User Name already exists!, Please Enter valid user name","warning", JOptionPane.WARNING_MESSAGE);
+                         JOptionPane.showMessageDialog(null, "User Name already exist! Please Enter valid user name.","warning", JOptionPane.WARNING_MESSAGE);
                          return;  
                         }
                         else
                         {
-                        for(Organization o : e.getOrganizationDirectory().getOrganizationList())
+                        for(Organizations o : e.getOrganizationsDirectory().getOrganizationsList())
                         {  
-                         for(UserAccount ua1 : o.getUserAccountDirectory().getUserAccountList())
+                         for(User ua1 : o.getUserDirectory().getUserList())
                             {  
-                            if(ua1.getUserName().equals(userName))
+                            if(ua1.getName().equals(userName))
                             {
-                             JOptionPane.showMessageDialog(null, "User Name already exists!, Please Enter valid user name","warning", JOptionPane.WARNING_MESSAGE);
+                             JOptionPane.showMessageDialog(null, "User Name already exist! Please Enter valid user name.","warning", JOptionPane.WARNING_MESSAGE);
                              return;  
                             }   
                             } 
@@ -717,52 +745,52 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                         }
                     }
                     }
-                    if(!organization.getUserAccountDirectory().checkIfUsernameIsUnique(userName))
+                    if(!organizations.getUserDirectory().checkUniqueName(userName))
                     {
-                        JOptionPane.showMessageDialog(null, "User Name already exists!, Please Enter valid user name","warning", JOptionPane.WARNING_MESSAGE);
-                        organization.getPersonDirectory().getCustomerLsit().remove((HelpSeeker)person);
+                        JOptionPane.showMessageDialog(null, "User Name already exist! Please Enter valid user name.","warning", JOptionPane.WARNING_MESSAGE);
+                        organizations.getPersonDirectory().getCustomerLsit().remove((Case)person);
                         return;
                     }
                     // To get help seeker org
                     
-                    UserAccount userAccount = organization.getUserAccountDirectory().addUserAccount(userName, password, person, new HelpSeekerRole());
-                    userAccount.setPerson(person);
-                   userAccount.setNetwork((Network)helpSeekerNw);
+                    User user = organizations.getUserDirectory().addUser(userName, password, person, new CaseRole());
+                    user.setPerson(person);
+                   user.setNetwork((Network)caseNw);
                   
                     // Send Req to Supervisor for approval       
-                    SupervisorWorkRequest request = new SupervisorWorkRequest();
-                    request.setMessage(SupervisorWorkRequest.REQUEST_APPROVAL);
-                    request.setSender(userAccount);
-                    request.setStatus(SupervisorWorkRequest.REQUEST_SENT);
+                    ManagerRequest request = new ManagerRequest();
+                    request.setReqMessage(ManagerRequest.REQUEST_APPROVAL);
+                    request.setSenderDetails(user);
+                    request.setStatus(ManagerRequest.REQUEST_SENT);
                     request.setRequestDate(new Date());
                     
                    // For Supervisor  
-                  for(Enterprise e : helpSeekerNw.getEnterpriseDirectory().getEnterpriseList())
+                  for(Enterprises e : caseNw.getEnterprisesDirectory().getEnterprisesList())
                   {
-                      if(e instanceof HeartHelpEnterprise)
+                      if(e instanceof HealthOnboardEnterprises)
                       {
-                       for(Organization organization : e.getOrganizationDirectory().getOrganizationList())
+                       for(Organizations organizations : e.getOrganizationsDirectory().getOrganizationsList())
                        {
-                      if (organization instanceof SupervisorOrganization ){
-                                this.organization = organization;
-                                this.personDirectory = organization.getPersonDirectory();
+                      if (organizations instanceof ManagerOrganizations ){
+                                this.organizations = organizations;
+                                this.personDirectory = organizations.getPersonDirectory();
                       }
                       }
                       
                       }
                   }
                   
-                    if (organization!=null){
-                        organization.getWorkQueue().getWorkRequestList().add(request);
-                        userAccount.getWorkQueue().getWorkRequestList().add(request);
-                        userAccount.setEnabled(false);
+                    if (organizations!=null){
+                        organizations.getRequestPipeline().getRequestList().add(request);
+                        user.getRequestPipeline().getRequestList().add(request);
+                        user.setEnabled(false);
                     }
                 }
-                else if(isVolunteer.isSelected())
+                else if(isHelper.isSelected())
                 {
-                    if(age<10 || age==0 || age>100)
+                    if(age<10 || age==0 || age>45)
                   {
-                 JOptionPane.showMessageDialog(null, "Your age does not qualify as Volunteer","warning", JOptionPane.WARNING_MESSAGE);
+                 JOptionPane.showMessageDialog(null, "Your age does not qualify as Helper","warning", JOptionPane.WARNING_MESSAGE);
                     return;      
                   }
                     if(volNetworkCombo.getSelectedIndex()<1)
@@ -773,67 +801,67 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                      Network volNetwork = (Network)volNetworkCombo.getSelectedItem();
                     getEnterprise(volNetwork);
                     
-                    if(enterprise==null)
+                    if(enterprises==null)
                     {
                    JOptionPane.showMessageDialog(null, "Enterprise does not exist for the network! " +volNetwork.getName(),"warning", JOptionPane.WARNING_MESSAGE);
                    return;      
                     }
-                    getOrganization("Volunteer",enterprise);
-                  if(organization==null)
+                    getOrganization("Helper",enterprises);
+                  if(organizations==null)
                     {
-                   JOptionPane.showMessageDialog(null, "Volunteer Organization does not exist for the enterprise! " +enterprise.getName(),"warning", JOptionPane.WARNING_MESSAGE);
+                   JOptionPane.showMessageDialog(null, "Helper Organization does not exist for the enterprise! " +enterprises.getName(),"warning", JOptionPane.WARNING_MESSAGE);
                    return;      
                     }
                   
-                  person = organization.getPersonDirectory().addVolunteer();
-                  person.setVolunteer(true);
+                  person = organizations.getPersonDirectory().addHelper();
+                  person.setHelper(true);
                
-                   String userName = SendEmailAndTextMessage.generateUserName(lastNameField.getText());
-                    if(!organization.getUserAccountDirectory().checkIfUsernameIsUnique(userName))
+                   String userName = SendNotificationMessage.generateUserName(lastNameField.getText());
+                    if(!organizations.getUserDirectory().checkUniqueName(userName))
                     {
-                        userName = SendEmailAndTextMessage.generateUserName(lastNameField.getText());
+                        userName = SendNotificationMessage.generateUserName(lastNameField.getText());
                     }
-                    String password = SendEmailAndTextMessage.generatePassword(firstNameField.getText());
+                    String password = SendNotificationMessage.generateUserPassword(firstNameField.getText());
                     String emailMsg = buildEmailTxtMsg(userName, password);
                     
-                    boolean emailSent = SendEmailAndTextMessage.sendEmail(emailMsg, emailIDField.getText(),userName, password);
+                    boolean emailSent = SendNotificationMessage.sendMailNotification(emailMsg, emailIDField.getText(),userName, password);
                     if(!emailSent)
                     {
                     JOptionPane.showMessageDialog(null, "Please Enter a valid Email address! ","warning", JOptionPane.WARNING_MESSAGE);
-                    organization.getPersonDirectory().getVolunteerList().remove((Volunteer)person);
+                    organizations.getPersonDirectory().getHelperList().remove((Helper)person);
                     return;         
                     }
                    
-                    UserAccount userAccount = organization.getUserAccountDirectory().addUserAccount(userName,password , person, new VolunteerRole());
-                    userAccount.setPerson(person);
-                    userAccount.setNetwork(volNetwork);
+                    User user = organizations.getUserDirectory().addUser(userName,password , person, new HelperRole());
+                    user.setPerson(person);
+                    user.setNetwork(volNetwork);
                     
-                    SupervisorWorkRequest request = new SupervisorWorkRequest();
-                    request.setMessage(SupervisorWorkRequest.REQUEST_APPROVAL);
-                    request.setSender(userAccount);
-                    request.setStatus(SupervisorWorkRequest.REQUEST_SENT);
+                    ManagerRequest request = new ManagerRequest();
+                    request.setReqMessage(ManagerRequest.REQUEST_APPROVAL);
+                    request.setSenderDetails(user);
+                    request.setStatus(ManagerRequest.REQUEST_SENT);
                     request.setRequestDate(new Date());
                     
                    // For Supervisor  
-                  for(Enterprise e : volNetwork.getEnterpriseDirectory().getEnterpriseList())
+                  for(Enterprises e : volNetwork.getEnterprisesDirectory().getEnterprisesList())
                   {
-                      if(e instanceof HeartHelpEnterprise)
+                      if(e instanceof HealthOnboardEnterprises)
                       {
-                       for(Organization organization : e.getOrganizationDirectory().getOrganizationList())
+                       for(Organizations organizations : e.getOrganizationsDirectory().getOrganizationsList())
                        {
-                      if (organization instanceof SupervisorOrganization ){
-                                this.organization = organization;
-                                this.personDirectory = organization.getPersonDirectory();
+                      if (organizations instanceof ManagerOrganizations ){
+                                this.organizations = organizations;
+                                this.personDirectory = organizations.getPersonDirectory();
                       }
                       }
                       
                       }
                   }
                   
-                    if (organization!=null){
-                        organization.getWorkQueue().getWorkRequestList().add(request);
-                        userAccount.getWorkQueue().getWorkRequestList().add(request);
-                        userAccount.setEnabled(false);
+                    if (organizations!=null){
+                        organizations.getRequestPipeline().getRequestList().add(request);
+                        user.getRequestPipeline().getRequestList().add(request);
+                        user.setEnabled(false);
                     }
                 }
                 if(isDoctorRadioBtn.isSelected() )
@@ -859,43 +887,43 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                     
                      if(!(password.equals(confirmPassword)))
                     {
-                        JOptionPane.showMessageDialog(null, "Password does not match, Please Enter valid Password Address","warning", JOptionPane.WARNING_MESSAGE);
-                        organization.getPersonDirectory().getPersonList().remove(person);
+                        JOptionPane.showMessageDialog(null, "Password does not match. Please Enter valid Password","warning", JOptionPane.WARNING_MESSAGE);
+                        organizations.getPersonDirectory().getPersonList().remove(person);
                         return;
                     }
                     
                     getEnterprise(docNw);
-                    if(enterprise==null)
+                    if(enterprises==null)
                     {
                      JOptionPane.showMessageDialog(null, "Enterprise does not exist for the network! "+docNw.getName(),"warning", JOptionPane.WARNING_MESSAGE);
                      return;      
                     } 
-                    getOrganization("Doctor",enterprise);
-                    if(organization==null)
+                    getOrganization("Doctor",enterprises);
+                    if(organizations==null)
                     {
-                     JOptionPane.showMessageDialog(null, "Doctor Organization does not exist for the enterprise! "+enterprise.getName(),"warning", JOptionPane.WARNING_MESSAGE);
+                     JOptionPane.showMessageDialog(null, "Doctor Organization does not exist for the enterprise! "+enterprises.getName(),"warning", JOptionPane.WARNING_MESSAGE);
                      return;      
                     } 
-                  person = organization.getPersonDirectory().addPerson();
+                  person = organizations.getPersonDirectory().addPerson();
                    
-                    for(Enterprise e : docNw.getEnterpriseDirectory().getEnterpriseList())
+                    for(Enterprises e : docNw.getEnterprisesDirectory().getEnterprisesList())
                     {
-                     for(UserAccount ua : e.getUserAccountDirectory().getUserAccountList())
+                     for(User ua : e.getUserDirectory().getUserList())
                     {
-                        if(ua.getUserName().equals(userName))
+                        if(ua.getName().equals(userName))
                         {
-                         JOptionPane.showMessageDialog(null, "User Name already exists!, Please Enter valid user name","warning", JOptionPane.WARNING_MESSAGE);
+                         JOptionPane.showMessageDialog(null, "User Name already exists! Please Enter valid user name","warning", JOptionPane.WARNING_MESSAGE);
                          return;  
                         }
                         else
                         {
-                        for(Organization o : e.getOrganizationDirectory().getOrganizationList())
+                        for(Organizations o : e.getOrganizationsDirectory().getOrganizationsList())
                         {  
-                         for(UserAccount ua1 : o.getUserAccountDirectory().getUserAccountList())
+                         for(User ua1 : o.getUserDirectory().getUserList())
                             {  
-                            if(ua1.getUserName().equals(userName))
+                            if(ua1.getName().equals(userName))
                             {
-                             JOptionPane.showMessageDialog(null, "User Name already exists!, Please Enter valid user name","warning", JOptionPane.WARNING_MESSAGE);
+                             JOptionPane.showMessageDialog(null, "User Name already exists! Please Enter valid user name","warning", JOptionPane.WARNING_MESSAGE);
                              return;  
                             }   
                             } 
@@ -903,44 +931,44 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                         }
                     }
                     }
-                    if(!organization.getUserAccountDirectory().checkIfUsernameIsUnique(userName))
+                    if(!organizations.getUserDirectory().checkUniqueName(userName))
                     {
-                        JOptionPane.showMessageDialog(null, "User Name already exists!, Please Enter valid user name","warning", JOptionPane.WARNING_MESSAGE);
-                        organization.getPersonDirectory().getPersonList().remove(person);
+                        JOptionPane.showMessageDialog(null, "User Name already exists! Please Enter valid user name","warning", JOptionPane.WARNING_MESSAGE);
+                        organizations.getPersonDirectory().getPersonList().remove(person);
                         return;
                     }
                     // To get Doctor org
                     
-                    UserAccount userAccount = organization.getUserAccountDirectory().addUserAccount(userName, password, person, new DoctorRole());
-                    userAccount.setPerson(person);
-                    userAccount.setNetwork(docNw);
+                    User user = organizations.getUserDirectory().addUser(userName, password, person, new DoctorRole());
+                    user.setPerson(person);
+                    user.setNetwork(docNw);
                   
                 // Request to Supervisor       
-                    SupervisorWorkRequest request = new SupervisorWorkRequest();
-                    request.setMessage(SupervisorWorkRequest.REQUEST_APPROVAL);
-                    request.setSender(userAccount);
-                    request.setStatus(SupervisorWorkRequest.REQUEST_SENT);
+                    ManagerRequest request = new ManagerRequest();
+                    request.setReqMessage(ManagerRequest.REQUEST_APPROVAL);
+                    request.setSenderDetails(user);
+                    request.setStatus(ManagerRequest.REQUEST_SENT);
                     request.setRequestDate(new Date());
                     
                      // For Supervisor  
-                  for(Enterprise e : docNw.getEnterpriseDirectory().getEnterpriseList())
+                  for(Enterprises e : docNw.getEnterprisesDirectory().getEnterprisesList())
                   {
-                      if(e instanceof HeartHelpEnterprise)
+                      if(e instanceof HealthOnboardEnterprises)
                       {
-                       for(Organization organization : e.getOrganizationDirectory().getOrganizationList())
+                       for(Organizations organizations : e.getOrganizationsDirectory().getOrganizationsList())
                        {
-                      if (organization instanceof SupervisorOrganization ){
-                                this.organization = organization;
-                                this.personDirectory = organization.getPersonDirectory();
+                      if (organizations instanceof ManagerOrganizations ){
+                                this.organizations = organizations;
+                                this.personDirectory = organizations.getPersonDirectory();
                       }
                       }
                       
                       }
                   }
-                     if (organization!=null){
-                        organization.getWorkQueue().getWorkRequestList().add(request);
-                        userAccount.getWorkQueue().getWorkRequestList().add(request);
-                       userAccount.setEnabled(false);
+                     if (organizations!=null){
+                        organizations.getRequestPipeline().getRequestList().add(request);
+                        user.getRequestPipeline().getRequestList().add(request);
+                       user.setEnabled(false);
                     }
                 }
                 
@@ -1009,7 +1037,7 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
     emailIDField1.setText("");
     phoneNumberField.setText("");
     isHelpSeeker.setSelected(false);
-    isVolunteer.setSelected(false);
+    isHelper.setSelected(false);
     isDoctorRadioBtn.setSelected(false);
      
     }
@@ -1022,21 +1050,21 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
                     {
                     if(n.getCity().equals(network.getCity()))   
                     {  
-                   for(Enterprise e : n.getEnterpriseDirectory().getEnterpriseList())
+                   for(Enterprises e : n.getEnterprisesDirectory().getEnterprisesList())
                       {
-                           if(e instanceof SchoolEnterprise && isVolunteer.isSelected())
+                           if(e instanceof UniversityEnterprises && isHelper.isSelected())
                            {
-                             this.enterprise = e;
+                             this.enterprises = e;
                              network = n;
                             }
-                           else if(e instanceof HeartHelpEnterprise && isHelpSeeker.isSelected())
+                           else if(e instanceof HealthOnboardEnterprises && isHelpSeeker.isSelected())
                            {
-                             this.enterprise = e;
+                             this.enterprises = e;
                               network = n;
                             }
-                            else if(e instanceof HospitalEnterprise && isDoctorRadioBtn.isSelected())
+                            else if(e instanceof HospitalEnterprises && isDoctorRadioBtn.isSelected())
                            {
-                             this.enterprise = e;
+                             this.enterprises = e;
                               network = n;
                            }
                       }
@@ -1053,7 +1081,7 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
     public String buildEmailTxtMsg(String usrNm, String pwd)
     {
       StringBuilder emailMsgTxt = new StringBuilder();
-        emailMsgTxt.append("Please find username and password to login into our application");
+        emailMsgTxt.append("Your account has been created and awaiting approval from manager. Please find username and password to login into our application.");
         emailMsgTxt.append(System.lineSeparator());
         emailMsgTxt.append(System.lineSeparator());
         emailMsgTxt.append("username : ".concat(usrNm));
@@ -1061,33 +1089,34 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         emailMsgTxt.append("password : ".concat(pwd));
         emailMsgTxt.append(System.lineSeparator());
         emailMsgTxt.append(System.lineSeparator());
-        emailMsgTxt.append("Thank You");
-        emailMsgTxt.append("HeartHelp");
+        emailMsgTxt.append("Thank You,");
+        emailMsgTxt.append(System.lineSeparator());
+        emailMsgTxt.append("HealthOnboard");
         
         return emailMsgTxt.toString();
     }
     
-    public void getOrganization(String orgVal, Enterprise e){
+    public void getOrganization(String orgVal, Enterprises e){
      
         try
         {
-     for (Organization organization : e.getOrganizationDirectory().getOrganizationList()){
+     for (Organizations organization : e.getOrganizationsDirectory().getOrganizationsList()){
       
-       if(orgVal.equals("Volunteer") && organization instanceof VolunteerOrganization)
+       if(orgVal.equals("Helper") && organization instanceof HelperOrganizations)
         {
-              this.organization = organization;
+              this.organizations = organization;
               this.personDirectory = organization.getPersonDirectory();
         
         }     
-     else if(orgVal.equals("HelpSeeker") && organization instanceof HelpSeekerOrganization)
+     else if(orgVal.equals("Case") && organization instanceof CaseOrganizations)
              {
-               this.organization = organization;
+               this.organizations = organization;
                this.personDirectory = organization.getPersonDirectory();
              }  
        
-       else if(orgVal.equals("Doctor") && organization instanceof DoctorOrganization)
+       else if(orgVal.equals("Doctor") && organization instanceof DoctorOrganizations)
              {
-               this.organization = organization;
+               this.organizations = organization;
                this.personDirectory = organization.getPersonDirectory();
              } 
              }
@@ -1108,12 +1137,12 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_isHelpSeekerActionPerformed
 
-    private void isVolunteerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isVolunteerActionPerformed
+    private void isHelperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isHelperActionPerformed
         helpSeekerPane.setVisible(false);
         volNetworkCombo.setVisible(true);
         volNetwork.setVisible(true);
         populateVolNetworkComboBox();
-    }//GEN-LAST:event_isVolunteerActionPerformed
+    }//GEN-LAST:event_isHelperActionPerformed
     
     
     private void populateVolNetworkComboBox()
@@ -1124,7 +1153,7 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Networks does not exist! Sorry for inconvenience.");  
          return;        
         }
-        volNetworkCombo.addItem("Please Choose a Network");
+        volNetworkCombo.addItem("Please select a Network");
            
         for(Network network : ecoSystem.getNetworkList()){
              volNetworkCombo.addItem(network);
@@ -1187,24 +1216,6 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_volNetworkComboActionPerformed
     
-  
-    
-    public void fillForm()
-    {
-    firstNameField.setText("John");
-    lastNameField.setText("Peter");
-    DobField.setText("12/12/1938");
-    genderComboBox.setSelectedItem("Female");
-    addressField1.setText("433");
-    addressField2.setText("Kenmore");
-    townField.setText("boston");
-    zipCodeField.setText("02145");
-    occupationField.setText("student");
-    emailIDField.setText("sruthi.ravula@gmail.com");
-    emailIDField1.setText("sruthi.ravula@gmail.com");
-    phoneNumberField.setText("8978989876");
-  
-    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1231,7 +1242,7 @@ public class RegistrationWorkAreaPanel extends javax.swing.JPanel {
     private javax.swing.JLayeredPane helpSeekerPane;
     private javax.swing.JRadioButton isDoctorRadioBtn;
     private javax.swing.JRadioButton isHelpSeeker;
-    private javax.swing.JRadioButton isVolunteer;
+    private javax.swing.JRadioButton isHelper;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

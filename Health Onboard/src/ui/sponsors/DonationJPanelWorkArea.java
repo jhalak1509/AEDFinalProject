@@ -1,19 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.donorpkg;
+package ui.sponsors;
 
-import business.EcoSystem;
-import business.common.Donation;
-import business.common.ValidateNumbers;
-import business.common.ValidatePhoneNumber;
-import business.common.ValidateStrings;
-import business.common.Validation;
-import business.organizationpkg.SupervisorOrganization;
-import business.userAccountpkg.UserAccount;
-import business.workQueuepkg.DonationRequest;
+import businessFramework.Environment;
+import businessFramework.commonFunctions.Sponsorship;
+import businessFramework.commonFunctions.IntegerFieldValidation;
+import businessFramework.commonFunctions.MobileNoValidation;
+import businessFramework.commonFunctions.StringValidation;
+import businessFramework.commonFunctions.Validations;
+import businessFramework.organizations.ManagerOrganizations;
+import businessFramework.userAccount.User;
+import businessFramework.requestPipeline.SponsorshipRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -35,19 +30,19 @@ import javax.swing.JPanel;
 public class DonationJPanelWorkArea extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    private UserAccount userAccount;
-    private EcoSystem ecoSystem;
+    private User userAccount;
+    private Environment ecoSystem;
    
     /**
      * Creates new form DonationJPanelWorkArea
      */
-    public DonationJPanelWorkArea(JPanel userProcessContainer, UserAccount userAccount, EcoSystem ecoSystem) {
+    public DonationJPanelWorkArea(JPanel userProcessContainer, User userAccount, Environment ecoSystem) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.ecoSystem = ecoSystem;
         addInputVerifiers();
-        toAccntNumberField.setText(Donation.toAccountNumber);
+        toAccntNumberField.setText(Sponsorship.toAccNo);
     }
     
     @Override
@@ -58,9 +53,9 @@ public class DonationJPanelWorkArea extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
-     
+         Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
+         
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
         g2d.setPaint(gp);
@@ -69,16 +64,16 @@ public class DonationJPanelWorkArea extends javax.swing.JPanel {
     }
     
       private void addInputVerifiers() {
-        InputVerifier noValidation = new ValidateNumbers();
+        InputVerifier noValidation = new IntegerFieldValidation();
         amountField.setInputVerifier(noValidation);
         monthField.setInputVerifier(noValidation);
         yearField.setInputVerifier(noValidation);
         
-        InputVerifier phnumberValidation = new ValidatePhoneNumber();
+        InputVerifier phnumberValidation = new MobileNoValidation();
         cardNumberField.setInputVerifier(phnumberValidation);
         
          
-        InputVerifier stringValidation = new ValidateStrings();
+        InputVerifier stringValidation = new StringValidation();
         nameTxtField.setInputVerifier(stringValidation);
        }
 
@@ -107,43 +102,55 @@ public class DonationJPanelWorkArea extends javax.swing.JPanel {
         toAccntNumberField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
 
-        manageEnt.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        manageEnt.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         manageEnt.setText("Make Donation ");
 
-        helpName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        helpName.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         helpName.setText("Enter Card Number (10 Digits)");
 
-        expiryDate.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        expiryDate.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         expiryDate.setText("Enter Expiry Date(MM/YYYY)");
 
-        amount.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        amount.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         amount.setText("Enter Amount");
 
+        submitBtn.setBackground(new java.awt.Color(0, 153, 153));
+        submitBtn.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        submitBtn.setForeground(new java.awt.Color(255, 255, 255));
         submitBtn.setText("Submit");
+        submitBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
             }
         });
 
+        cancelBtn.setBackground(new java.awt.Color(0, 153, 153));
+        cancelBtn.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
         cancelBtn.setText("Cancel");
+        cancelBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
             }
         });
 
-        name.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        name.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         name.setText("Enter Name");
 
-        toAccntNumber.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        toAccntNumber.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         toAccntNumber.setText("To Account Number");
 
         toAccntNumberField.setEditable(false);
         toAccntNumberField.setBackground(new java.awt.Color(204, 255, 204));
         toAccntNumberField.setEnabled(false);
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<< back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -154,31 +161,15 @@ public class DonationJPanelWorkArea extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(449, 449, 449)
-                        .addComponent(manageEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(backJButton)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(toAccntNumber)
-                                .addGap(18, 18, 18)
-                                .addComponent(toAccntNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 359, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(helpName)
-                    .addComponent(amount)
-                    .addComponent(name)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(submitBtn)
-                        .addComponent(expiryDate)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 344, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(helpName)
+                            .addComponent(amount)
+                            .addComponent(name)
+                            .addComponent(expiryDate))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nameTxtField)
@@ -189,9 +180,26 @@ public class DonationJPanelWorkArea extends javax.swing.JPanel {
                                 .addComponent(yearField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cardNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(cancelBtn)))
+                        .addGap(505, 505, 505)
+                        .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(312, 312, 312))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(393, 393, 393)
+                        .addComponent(manageEnt, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(toAccntNumber)
+                                .addGap(18, 18, 18)
+                                .addComponent(toAccntNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +227,7 @@ public class DonationJPanelWorkArea extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(amount)
                     .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitBtn)
                     .addComponent(cancelBtn))
@@ -257,42 +265,42 @@ public class DonationJPanelWorkArea extends javax.swing.JPanel {
        Calendar cal = Calendar.getInstance();
        String timestamp = df.format(cal.getTime());
        
-       Donation donation = userAccount.getPerson().addDonation();
+       Sponsorship sponsorship = userAccount.getPerson().addDonation();
        
-       donation.setAmount(amountField.getText());
-       donation.setDonationDate(timestamp);
-       donation.setAccntName(nameTxtField.getText());
-       donation.setAccntNumber(cardNumberField.getText());
+       sponsorship.setAmount(amountField.getText());
+       sponsorship.setSponsoredDate(timestamp);
+       sponsorship.setAccName(nameTxtField.getText());
+       sponsorship.setAccNumber(cardNumberField.getText());
       
            try
            {
-           DonationRequest donationRequest = new DonationRequest();
-           donationRequest.setDonation(donation);
-           donationRequest.setDonatedBy(userAccount.getUserName());
-           donationRequest.setSender(userAccount);
-           donationRequest.setRequestDate(new Date());
-           donationRequest.setMessage("Donated Money");
+           SponsorshipRequest sponsorshipRequest = new SponsorshipRequest();
+           sponsorshipRequest.setDonation(sponsorship);
+           sponsorshipRequest.setSponsoredBy(userAccount.getName());
+           sponsorshipRequest.setSenderDetails(userAccount);
+           sponsorshipRequest.setRequestDate(new Date());
+           sponsorshipRequest.setReqMessage("Donated Money");
            
-           userAccount.getWorkQueue().getWorkRequestList().add(donationRequest);
+           userAccount.getRequestPipeline().getRequestList().add(sponsorshipRequest);
            
-           UserAccount ua = getHeartHelpManagerAccnt();
+           User ua = getHeartHelpManagerAccnt();
            if(ua==null)
            {
             JOptionPane.showMessageDialog(null, "Please verify if heart help manager acccount exists!", "warning",JOptionPane.WARNING_MESSAGE);
-           userAccount.getWorkQueue().getWorkRequestList().remove(donationRequest);  
+           userAccount.getRequestPipeline().getRequestList().remove(sponsorshipRequest);  
             return;   
            }
            if(ua!=null)
            {
-            donationRequest.setReceiver(ua);
-            donationRequest.setResolveDate(new Date());
-            ua.getWorkQueue().getWorkRequestList().add(donationRequest); 
-            donationRequest.setStatus("Completed");
+            sponsorshipRequest.setReceiver(ua);
+            sponsorshipRequest.setResolveDate(new Date());
+            ua.getRequestPipeline().getRequestList().add(sponsorshipRequest); 
+            sponsorshipRequest.setStatus("Completed");
            JOptionPane.showMessageDialog(null, "Donation has been made successfully, Thank You", "success",JOptionPane.PLAIN_MESSAGE);
             }
            else
            {
-           userAccount.getWorkQueue().getWorkRequestList().remove(donationRequest);  
+           userAccount.getRequestPipeline().getRequestList().remove(sponsorshipRequest);  
            }
            }
            catch(Exception e)
@@ -309,19 +317,19 @@ public class DonationJPanelWorkArea extends javax.swing.JPanel {
        }
     }//GEN-LAST:event_submitBtnActionPerformed
     
-    public UserAccount getHeartHelpManagerAccnt()
+    public User getHeartHelpManagerAccnt()
     {
         try
         {
-        SupervisorOrganization supervisorOrganization = (SupervisorOrganization)Validation.getSupervisorOrganization(ecoSystem, userAccount);
-        UserAccount mngrAccnt = null;
-        if(supervisorOrganization==null)
+        ManagerOrganizations managerOrganization = (ManagerOrganizations)Validations.getManagerOrganizations(ecoSystem, userAccount);
+        User mngrAccnt = null;
+        if(managerOrganization==null)
         {
         JOptionPane.showMessageDialog(null, "Supervisor Organization does not exist!", "warning",JOptionPane.WARNING_MESSAGE);
         return mngrAccnt;  
         }
       
-        for(UserAccount ua : supervisorOrganization.getUserAccountDirectory().getUserAccountList())
+        for(User ua : managerOrganization.getUserDirectory().getUserList())
         {
             
          if((ua.getRole().toString()).equals("HeartHelpManagerRole"))  

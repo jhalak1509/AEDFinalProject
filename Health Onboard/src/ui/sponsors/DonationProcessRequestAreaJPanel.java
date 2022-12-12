@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.donorpkg;
+package ui.sponsors;
 
-import business.common.ValidateStrings;
-import business.userAccountpkg.UserAccount;
-import business.workQueuepkg.NeedSensorDeviceWorkRequest;
-import business.workQueuepkg.SupervisorWorkRequest;
+import businessFramework.commonFunctions.StringValidation;
+import businessFramework.userAccount.User;
+import businessFramework.requestPipeline.SensorRequest;
+import businessFramework.requestPipeline.ManagerRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -29,12 +24,12 @@ import javax.swing.JPanel;
 public class DonationProcessRequestAreaJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
-    private NeedSensorDeviceWorkRequest needSensorDeviceWorkRequest;
-   private  UserAccount userAccount;
+    private SensorRequest needSensorDeviceWorkRequest;
+   private  User userAccount;
     /**
      * Creates new form DonationProcessRequestAreaJPanel
      */
-    public DonationProcessRequestAreaJPanel(JPanel userProcessContainer, NeedSensorDeviceWorkRequest needSensorDeviceWorkRequest, UserAccount userAccount) {
+    public DonationProcessRequestAreaJPanel(JPanel userProcessContainer, SensorRequest needSensorDeviceWorkRequest, User userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.needSensorDeviceWorkRequest = needSensorDeviceWorkRequest;
@@ -43,8 +38,8 @@ public class DonationProcessRequestAreaJPanel extends javax.swing.JPanel {
         addInputVerifiers();
         
         resultComboBox.removeAllItems();
-        resultComboBox.addItem(SupervisorWorkRequest.REQUEST_ACCEPT);
-        resultComboBox.addItem(SupervisorWorkRequest.REQUEST_REJECT);
+        resultComboBox.addItem(ManagerRequest.REQUEST_ACCEPT);
+        resultComboBox.addItem(ManagerRequest.REQUEST_REJECT);
     }
     
     
@@ -56,8 +51,8 @@ public class DonationProcessRequestAreaJPanel extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+        Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -68,7 +63,7 @@ public class DonationProcessRequestAreaJPanel extends javax.swing.JPanel {
     
     private void addInputVerifiers() {
           
-        InputVerifier stringValidation = new ValidateStrings();
+        InputVerifier stringValidation = new StringValidation();
         commentsJTextField.setInputVerifier(stringValidation);
     }
 
@@ -91,21 +86,31 @@ public class DonationProcessRequestAreaJPanel extends javax.swing.JPanel {
 
         resultComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel2.setText("Add comments: ");
 
+        submitJButton.setBackground(new java.awt.Color(0, 153, 153));
+        submitJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        submitJButton.setForeground(new java.awt.Color(255, 255, 255));
         submitJButton.setText("Submit ");
+        submitJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel1.setText("Request Result");
 
-        jLabel7.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         jLabel7.setText("Process Donation Work Request:");
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("Back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -119,23 +124,24 @@ public class DonationProcessRequestAreaJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
+                        .addGap(160, 160, 160)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(120, 120, 120)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(149, 149, 149)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(commentsJTextField)
                                     .addComponent(resultComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(315, 315, 315)
-                        .addComponent(submitJButton))
+                            .addComponent(jLabel7)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
-                        .addComponent(backJButton)))
-                .addContainerGap(350, Short.MAX_VALUE))
+                        .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(337, 337, 337)
+                        .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,16 +149,16 @@ public class DonationProcessRequestAreaJPanel extends javax.swing.JPanel {
                 .addGap(48, 48, 48)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(resultComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(resultComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(commentsJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(89, 89, 89)
+                .addGap(58, 58, 58)
                 .addComponent(submitJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(44, 44, 44))
         );
@@ -165,11 +171,11 @@ public class DonationProcessRequestAreaJPanel extends javax.swing.JPanel {
             return;
         }
         
-        needSensorDeviceWorkRequest.setdonationRequestResult((String)resultComboBox.getSelectedItem());
+        needSensorDeviceWorkRequest.setSponsorshipRequestOutcome((String)resultComboBox.getSelectedItem());
         needSensorDeviceWorkRequest.setComments(commentsJTextField.getText());
-        needSensorDeviceWorkRequest.setStatus(SupervisorWorkRequest.REQUEST_COMPLETED);
+        needSensorDeviceWorkRequest.setStatus(ManagerRequest.REQUEST_COMPLETED);
         needSensorDeviceWorkRequest.setResolveDate(new Date());
-        userAccount.getWorkQueue().getWorkRequestList().add(needSensorDeviceWorkRequest);
+        userAccount.getRequestPipeline().getRequestList().add(needSensorDeviceWorkRequest);
         JOptionPane.showMessageDialog(null, "Request has been processed successfully", "success", JOptionPane.PLAIN_MESSAGE);
         commentsJTextField.setText("");
     }//GEN-LAST:event_submitJButtonActionPerformed

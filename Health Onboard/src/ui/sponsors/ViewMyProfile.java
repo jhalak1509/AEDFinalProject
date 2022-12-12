@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.donorpkg;
+package ui.sponsors;
 
-import business.common.ValidateDateOfBirth;
-import business.common.ValidateEmailTextField;
-import business.common.ValidateNumbers;
-import business.common.ValidatePhoneNumber;
-import business.common.ValidateStrings;
-import business.common.Validation;
-import business.personpkg.Person;
-import business.userAccountpkg.UserAccount;
+import businessFramework.commonFunctions.DOBValidation;
+import businessFramework.commonFunctions.EmailFieldValidation;
+import businessFramework.commonFunctions.IntegerFieldValidation;
+import businessFramework.commonFunctions.MobileNoValidation;
+import businessFramework.commonFunctions.StringValidation;
+import businessFramework.commonFunctions.Validations;
+import businessFramework.person.Person;
+import businessFramework.userAccount.User;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -34,13 +29,13 @@ import javax.swing.JPanel;
 public class ViewMyProfile extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    private UserAccount userAccount;
+    private User userAccount;
     private Person person;
     
     /**
      * Creates new form ViewMyProfile
      */
-    public ViewMyProfile(JPanel userProcessContainer, UserAccount account) {
+    public ViewMyProfile(JPanel userProcessContainer, User account) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
@@ -72,8 +67,8 @@ public class ViewMyProfile extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+         Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -112,6 +107,7 @@ public class ViewMyProfile extends javax.swing.JPanel {
         saveJButton = new javax.swing.JButton();
         updateJButton = new javax.swing.JButton();
 
+        donorName.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         donorName.setText("Full Name:");
 
         donorNameField.setEditable(false);
@@ -120,10 +116,13 @@ public class ViewMyProfile extends javax.swing.JPanel {
         zipCodeField.setEditable(false);
         zipCodeField.setEnabled(false);
 
+        dateOfBirth.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         dateOfBirth.setText("Date Of Birth (MM/DD/YYYY):");
 
+        occupation.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         occupation.setText("Occupation:");
 
+        address.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         address.setText("Address: ");
 
         occupationField.setEditable(false);
@@ -132,8 +131,10 @@ public class ViewMyProfile extends javax.swing.JPanel {
         addressField.setEditable(false);
         addressField.setEnabled(false);
 
+        emailID.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         emailID.setText("Email Address:");
 
+        town.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         town.setText("Town/City: ");
 
         emailIDField.setEditable(false);
@@ -142,8 +143,10 @@ public class ViewMyProfile extends javax.swing.JPanel {
         townField.setEditable(false);
         townField.setEnabled(false);
 
+        phoneNumber.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         phoneNumber.setText("Phone Number:");
 
+        zipCode.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         zipCode.setText("Zip Code:");
 
         phoneNumberField.setEditable(false);
@@ -152,17 +155,25 @@ public class ViewMyProfile extends javax.swing.JPanel {
         donorDobField.setEditable(false);
         donorDobField.setEnabled(false);
 
-        jLabel6.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         jLabel6.setText("View / Update Profile");
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<< back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
 
+        saveJButton.setBackground(new java.awt.Color(0, 153, 153));
+        saveJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        saveJButton.setForeground(new java.awt.Color(255, 255, 255));
         saveJButton.setText("Save");
+        saveJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         saveJButton.setEnabled(false);
         saveJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +181,11 @@ public class ViewMyProfile extends javax.swing.JPanel {
             }
         });
 
+        updateJButton.setBackground(new java.awt.Color(0, 153, 153));
+        updateJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        updateJButton.setForeground(new java.awt.Color(255, 255, 255));
         updateJButton.setText("Update");
+        updateJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         updateJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateJButtonActionPerformed(evt);
@@ -185,43 +200,42 @@ public class ViewMyProfile extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(backJButton)
-                        .addGap(240, 240, 240)
-                        .addComponent(updateJButton)
-                        .addGap(33, 33, 33)
-                        .addComponent(saveJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(313, 313, 313)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(200, 200, 200)
-                                .addComponent(donorNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(229, 229, 229)
+                        .addComponent(updateJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(saveJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(513, 513, 513)
+                            .addComponent(donorNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(313, 313, 313)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(address, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(town))
+                                .addComponent(occupation)
+                                .addComponent(donorName, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(zipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(phoneNumber)
+                                .addComponent(emailID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(phoneNumberField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(dateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(address, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(town))
-                                    .addComponent(occupation)
-                                    .addComponent(emailID, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(donorName, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(zipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(phoneNumber))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(phoneNumberField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(donorDobField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(zipCodeField, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(townField, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(occupationField, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(emailIDField, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(addressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                    .addComponent(donorDobField, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(zipCodeField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(townField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(occupationField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(emailIDField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(addressField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(355, 355, 355)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(436, Short.MAX_VALUE))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(351, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +277,7 @@ public class ViewMyProfile extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(phoneNumber))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backJButton)
                     .addComponent(updateJButton)
@@ -280,23 +294,23 @@ public class ViewMyProfile extends javax.swing.JPanel {
        
     private void addInputVerifiers() {
           
-        InputVerifier stringValidation = new ValidateStrings();
+        InputVerifier stringValidation = new StringValidation();
         donorNameField.setInputVerifier(stringValidation);
         addressField.setInputVerifier(stringValidation);
         townField.setInputVerifier(stringValidation);
         occupationField.setInputVerifier(stringValidation);
        
-        InputVerifier dobValidtion = new ValidateDateOfBirth();
+        InputVerifier dobValidtion = new DOBValidation();
         donorDobField.setInputVerifier(dobValidtion);
         
-        InputVerifier numberValidation = new ValidateNumbers();
+        InputVerifier numberValidation = new IntegerFieldValidation();
         zipCodeField.setInputVerifier(numberValidation);
         
-           InputVerifier emailValidtion = new ValidateEmailTextField();
+           InputVerifier emailValidtion = new EmailFieldValidation();
            emailIDField.setInputVerifier(emailValidtion);
      
         
-       InputVerifier phnumberValidation = new ValidatePhoneNumber();
+       InputVerifier phnumberValidation = new MobileNoValidation();
         phoneNumberField.setInputVerifier(phnumberValidation);
         
     }
@@ -316,7 +330,7 @@ public class ViewMyProfile extends javax.swing.JPanel {
             {
               DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
               Date dateOfBirthVal  = dateFormat.parse(donorDobField.getText()) ;
-                int age = Validation.calculateAge(dateOfBirthVal);
+                int age = Validations.ageCalculation(dateOfBirthVal);
                 if(age<=0 )
                 {
                     JOptionPane.showMessageDialog(null, "Please enter valid age!","warning", JOptionPane.WARNING_MESSAGE);

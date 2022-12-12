@@ -23,7 +23,7 @@ public class SendNotificationMessage {
      private static StringBuilder emailMsgTxt ;
         
         private static String emailSubjectTxt = "Thank you!";
-        private static String emailFromAddress = "healthOnboard@gmail.com";
+        private static String emailFromAddress = "hospitalmanagement.aed@gmail.com";
     
 
     public static String generateUserPassword(String name)
@@ -79,6 +79,9 @@ public class SendNotificationMessage {
         props.put("mail.smtp.auth", "true");  
         props.put("mail.smtp.starttls.enable","true");
         props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.ssl.trust", "*");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
         
         Authenticator mailAuthenticator = new MailAuth();
         Session mailSession = Session.getDefaultInstance(props,mailAuthenticator);

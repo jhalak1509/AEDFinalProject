@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package userInterface.helpSeeker;
+package ui.cases;
 
-import business.personpkg.Person;
-import business.userAccountpkg.UserAccount;
-import business.userAccountpkg.UserAccountDirectory;
+import businessFramework.person.Person;
+import businessFramework.userAccount.User;
+import businessFramework.userAccount.UserDirectory;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -25,17 +20,17 @@ import javax.swing.JPanel;
  */
 public class ViewHelpSeekerProfile extends javax.swing.JPanel {
       private JPanel userProcessContainer;
-    private UserAccount userAccount; 
+    private User user; 
     private Person person;
  
     /**
      * Creates new form ViewHelpSeekerProfile
      */
-    public ViewHelpSeekerProfile(JPanel userProcessContainer, UserAccount userAccount) {
+    public ViewHelpSeekerProfile(JPanel userProcessContainer, User user) {
         initComponents();
          this.userProcessContainer = userProcessContainer;
-        this.userAccount = userAccount;
-        person = userAccount.getPerson();
+        this.user = user;
+        person = user.getPerson();
          populateFields();
     }
     
@@ -47,8 +42,8 @@ public class ViewHelpSeekerProfile extends javax.swing.JPanel {
         int w = getWidth();
         int h = getHeight();
         
-        Color c1 = new Color(153,197,85);
-        Color c2 = Color.white;
+        Color c1 = new Color(210,240,114);
+         Color c2 = new Color(210,240,114);
      
         GradientPaint gp = new GradientPaint(w/4, 0, c2, w/4, h, c1);
         setOpaque( false );
@@ -134,7 +129,11 @@ public class ViewHelpSeekerProfile extends javax.swing.JPanel {
 
         LastName.setText("Last Name:");
 
+        backJButton.setBackground(new java.awt.Color(0, 153, 153));
+        backJButton.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<< Back");
+        backJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -172,8 +171,8 @@ public class ViewHelpSeekerProfile extends javax.swing.JPanel {
 
         addressField2.setEnabled(false);
 
-        manageEnt1.setFont(new java.awt.Font("Malayalam MN", 3, 24)); // NOI18N
-        manageEnt1.setText("Heart Help");
+        manageEnt1.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        manageEnt1.setText("Health Onboard");
 
         gender.setText("Gender:");
 
@@ -218,10 +217,8 @@ public class ViewHelpSeekerProfile extends javax.swing.JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(394, 394, 394)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(manageEnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(88, 88, 88))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(manageEnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(zipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,7 +257,7 @@ public class ViewHelpSeekerProfile extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(295, Short.MAX_VALUE)
+                .addContainerGap(297, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addressField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(address, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -301,7 +298,7 @@ public class ViewHelpSeekerProfile extends javax.swing.JPanel {
                         .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
                     .addComponent(viewYourProfile2)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                     .addComponent(address2)
                     .addGap(25, 25, 25)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

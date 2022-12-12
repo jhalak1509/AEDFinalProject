@@ -4,7 +4,7 @@
  */
 package businessFramework.requestPipeline;
 
-import BusinessModel.UserAccount.User;
+import businessFramework.userAccount.User;
 import java.util.Date;
 
 /**
