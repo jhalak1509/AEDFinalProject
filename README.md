@@ -14,6 +14,10 @@
 <p>When a helper sign up the application an email is sent to the registered email address with the user name and password.</p>
 <p>An email is sent to Helper, Help Requester(Case), Doctor when the account is enable or approved by the manager.</p>
 
-Use Case Diagram:
+Use Case Diagram :
 
 ![UseCaseDiagram drawio](https://user-images.githubusercontent.com/114832299/206962811-c035065a-41d4-42e3-aa43-1f3af57044da.png)
+
+Object Model Diagram :
+
+![Health Onboard Model Diagram drawio](https://user-images.githubusercontent.com/113138356/206963027-df29e5ca-8405-4c08-8526-a4419ef01e02.png)
