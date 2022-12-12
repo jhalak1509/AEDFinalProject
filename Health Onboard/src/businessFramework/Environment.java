@@ -1,143 +1,83 @@
 package businessFramework;
-//import BusinessModel.Ambulance.AmbulanceDirectory;
-//import BusinessModel.BloodBank.BloodBank;
-//import BusinessModel.Doctor.DoctorDirectory;
-//import BusinessModel.Insurance.InsuranceDirectory;
-//import BusinessModel.Lab.Lab;
-//import BusinessModel.Patient.PatientDirectory;
-//import BusinessModel.Pharmacy.Pharmacy;
-//import BusinessModel.PoliceDepartment.PoliceDepartment;
-import businessFramework.roles.Roles;
-//import BusinessModel.Roles.Administrator;
-import java.util.ArrayList;
-import java.util.Properties;
-//import javax.mail.MessagingException;
-//import javax.mail.PasswordAuthentication;
-//import javax.mail.Session;
-//import javax.mail.Transport;
-//import javax.mail.internet.InternetAddress;
-//import javax.mail.internet.MimeMessage;
 
+import businessFramework.commonFunctions.Help;
+import businessFramework.network.Network;
+import businessFramework.organizations.Organizations;
+import businessFramework.roles.Roles;
+import businessFramework.roles.SysAdminRole;
 import java.util.ArrayList;
 
 /**
  *
  * @author patil
  */
-public class Environment extends Organisations {
- private static Environment business;
-//    private PatientDirectory patientDirectory;
-//    private DoctorDirectory doctorDirectory;
-//    private AmbulanceDirectory ambulanceDirectory;
-//    private BloodBank bloodBank;
-//    private Lab lab;
-//    private Pharmacy pharmacy;
-//    private InsuranceDirectory insuranceDirectory;
-//    private PoliceDepartment policeRecords;
+public class Environment extends Organizations {
     
-    public static Environment getInstance()
-    {
-        if(business==null)
-        {
-            business=new Environment();
-        }
-        
-        return business;
-    }
-
-    public static Environment getBusiness() {
-        return business;
-    }
-
-    public static void setBusiness(Environment business) {
-        Environment.business = business;
-    }
-
-//    public PatientDirectory getPatientDirectory() {
-//        return patientDirectory = (patientDirectory == null) ? new PatientDirectory() : patientDirectory;
-//    }
-//
-//    public void setPatientDirectory(PatientDirectory patientDirectory) {
-//        this.patientDirectory = patientDirectory;
-//    }
-//
-//    public DoctorDirectory getDoctorDirectory() {
-//        return doctorDirectory = (doctorDirectory == null) ? new DoctorDirectory() : doctorDirectory;
-//    }
-//
-//    public void setDoctorDirectory(DoctorDirectory doctorDirectory) {
-//        this.doctorDirectory = doctorDirectory;
-//    }
-//
-//    public AmbulanceDirectory getAmbulanceDirectory() {
-//        return ambulanceDirectory = (ambulanceDirectory == null) ? new AmbulanceDirectory() : ambulanceDirectory;
-//    }
-//
-//    public void setAmbulanceDirectory(AmbulanceDirectory ambulanceDirectory) {
-//        this.ambulanceDirectory = ambulanceDirectory;
-//    }
-//
-//    public BloodBank getBloodBank() {
-//        return bloodBank = (bloodBank == null) ? new BloodBank() : bloodBank;
-//    }
-//
-//    public void setBloodBank(BloodBank bloodBank) {
-//        this.bloodBank = bloodBank;
-//    }
-//
-//    public Lab getLab() {
-//        return lab = (lab == null)? new Lab() : lab;
-//    }
-//
-//    public void setLab(Lab lab) {
-//        this.lab = lab;
-//    }
-//
-//    public Pharmacy getPharmacy() {
-//        return pharmacy = (pharmacy == null)? new Pharmacy() : pharmacy;
-//    }
-//
-//    public void setPharmacy(Pharmacy pharmacy) {
-//        this.pharmacy = pharmacy;
-//    }
-//
-//    public InsuranceDirectory getInsuranceDirectory() {
-//        return insuranceDirectory = (insuranceDirectory == null)? new InsuranceDirectory() : insuranceDirectory;
-//    }
-//
-//    public void setInsuranceDirectory(InsuranceDirectory insuranceDirectory) {
-//        this.insuranceDirectory = insuranceDirectory;
-//    }
-//
-//    public PoliceDepartment getPoliceRecords() {
-//        return policeRecords = (policeRecords == null)? new PoliceDepartment() : policeRecords;
-//    }
-//
-//    public void setPoliceRecords(PoliceDepartment policeRecords) {
-//        this.policeRecords = policeRecords;
-//    }
-
-
+ private ArrayList<Network> networkList;
+   private static Environment environment;
+   private ArrayList<Help> helpList;
     
-//    @Override
-//    public ArrayList<Role> getSupportedRole() {
-//        ArrayList<Role> roleList=new ArrayList<>();
-//        roleList.add(new Administrator());
-//        return roleList;
-//    }
-    private Environment()
+   public Environment()
+   {
+       super(null);
+       networkList = new ArrayList<>();
+       helpList = new ArrayList<>();
+      
+   }
+   
+   public static Environment getInstance()
+   {
+    if(environment == null)
     {
-        super(null);
+      environment = new Environment();
+    }
+    return environment;
+   }
+
+    public ArrayList<Network> getNetworkList() {
+        return networkList;
+    }
+   
+    public Network addNetwork()
+    {
+        Network network = new Network();
+        networkList.add(network);
+        return network;
+    }
+    
+    public boolean checkIfUsernameIsUnique(String username)
+    {
+      if (!getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+        return false;
+      }
+      return true;
+    }
+   
+    public void deleteNetwork(Network network)
+    {
+        networkList.remove(network);
+    }
+   
+   @Override
+    public ArrayList<Roles> getSupportedRoles() {
+        ArrayList<Roles> rolesList = new ArrayList<>();
+        rolesList.add(new SysAdminRole());
+        return rolesList;
+    }
+   
+    public Help addHelp()
+    {
+        Help help = new Help();
+        helpList.add(help);
+        return help;
+    }
+    
+    public void deleteHelp(Help help)
+    {
+        helpList.remove(help);
     }
 
-    
-    public boolean checkIfUserIsUnique(String userName)
-    {
-       return false;
-    }   
-
-    @Override
-    public ArrayList<Roles> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public ArrayList<Help> getHelpList() {
+        return helpList;
     }
 }
